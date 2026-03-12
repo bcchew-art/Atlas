@@ -238,6 +238,7 @@
   }
 
   .check-box.done { background: var(--success); border-color: var(--success); }
+  .check-box.skipped { background: #ddd; border-color: #ddd; color: #999; }
   .check-box.current { border-color: var(--text); }
 
   .check-text { font-size: 14px; }
@@ -796,7 +797,7 @@
         <ul class="checklist">
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Unbox and assemble PC<span class="check-note">Asus A32 case, Corsair AIO, RTX 5090, Kioxia 2TB SSD</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First boot and BIOS check<span class="check-note">EXPO enabled — RAM confirmed at 6400MHz. Kioxia 2TB detected. Mobo: Asus TUF B650-E BIOS 3827</span></div></li>
-          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Activate Windows 11 Pro<span class="check-note">Skipped for now — no key bundled. Will activate when needed.</span></div></li>
+          <li class="check-item"><div class="check-box skipped">—</div><div class="check-text">Activate Windows 11 Pro<span class="check-note">Skipped for now — no key bundled. Will activate when needed.</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Run Windows Update fully</div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install NVIDIA drivers (RTX 5090 — Blackwell)<span class="check-note">Driver 595.79 — installed via NVIDIA App</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Verify GPU detected and CUDA enabled<span class="check-note">RTX 5090 confirmed in Device Manager</span></div></li>
