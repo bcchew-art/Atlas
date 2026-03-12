@@ -338,8 +338,8 @@
     <span class="logo-version">PoC v0.1</span>
   </div>
   <div class="nav-right">
-    <span class="nav-status">Planning Phase</span>
-    <span style="font-size:12px;color:var(--faint)">Updated 12 Mar 2026</span>
+    <span class="nav-status" style="color:var(--success)">● Phase 02 — Core Stack</span>
+    <span style="font-size:12px;color:var(--faint)">Updated 13 Mar 2026</span>
   </div>
 </nav>
 
@@ -399,8 +399,8 @@
         </div>
         <div class="stat-cell">
           <div class="stat-label">Phase</div>
-          <div class="stat-val">01 / 04</div>
-          <div class="stat-sub">Hardware setup</div>
+          <div class="stat-val">02 / 04</div>
+          <div class="stat-sub">Core stack installation</div>
         </div>
         <div class="stat-cell">
           <div class="stat-label">First Milestone</div>
@@ -783,7 +783,7 @@
       <div class="page-header">
         <div class="page-eyebrow">Execution</div>
         <div class="page-title">Setup Plan</div>
-        <div class="page-desc">Four phases from hardware bring-up to first working skill. Currently in Phase 01.</div>
+        <div class="page-desc">Four phases from hardware bring-up to first working skill. Currently in Phase 02.</div>
       </div>
 
       <div class="phase">
@@ -813,14 +813,19 @@
           <span class="badge badge-active">In Progress</span>
         </div>
         <ul class="checklist">
-          <li class="check-item"><div class="check-box current"></div><div class="check-text">Install Ollama (Windows native)<span class="check-note">Download from ollama.com — Windows native install, no WSL2 needed</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Pull Qwen3 32B<span class="check-note">Primary local model — coding, analysis, doc processing, tender drafting</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Pull Qwen2.5 Coder 32B<span class="check-note">Code specialist — generation, refactoring, debugging</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Pull Qwen3 8B<span class="check-note">Fast triage model — quick routing, ~213 tok/s on RTX 5090</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Install OpenClaw (Windows native, latest version)</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect Codex OAuth to OpenClaw<span class="check-note">Codex Plus — GPT-5.4, $30/mo</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect OpenRouter API key<span class="check-note">Fallback layer — Claude / GPT-4o / others</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Configure routing logic — Qwen3 8B → Qwen3 32B → Codex → OpenRouter</div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install Ollama v0.17.7 (Windows native)<span class="check-note">Windows native install, no WSL2</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Pull Qwen3 32B<span class="check-note">Primary local fallback — analysis, doc processing, tender drafting</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Pull Qwen2.5 Coder 32B<span class="check-note">Code specialist — generation, refactoring, debugging</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Pull Qwen3 8B<span class="check-note">Fast triage fallback — ~213 tok/s on RTX 5090</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install OpenClaw 2026.3.11<span class="check-note">Windows native + Git for Windows dependency</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">OpenClaw onboarding<span class="check-note">GPT-5.4 primary, WhatsApp allowlist, Brave search API</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Connect Codex OAuth<span class="check-note">Codex Plus — GPT-5.4</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">OpenClaw dashboard<span class="check-note">Fixed — use `openclaw dashboard` to launch with auth</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure model routing<span class="check-note">GPT-5.4 primary → Qwen3 8B → Qwen3 32B fallbacks</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install gateway service<span class="check-note">Via openclaw doctor --fix — auto-starts on boot</span></div></li>
+          <li class="check-item"><div class="check-box skipped">—</div><div class="check-text">Connect OpenRouter API key<span class="check-note">Deferred — not priority for now</span></div></li>
+          <li class="check-item"><div class="check-box current"></div><div class="check-text">Configure embedding provider<span class="check-note">Needed for Atlas memory semantic search</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Add Jackie + Sultan to WA allowlist</div></li>
         </ul>
       </div>
 
@@ -918,6 +923,19 @@
 
       <div class="card">
         <div class="log-row">
+          <div class="log-date">13 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 6 — Core stack operational</div>
+            <div class="log-body">Dashboard issue resolved — gateway wasn't running; fixed with gateway.cmd and service install via openclaw doctor --fix. PowerShell execution policy set to RemoteSigned (was blocking CLI). All 3 Ollama models confirmed. Codex OAuth connected. Model routing configured: GPT-5.4 primary → Qwen3 8B → Qwen3 32B as fallbacks. GPT-5.4 kept as primary for stakeholder communication quality. OpenRouter deferred. Remaining: embedding provider for memory semantic search, WA allowlist for Jackie + Sultan.</div>
+            <div class="log-tags">
+              <span class="log-tag">Phase 02</span>
+              <span class="log-tag">OpenClaw</span>
+              <span class="log-tag">Model Routing</span>
+              <span class="log-tag">Fix</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
           <div class="log-date">12 Mar 2026</div>
           <div>
             <div class="log-title">Session 2 — Architecture finalised</div>
