@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Atlas — ATT Infosoft</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f8f6;
+    --border: #e8e8e4;
+    --border-light: #f0f0ec;
+    --text: #1a1a18;
+    --muted: #6b6b67;
+    --faint: #9b9b97;
+    --tag-bg: #f0f0ec;
+    --success-bg: #f0faf5;
+    --success: #0d7a4e;
+    --warning-bg: #fdf8f0;
+    --warning: #92600a;
+    --pending-bg: #f5f5f3;
+    --pending: #6b6b67;
+    --sidebar-w: 240px;
+    --header-h: 56px;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 10px; }
+
+  .logo-mark {
+    width: 26px; height: 26px;
+    background: var(--text);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-mark span { color: #fff; font-size: 12px; font-weight: 700; }
+
+  .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+
+  .logo-version {
+    font-size: 11px; color: var(--faint);
+    font-family: 'Inter', monospace;
+    border: 1px solid var(--border);
+    padding: 1px 7px; border-radius: 100px;
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+
+  .nav-status {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--success); font-weight: 500;
+  }
+
+  .nav-status::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--success);
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .layout { display: flex; padding-top: var(--header-h); min-height: 100vh; }
+
+  .sidebar {
+    width: var(--sidebar-w); flex-shrink: 0;
+    position: fixed; top: var(--header-h); left: 0; bottom: 0;
+    overflow-y: auto; border-right: 1px solid var(--border);
+    padding: 28px 16px; scrollbar-width: none;
+  }
+
+  .sidebar::-webkit-scrollbar { display: none; }
+
+  .sidebar-section { margin-bottom: 28px; }
+
+  .sidebar-label {
+    font-size: 10px; font-weight: 600; color: var(--faint);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0 8px; margin-bottom: 6px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .sidebar-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: 6px;
+    font-size: 13.5px; color: var(--muted); font-weight: 500;
+    cursor: pointer; transition: all 0.15s;
+    border: none; background: none; width: 100%; text-align: left;
+  }
+
+  .sidebar-link:hover { background: var(--surface); color: var(--text); }
+  .sidebar-link.active { background: var(--surface); color: var(--text); font-weight: 600; }
+
+  .sidebar-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.5; }
+  .sidebar-link.active .sidebar-icon { opacity: 1; }
+
+  .main {
+    flex: 1; margin-left: var(--sidebar-w);
+    max-width: 780px; padding: 48px 56px;
+  }
+
+  .page-header { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+  .page-eyebrow {
+    font-size: 12px; font-weight: 500; color: var(--faint);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 10px; font-family: 'Inter', sans-serif;
+  }
+
+  .page-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+
+  .page-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 560px; }
+
+  .section { margin-bottom: 44px; }
+
+  .section-title {
+    font-size: 11px; font-weight: 600; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 14px; font-family: 'Inter', sans-serif;
+  }
+
+  h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 6px; }
+
+  p { font-size: 14.5px; color: var(--muted); line-height: 1.7; }
+
+  .stat-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; margin-bottom: 32px;
+  }
+
+  .stat-cell { background: var(--bg); padding: 18px 20px; }
+
+  .stat-label {
+    font-size: 11px; font-weight: 500; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 5px; font-family: 'Inter', sans-serif;
+  }
+
+  .stat-val { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 12px; color: var(--faint); margin-top: 2px; }
+
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; margin-bottom: 12px; }
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 2px 9px; border-radius: 100px; font-family: 'Inter', sans-serif;
+  }
+
+  .badge-active { background: var(--success-bg); color: var(--success); }
+  .badge-planned { background: var(--pending-bg); color: var(--pending); }
+  .badge-next { background: var(--warning-bg); color: var(--warning); }
+
+  .arch-row {
+    display: flex; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid var(--border-light);
+    gap: 14px;
+  }
+
+  .arch-row:last-child { border-bottom: none; }
+  .arch-indent { padding-left: 24px; }
+
+  .arch-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-primary { background: var(--text); }
+  .dot-secondary { background: #aaa; }
+  .dot-tertiary { background: #ccc; }
+
+  .arch-info { flex: 1; }
+  .arch-name { font-size: 14px; font-weight: 600; }
+  .arch-desc { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+
+  .arch-pill {
+    font-size: 11px; font-family: 'Inter', monospace;
+    padding: 3px 10px; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--muted); white-space: nowrap;
+  }
+
+  .phase { margin-bottom: 36px; }
+
+  .phase-header {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 12px;
+  }
+
+  .phase-title-row { display: flex; align-items: center; gap: 10px; }
+
+  .phase-num {
+    font-size: 11px; font-weight: 600; color: var(--faint);
+    font-family: 'Inter', monospace; width: 22px;
+  }
+
+  .phase-name { font-size: 15px; font-weight: 600; }
+
+  .checklist { list-style: none; border-left: 1px solid var(--border); margin-left: 10px; }
+
+  .check-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 16px; height: 16px; border-radius: 4px;
+    border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #fff;
+  }
+
+  .check-box.done { background: var(--success); border-color: var(--success); }
+  .check-box.current { border-color: var(--text); }
+
+  .check-text { font-size: 14px; }
+  .check-note { display: block; font-size: 12px; color: var(--faint); margin-top: 2px; }
+
+  .skill-row {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; padding: 14px 0;
+    border-bottom: 1px solid var(--border-light); gap: 16px;
+  }
+
+  .skill-row:last-child { border-bottom: none; }
+  .skill-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .log-row {
+    display: flex; gap: 24px; padding: 18px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .log-row:last-child { border-bottom: none; }
+
+  .log-date {
+    font-size: 12px; font-family: 'Inter', monospace;
+    color: var(--faint); min-width: 80px; padding-top: 2px;
+  }
+
+  .log-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  .log-body { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  .log-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+  .log-tag {
+    font-size: 11px; font-family: 'Inter', sans-serif;
+    padding: 2px 8px; border-radius: 4px;
+    background: var(--tag-bg); color: var(--muted);
+  }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+
+  .data-table th {
+    text-align: left; font-size: 11px; font-weight: 600;
+    color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0 12px 10px; font-family: 'Inter', sans-serif;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 11px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:first-child { color: var(--muted); width: 40%; }
+
+  .content-panel { display: none; }
+  .content-panel.active { display: block; }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 32px 24px; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-left">
+    <div class="logo-mark"><span>A</span></div>
+    <span class="logo-name">Project Atlas</span>
+    <span class="logo-version">PoC v0.1</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-status">Planning Phase</span>
+    <span style="font-size:12px;color:var(--faint)">Updated 12 Mar 2026</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Project</div>
+      <button class="sidebar-link active" onclick="nav('overview',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+        Overview
+      </button>
+      <button class="sidebar-link" onclick="nav('architecture',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="3" r="2"/><circle cx="3" cy="13" r="2"/><circle cx="13" cy="13" r="2"/><path d="M8 5v3M8 8l-4.1 3.2M8 8l4.1 3.2"/></svg>
+        Architecture
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Execution</div>
+      <button class="sidebar-link" onclick="nav('setup',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h5"/></svg>
+        Setup Plan
+      </button>
+      <button class="sidebar-link" onclick="nav('skills',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 4 4.5.7-3.2 3.1.7 4.5L8 11l-4 2.3.7-4.5L1.5 5.7 6 5z"/></svg>
+        Skills Roadmap
+      </button>
+      <button class="sidebar-link" onclick="nav('log',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
+        Progress Log
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Context</div>
+      <div style="padding:0 8px;font-size:12px;color:var(--faint);line-height:1.8;">
+        Internal PoC<br>
+        Off-network<br>
+        Initiated by Jackie<br>
+        ATT Infosoft
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="content-panel active">
+      <div class="page-header">
+        <div class="page-eyebrow">ATT Infosoft — Internal PoC</div>
+        <div class="page-title">Project Atlas</div>
+        <div class="page-desc">An AI agent system built to handle IT tender proposals end-to-end. Starting with technical specification writing, Atlas will be trained with company knowledge and purpose-built skills to produce competitive, high-quality tender submissions.</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-label">Agent</div>
+          <div class="stat-val">Atlas</div>
+          <div class="stat-sub">Primary orchestrator</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Phase</div>
+          <div class="stat-val">01 / 04</div>
+          <div class="stat-sub">Hardware setup</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">First Milestone</div>
+          <div class="stat-val">TechSpec</div>
+          <div class="stat-sub">Tender tech spec skill</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">GPU</div>
+          <div class="stat-val">RTX 5090</div>
+          <div class="stat-sub">32GB VRAM</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Objectives</div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Immediate goal</h3>
+            <p>Train Atlas to read an RFP and produce a structured technical specification section. Evaluate against past ATT submissions and iterate via a feedback loop.</p>
+          </div>
+          <div class="card">
+            <h3>Long-term vision</h3>
+            <p>Atlas orchestrates multiple sub-agents, each owning a tender section skill. Output is a complete, review-ready proposal assembled from specialist agents.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Hardware</div>
+        <div class="card">
+          <table class="data-table">
+            <tr><td>Processor</td><td>AMD Ryzen 9 9950X</td></tr>
+            <tr><td>Graphics Card</td><td>NVIDIA RTX 5090 32GB — Gigabyte</td></tr>
+            <tr><td>Memory</td><td>64GB DDR5 6400MHz — KingBank RGB</td></tr>
+            <tr><td>Storage</td><td>2TB Kioxia Gen.4 NVMe SSD</td></tr>
+            <tr><td>Motherboard</td><td>Asus TUF Gaming B650-E Wi-Fi 6E</td></tr>
+            <tr><td>Power Supply</td><td>Seasonic Vertex PX 1200W 80+ Platinum</td></tr>
+            <tr><td>Cooler</td><td>Corsair iCue Link Titan RX 360mm AIO</td></tr>
+            <tr><td>Operating System</td><td>Windows 11 Pro 64-bit</td></tr>
+            <tr><td>Network</td><td>Personal — off ATT infrastructure</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div id="architecture" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">System Design</div>
+        <div class="page-title">Architecture</div>
+        <div class="page-desc">Atlas runs a multi-agent architecture. The orchestrator reads the RFP, assigns tasks to sub-agents by skill, and assembles the final output. Model routing is cost-optimised across three tiers.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Agent Stack</div>
+        <div class="card">
+          <div class="arch-row">
+            <div class="arch-dot dot-primary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Atlas — Orchestrator</div>
+              <div class="arch-desc">Reads RFP, assigns tender sections to sub-agents, assembles final output</div>
+            </div>
+            <div class="arch-pill">Codex OAuth</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-secondary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Local LLM — RTX 5090</div>
+              <div class="arch-desc">Primary workhorse for routine drafting, summarising, formatting</div>
+            </div>
+            <div class="arch-pill">Free · 24/7</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-secondary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Codex (GPT-5.4) via OAuth</div>
+              <div class="arch-desc">Escalation when local LLM hits complexity limits</div>
+            </div>
+            <div class="arch-pill">Subscription</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-tertiary"></div>
+            <div class="arch-info">
+              <div class="arch-name">OpenRouter</div>
+              <div class="arch-desc">Model flexibility layer — Claude, GPT-4o, others as needed</div>
+            </div>
+            <div class="arch-pill">Credit-based</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Model Routing</div>
+        <div class="card">
+          <table class="data-table">
+            <thead>
+              <tr><th>Task type</th><th>Routed to</th><th>Cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Format, summarise, simple drafts</td><td>Local LLM (5090)</td><td>Free</td></tr>
+              <tr><td>Complex reasoning, tender drafting</td><td>Codex via OAuth</td><td>Subscription</td></tr>
+              <tr><td>Specific model needs</td><td>OpenRouter</td><td>Per use</td></tr>
+              <tr><td>Skill building, quality review</td><td>Claude Max (human layer)</td><td>Subscription</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Communication Channels</div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>WhatsApp</h3>
+            <p>Mobile interface into Atlas. Existing number repurposed from Mac Mini. Quick inputs on the go.</p>
+          </div>
+          <div class="card">
+            <h3>Discord</h3>
+            <p>Primary workspace. Fresh server with channels per project and skill area. Bridged to WhatsApp — no context repetition across channels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Feedback Loop</div>
+        <div class="card">
+          <table class="data-table">
+            <tr><td>Input</td><td>Past RFP and ATT submission uploaded as reference</td></tr>
+            <tr><td>Evaluate</td><td>Atlas compares submission vs RFP requirements, identifies gaps</td></tr>
+            <tr><td>Draft</td><td>Generates improved version based on evaluation</td></tr>
+            <tr><td>Review</td><td>PM reviews output and provides corrections</td></tr>
+            <tr><td>Store</td><td>Corrections saved to skill memory for next run</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETUP -->
+    <div id="setup" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Execution</div>
+        <div class="page-title">Setup Plan</div>
+        <div class="page-desc">Four phases from hardware bring-up to first working skill. Currently in Phase 01.</div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">01</div>
+            <div class="phase-name">Hardware Setup</div>
+          </div>
+          <span class="badge badge-active">In Progress</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box current"></div><div class="check-text">Unbox and assemble PC<span class="check-note">Asus A32 case, Corsair AIO, RTX 5090, Kioxia 2TB SSD</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">First boot and BIOS check<span class="check-note">Verify all components detected — RAM at 6400MHz, GPU recognised</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Activate Windows 11 Pro</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Run Windows Update fully</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Install NVIDIA drivers (RTX 5090 — Blackwell)<span class="check-note">Download from nvidia.com directly — do not use Windows auto-install</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Verify GPU detected and CUDA enabled</div></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">02</div>
+            <div class="phase-name">Core Stack Installation</div>
+          </div>
+          <span class="badge badge-planned">Upcoming</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Install WSL2 (Ubuntu)<span class="check-note">Required for Linux-native AI tooling on Windows</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Install Ollama and select local LLM model<span class="check-note">Appropriate for 32GB VRAM</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Install OpenClaw (latest version)</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect Codex OAuth to OpenClaw</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect OpenRouter API key</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Configure routing logic — Local LLM → Codex → OpenRouter</div></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">03</div>
+            <div class="phase-name">Atlas Identity and Channels</div>
+          </div>
+          <span class="badge badge-planned">Upcoming</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Deregister WhatsApp from Mac Mini</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Link WhatsApp number to Atlas on 5090</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Create fresh Discord server<span class="check-note">Structure channels by project and skill area</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Set up WhatsApp to Discord bridge<span class="check-note">Messages sync across both — no context repetition</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Assign Atlas persona and system prompt</div></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">04</div>
+            <div class="phase-name">First Skill — Tender Tech Spec</div>
+          </div>
+          <span class="badge badge-planned">Upcoming</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Upload past tender RFPs as reference</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Upload past ATT submissions for evaluation</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Build TechSpec skill — draft generation layer</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Build evaluation layer — score submission vs RFP</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Build feedback store — save corrections for continuous improvement</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Test run with real RFP — review output with Jackie</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div id="skills" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Tender Skills</div>
+        <div class="page-title">Skills Roadmap</div>
+        <div class="page-desc">One skill per tender section. Each skill is an independent module assigned to a sub-agent. Atlas activates skills based on the RFP. Skills improve through the feedback loop over time.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Skill Registry</div>
+        <div class="card">
+          <div class="skill-row">
+            <div><div class="skill-name">TechSpec</div><div class="skill-desc">Reads RFP and generates detailed technical approach, system architecture description, and compliance mapping for the technical specification section.</div></div>
+            <span class="badge badge-next" style="flex-shrink:0">Building Next</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Compliance</div><div class="skill-desc">Maps RFP requirements to relevant standards such as ISO and government frameworks. Highlights compliance gaps and associated risks.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Architecture</div><div class="skill-desc">Generates system design descriptions, component breakdowns, and integration approach based on RFP scope.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Pricing / BQ</div><div class="skill-desc">Generates structured pricing based on scope, mandays, and rates. References past BQ formats from ATT submissions.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Timeline</div><div class="skill-desc">Generates realistic project schedules based on scope size, resource allocation, and submission deadlines.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Company Profile</div><div class="skill-desc">ATT Infosoft background, track record, and past projects. Tailored to the domain of each tender.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Executive Summary</div><div class="skill-desc">High-level overview synthesised from all completed sections. Generated last by the orchestrator.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Evaluator</div><div class="skill-desc">Cross-section review agent. Checks consistency, flags missing requirements, and scores overall submission quality before final output.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOG -->
+    <div id="log" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Activity</div>
+        <div class="page-title">Progress Log</div>
+        <div class="page-desc">Dated record of planning sessions, decisions, and milestones.</div>
+      </div>
+
+      <div class="card">
+        <div class="log-row">
+          <div class="log-date">12 Mar 2026</div>
+          <div>
+            <div class="log-title">Planning session — Project Atlas scoped</div>
+            <div class="log-body">Defined full project scope, agent architecture, model routing strategy, and skill roadmap. Hardware confirmed as RTX 5090 workstation. Agent named Atlas. WhatsApp and Discord channel strategy confirmed with sync bridge. First milestone set as TechSpec skill. PoC to run off-network on personal hardware per Jackie's direction.</div>
+            <div class="log-tags">
+              <span class="log-tag">Planning</span>
+              <span class="log-tag">Architecture</span>
+              <span class="log-tag">Scoping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function nav(id, btn) {
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-link').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
