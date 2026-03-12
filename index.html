@@ -474,8 +474,8 @@
             <text x="80" y="62" font-size="12" font-weight="700" fill="#333">Gabriel Jiang</text>
             <text x="80" y="78" font-size="11" fill="#666">PM · ATT Infosoft</text>
             <line x1="185" y1="44" x2="185" y2="100" stroke="#d0c8e8" stroke-width="1"/>
-            <text x="200" y="66" font-size="12" fill="#444">● WhatsApp</text>
-            <text x="200" y="84" font-size="12" fill="#444">● Discord</text>
+            <text x="200" y="62" font-size="12" fill="#444">● WA Group: Jackie + Sultan + Gabriel + Atlas</text>
+            <text x="200" y="80" font-size="12" fill="#444">● Individual DMs per person</text>
             <line x1="340" y1="44" x2="340" y2="100" stroke="#d0c8e8" stroke-width="1"/>
             <rect x="356" y="58" width="190" height="24" rx="4" fill="#ede8f8" stroke="#b8a8d8" stroke-width="1"/>
             <text x="451" y="74" text-anchor="middle" font-size="11" fill="#9070c0">MS Teams — Future Plan Only</text>
@@ -515,16 +515,16 @@
             <text x="250" y="306" font-size="11" fill="#555" font-style="italic">Assembles final tender output</text>
 
             <!-- Sub-agents box -->
-            <rect x="30" y="322" width="440" height="88" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
+            <rect x="30" y="322" width="440" height="106" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
             <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
-            <text x="42" y="362" font-size="11" fill="#333">● TechSpec</text>
-            <text x="145" y="362" font-size="11" fill="#333">● Compliance</text>
-            <text x="260" y="362" font-size="11" fill="#333">● Architecture</text>
-            <text x="380" y="362" font-size="11" fill="#333">● Pricing / BQ</text>
-            <text x="42" y="382" font-size="11" fill="#333">● Timeline</text>
-            <text x="145" y="382" font-size="11" fill="#333">● Evaluator</text>
-            <text x="260" y="382" font-size="11" fill="#888">● Company Profile</text>
-            <text x="380" y="382" font-size="11" fill="#888">● Exec Summary</text>
+            <text x="42" y="362" font-size="11" fill="#333">● Hermes — TechSpec</text>
+            <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance</text>
+            <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Architecture</text>
+            <text x="42" y="382" font-size="11" fill="#333">● Midas — Pricing / BQ</text>
+            <text x="175" y="382" font-size="11" fill="#333">● Chronos — Timeline</text>
+            <text x="310" y="382" font-size="11" fill="#333">● Argus — Evaluator</text>
+            <text x="42" y="400" font-size="11" fill="#888">● Athena — Company Profile</text>
+            <text x="240" y="400" font-size="11" fill="#888">● Hestia — Exec Summary</text>
             <line x1="250" y1="316" x2="250" y2="322" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
 
             <!-- Services right column -->
@@ -542,7 +542,7 @@
             <text x="619" y="289" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">eSIM Bridge</text>
             <text x="506" y="312" font-size="11" fill="#333">WhatsApp Orchestration · $4.90/mo</text>
             <text x="506" y="328" font-size="11" fill="#555">Agent channel routing</text>
-            <text x="506" y="344" font-size="11" fill="#555">WhatsApp ↔ Discord bridged</text>
+            <text x="506" y="344" font-size="11" fill="#555">Group + individual DMs per person</text>
 
             <rect x="494" y="378" width="250" height="46" rx="5" fill="#f9f9f9" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
             <text x="619" y="397" text-anchor="middle" font-size="11" font-weight="700" fill="#999">OpenRouter (Fallback)</text>
@@ -731,17 +731,35 @@
         <div class="section-title">Communication Channels</div>
         <div class="card-grid">
           <div class="card">
-            <h3>WhatsApp</h3>
-            <p>Mobile interface into Atlas. Number repurposed from previous Mac Mini setup. Used for quick inputs and status checks on the go. Managed via eSIM Bridge ($4.90/mo).</p>
+            <h3>WhatsApp Group</h3>
+            <p>Command centre. One group with Jackie, Sultan, Gabriel, and Atlas. All coordination, status updates, and decisions go through here. Managed via eSIM Bridge ($4.90/mo).</p>
           </div>
           <div class="card">
-            <h3>Discord</h3>
-            <p>Primary workspace. Fresh server with channels organised by project and skill area. Bridged to WhatsApp — no context repetition across channels. Supports richer multi-turn conversations.</p>
+            <h3>Individual DMs</h3>
+            <p>Each person (Jackie, Sultan, Gabriel) has a separate DM with Atlas for detailed one-on-one work — deep task discussion, private reviews, and context-rich interactions without group noise.</p>
           </div>
           <div class="card">
             <h3>MS Teams</h3>
             <p>Future plan only. Not included in current PoC — runs off ATT network on personal hardware. May be scoped in once PoC is validated with Jackie.</p>
           </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Memory Architecture</div>
+        <div class="card">
+          <table class="data-table">
+            <thead>
+              <tr><th>Layer</th><th>Location</th><th>Used By</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Shared memory</td><td>Monday.com private doc</td><td>Claude Chat, Cowork, Code, Atlas</td><td>Human-readable. Read at session start.</td></tr>
+              <tr><td>Local memory</td><td>MEMORY.md on 5090</td><td>Atlas</td><td>Persistent state across Atlas sessions.</td></tr>
+              <tr><td>Agent rules</td><td>AGENTS.md on 5090</td><td>Atlas</td><td>"Search memory before acting. Write decisions after every task."</td></tr>
+              <tr><td>Plugin</td><td>Supermemory (OpenClaw)</td><td>Atlas</td><td>Semantic memory retrieval within OpenClaw.</td></tr>
+              <tr><td>Decay</td><td>Temporal decay config</td><td>Atlas</td><td>Half-life: 30 days. Old memories fade over time.</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -814,9 +832,10 @@
         <ul class="checklist">
           <li class="check-item"><div class="check-box"></div><div class="check-text">Deregister WhatsApp from Mac Mini</div></li>
           <li class="check-item"><div class="check-box"></div><div class="check-text">Link WhatsApp number to Atlas on 5090</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Create fresh Discord server<span class="check-note">Structure channels by project and skill area</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Set up WhatsApp to Discord bridge<span class="check-note">Messages sync across both — no context repetition</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Create WhatsApp group<span class="check-note">Jackie + Sultan + Gabriel + Atlas — command centre</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Set up individual DMs with Atlas<span class="check-note">One DM each for Jackie, Sultan, Gabriel — detailed one-on-one work</span></div></li>
           <li class="check-item"><div class="check-box"></div><div class="check-text">Assign Atlas persona and system prompt</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Configure MEMORY.md and AGENTS.md on 5090<span class="check-note">Supermemory plugin + temporal decay 30-day half-life</span></div></li>
         </ul>
       </div>
 
@@ -851,35 +870,35 @@
         <div class="section-title">Skill Registry</div>
         <div class="card">
           <div class="skill-row">
-            <div><div class="skill-name">TechSpec</div><div class="skill-desc">Reads RFP and generates detailed technical approach, system architecture description, and compliance mapping for the technical specification section.</div></div>
+            <div><div class="skill-name">Hermes — TechSpec</div><div class="skill-desc">Reads RFP and generates detailed technical approach, system architecture description, and compliance mapping for the technical specification section.</div></div>
             <span class="badge badge-next" style="flex-shrink:0">Building Next</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Compliance</div><div class="skill-desc">Maps RFP requirements to relevant standards such as ISO and government frameworks. Highlights compliance gaps and associated risks.</div></div>
+            <div><div class="skill-name">Themis — Compliance</div><div class="skill-desc">Maps RFP requirements to relevant standards such as ISO and government frameworks. Highlights compliance gaps and associated risks.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Architecture</div><div class="skill-desc">Generates system design descriptions, component breakdowns, and integration approach based on RFP scope.</div></div>
+            <div><div class="skill-name">Daedalus — Architecture</div><div class="skill-desc">Generates system design descriptions, component breakdowns, and integration approach based on RFP scope.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Pricing / BQ</div><div class="skill-desc">Generates structured pricing based on scope, mandays, and rates. References past BQ formats from ATT submissions.</div></div>
+            <div><div class="skill-name">Midas — Pricing / BQ</div><div class="skill-desc">Generates structured pricing based on scope, mandays, and rates. References past BQ formats from ATT submissions.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Timeline</div><div class="skill-desc">Generates realistic project schedules based on scope size, resource allocation, and submission deadlines.</div></div>
+            <div><div class="skill-name">Chronos — Timeline</div><div class="skill-desc">Generates realistic project schedules based on scope size, resource allocation, and submission deadlines.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Company Profile</div><div class="skill-desc">ATT Infosoft background, track record, and past projects. Tailored to the domain of each tender.</div></div>
+            <div><div class="skill-name">Athena — Company Profile</div><div class="skill-desc">ATT Infosoft background, track record, and past projects. Tailored to the domain of each tender.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Executive Summary</div><div class="skill-desc">High-level overview synthesised from all completed sections. Generated last by the orchestrator.</div></div>
+            <div><div class="skill-name">Hestia — Executive Summary</div><div class="skill-desc">High-level overview synthesised from all completed sections. Generated last by the orchestrator.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Evaluator</div><div class="skill-desc">Cross-section review agent. Checks consistency, flags missing requirements, and scores overall submission quality before final output.</div></div>
+            <div><div class="skill-name">Argus — Evaluator</div><div class="skill-desc">Cross-section review agent. Checks consistency, flags missing requirements, and scores overall submission quality before final output.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
         </div>
@@ -898,8 +917,21 @@
         <div class="log-row">
           <div class="log-date">12 Mar 2026</div>
           <div>
-            <div class="log-title">Planning session — Project Atlas scoped</div>
-            <div class="log-body">Defined full project scope, agent architecture, model routing strategy, and skill roadmap. Hardware confirmed as RTX 5090 workstation. Agent named Atlas. WhatsApp and Discord channel strategy confirmed with sync bridge. First milestone set as TechSpec skill. PoC to run off-network on personal hardware per Jackie's direction.</div>
+            <div class="log-title">Session 2 — Architecture finalised</div>
+            <div class="log-body">Communication strategy updated: WhatsApp group (Jackie + Sultan + Gabriel + Atlas) as command centre, with individual DMs per person. Discord dropped. Memory architecture decided: Monday.com private doc as shared memory across all Claude surfaces and Atlas. Local MEMORY.md + AGENTS.md + Supermemory plugin on 5090, with 30-day temporal decay. Sub-agents named (Greek mythology): Hermes, Midas, Argus, Themis, Daedalus, Chronos, Athena, Hestia. Multi-agent fleet (Titan, Forge) deferred — Atlas PoC first. GitHub (bcchew-art/Atlas) confirmed for code and site assets. Cowork confirmed able to deploy directly to GitHub.</div>
+            <div class="log-tags">
+              <span class="log-tag">Architecture</span>
+              <span class="log-tag">Memory</span>
+              <span class="log-tag">Communication</span>
+              <span class="log-tag">Decisions</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
+          <div class="log-date">12 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 1 — Project Atlas scoped</div>
+            <div class="log-body">Defined full project scope, agent architecture, model routing strategy, and skill roadmap. Hardware confirmed as RTX 5090 workstation. Agent named Atlas. WhatsApp as primary channel. First milestone set as TechSpec skill. PoC to run off-network on personal hardware per Jackie's direction. Multi-agent fleet diagram designed.</div>
             <div class="log-tags">
               <span class="log-tag">Planning</span>
               <span class="log-tag">Architecture</span>
