@@ -1,0 +1,2 @@
+# Atlas
+AI Agent Setup
