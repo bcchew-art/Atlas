@@ -456,205 +456,208 @@
       <div class="section">
         <div class="section-title">System Diagram</div>
         <div style="background:#ffffff;border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-bottom:12px;">
-          <svg viewBox="0 0 760 820" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:Arial,sans-serif;background:#fff;">
+          <svg viewBox="0 0 760 980" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:Arial,sans-serif;background:#fff;">
             <defs>
               <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker>
               <marker id="arrd" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#aaa"/></marker>
               <marker id="arro" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c07000"/></marker>
             </defs>
 
-            <!-- ══ ROW 1: USER CHANNELS ══ -->
-            <rect x="8" y="8" width="744" height="90" rx="6" fill="#f3f0fa" stroke="#7b5ea7" stroke-width="1.5"/>
-            <rect x="8" y="8" width="744" height="24" rx="6" fill="#7b5ea7"/>
-            <rect x="8" y="24" width="744" height="8" fill="#7b5ea7"/>
-            <text x="380" y="23" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">USER CHANNELS</text>
-            <!-- Person icon -->
-            <circle cx="50" cy="62" r="10" fill="#c8b8e8"/>
-            <circle cx="50" cy="58" r="5" fill="#7b5ea7"/>
-            <path d="M40,70 Q50,65 60,70" fill="#7b5ea7"/>
-            <text x="72" y="56" font-size="10" font-weight="700" fill="#333">Gabriel Jiang</text>
-            <text x="72" y="70" font-size="9" fill="#666">PM · ATT Infosoft</text>
-            <line x1="170" y1="42" x2="170" y2="90" stroke="#d0c8e8" stroke-width="1"/>
-            <text x="188" y="58" font-size="10" fill="#444">● WhatsApp</text>
-            <text x="188" y="74" font-size="10" fill="#444">● Discord</text>
-            <line x1="320" y1="42" x2="320" y2="90" stroke="#d0c8e8" stroke-width="1"/>
-            <rect x="336" y="52" width="180" height="22" rx="4" fill="#ede8f8" stroke="#b8a8d8" stroke-width="1"/>
-            <text x="426" y="67" text-anchor="middle" font-size="9" fill="#9070c0">MS Teams — Future Plan Only</text>
-            <line x1="530" y1="42" x2="530" y2="90" stroke="#d0c8e8" stroke-width="1"/>
-            <text x="548" y="58" font-size="9" fill="#555">All channels routed through</text>
-            <text x="548" y="72" font-size="9" fill="#555">Atlas via eSIM Bridge</text>
+            <!-- ROW 1: USER CHANNELS -->
+            <rect x="8" y="8" width="744" height="100" rx="6" fill="#f3f0fa" stroke="#7b5ea7" stroke-width="1.5"/>
+            <rect x="8" y="8" width="744" height="28" rx="6" fill="#7b5ea7"/>
+            <rect x="8" y="28" width="744" height="8" fill="#7b5ea7"/>
+            <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">USER CHANNELS</text>
+            <circle cx="52" cy="70" r="12" fill="#c8b8e8"/>
+            <circle cx="52" cy="65" r="6" fill="#7b5ea7"/>
+            <path d="M40,79 Q52,73 64,79" fill="#7b5ea7"/>
+            <text x="80" y="62" font-size="12" font-weight="700" fill="#333">Gabriel Jiang</text>
+            <text x="80" y="78" font-size="11" fill="#666">PM · ATT Infosoft</text>
+            <line x1="185" y1="44" x2="185" y2="100" stroke="#d0c8e8" stroke-width="1"/>
+            <text x="200" y="66" font-size="12" fill="#444">● WhatsApp</text>
+            <text x="200" y="84" font-size="12" fill="#444">● Discord</text>
+            <line x1="340" y1="44" x2="340" y2="100" stroke="#d0c8e8" stroke-width="1"/>
+            <rect x="356" y="58" width="190" height="24" rx="4" fill="#ede8f8" stroke="#b8a8d8" stroke-width="1"/>
+            <text x="451" y="74" text-anchor="middle" font-size="11" fill="#9070c0">MS Teams — Future Plan Only</text>
+            <line x1="560" y1="44" x2="560" y2="100" stroke="#d0c8e8" stroke-width="1"/>
+            <text x="574" y="64" font-size="11" fill="#555">All channels routed through</text>
+            <text x="574" y="80" font-size="11" fill="#555">Atlas via eSIM Bridge</text>
 
-            <!-- Arrow down -->
-            <line x1="380" y1="98" x2="380" y2="116" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
-            <text x="386" y="110" font-size="8" fill="#555">HTTPS</text>
+            <!-- Arrow -->
+            <line x1="380" y1="108" x2="380" y2="128" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="388" y="122" font-size="10" fill="#555">HTTPS</text>
 
-            <!-- ══ ROW 2: CLOUD LAYER ══ -->
-            <rect x="8" y="116" width="744" height="280" rx="6" fill="#eaf7f2" stroke="#1e8a5e" stroke-width="1.5"/>
-            <rect x="8" y="116" width="744" height="24" rx="6" fill="#1e8a5e"/>
-            <rect x="8" y="132" width="744" height="8" fill="#1e8a5e"/>
-            <text x="380" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">CLOUD LAYER</text>
+            <!-- ROW 2: CLOUD LAYER -->
+            <rect x="8" y="128" width="744" height="310" rx="6" fill="#eaf7f2" stroke="#1e8a5e" stroke-width="1.5"/>
+            <rect x="8" y="128" width="744" height="28" rx="6" fill="#1e8a5e"/>
+            <rect x="8" y="148" width="744" height="8" fill="#1e8a5e"/>
+            <text x="380" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">CLOUD LAYER</text>
 
             <!-- Atlas Main Agent -->
-            <rect x="20" y="152" width="460" height="230" rx="5" fill="#fff" stroke="#1e8a5e" stroke-width="1.5"/>
-            <rect x="20" y="152" width="460" height="22" rx="5" fill="#1e8a5e"/>
-            <rect x="20" y="166" width="460" height="8" fill="#1e8a5e"/>
-            <text x="250" y="167" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">ATLAS — Main Agent (Orchestrator)</text>
-            <!-- robot icon -->
-            <rect x="32" y="182" width="26" height="22" rx="3" fill="#c8ede0" stroke="#1e8a5e" stroke-width="1"/>
-            <circle cx="39" cy="189" r="3" fill="#1e8a5e"/>
-            <circle cx="51" cy="189" r="3" fill="#1e8a5e"/>
-            <rect x="37" y="195" width="18" height="4" rx="2" fill="#1e8a5e"/>
-            <text x="66" y="188" font-size="10" font-weight="600" fill="#1e5a3e">OpenAI Codex · GPT-5.4</text>
-            <text x="66" y="202" font-size="9" fill="#777">$30/mo · Codex Plus OAuth</text>
-            <line x1="30" y1="213" x2="468" y2="213" stroke="#e0ede8" stroke-width="1"/>
-            <!-- 2 col bullets -->
-            <text x="32" y="228" font-size="9" fill="#333">· Chat &amp; task coordination</text>
-            <text x="32" y="243" font-size="9" fill="#333">· Orchestrates sub-agents by skill</text>
-            <text x="32" y="258" font-size="9" fill="#333">· Natural conversational tone</text>
-            <text x="32" y="273" font-size="9" fill="#333">· ~500–2K tokens per message</text>
-            <text x="250" y="228" font-size="9" fill="#555" font-style="italic">Routes heavy work → Local LLM (5090)</text>
-            <text x="250" y="243" font-size="9" fill="#555" font-style="italic">Fallback → OpenRouter</text>
-            <text x="250" y="258" font-size="9" fill="#555" font-style="italic">Reads RFP → assigns sub-agents</text>
-            <text x="250" y="273" font-size="9" fill="#555" font-style="italic">Assembles final tender output</text>
+            <rect x="20" y="166" width="460" height="256" rx="5" fill="#fff" stroke="#1e8a5e" stroke-width="1.5"/>
+            <rect x="20" y="166" width="460" height="26" rx="5" fill="#1e8a5e"/>
+            <rect x="20" y="184" width="460" height="8" fill="#1e8a5e"/>
+            <text x="250" y="183" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">ATLAS — Main Agent (Orchestrator)</text>
+            <rect x="32" y="202" width="28" height="24" rx="3" fill="#c8ede0" stroke="#1e8a5e" stroke-width="1"/>
+            <circle cx="40" cy="210" r="4" fill="#1e8a5e"/>
+            <circle cx="52" cy="210" r="4" fill="#1e8a5e"/>
+            <rect x="38" y="217" width="18" height="5" rx="2" fill="#1e8a5e"/>
+            <text x="68" y="210" font-size="11" font-weight="600" fill="#1e5a3e">OpenAI Codex · GPT-5.4</text>
+            <text x="68" y="224" font-size="10" fill="#777">$30/mo · Codex Plus OAuth</text>
+            <line x1="30" y1="234" x2="468" y2="234" stroke="#e0ede8" stroke-width="1"/>
+            <text x="32" y="252" font-size="11" fill="#333">· Chat &amp; task coordination</text>
+            <text x="32" y="270" font-size="11" fill="#333">· Orchestrates sub-agents by skill</text>
+            <text x="32" y="288" font-size="11" fill="#333">· Natural conversational tone</text>
+            <text x="32" y="306" font-size="11" fill="#333">· ~500–2K tokens per message</text>
+            <text x="250" y="252" font-size="11" fill="#555" font-style="italic">Routes heavy work → Local LLM</text>
+            <text x="250" y="270" font-size="11" fill="#555" font-style="italic">Fallback → OpenRouter</text>
+            <text x="250" y="288" font-size="11" fill="#555" font-style="italic">Reads RFP → assigns sub-agents</text>
+            <text x="250" y="306" font-size="11" fill="#555" font-style="italic">Assembles final tender output</text>
 
             <!-- Sub-agents box -->
-            <rect x="30" y="290" width="440" height="78" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
-            <text x="250" y="308" text-anchor="middle" font-size="10" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
-            <text x="42" y="326" font-size="9" fill="#333">● TechSpec</text>
-            <text x="130" y="326" font-size="9" fill="#333">● Compliance</text>
-            <text x="230" y="326" font-size="9" fill="#333">● Architecture</text>
-            <text x="340" y="326" font-size="9" fill="#333">● Pricing / BQ</text>
-            <text x="42" y="344" font-size="9" fill="#333">● Timeline</text>
-            <text x="130" y="344" font-size="9" fill="#333">● Evaluator</text>
-            <text x="230" y="344" font-size="9" fill="#888">● Company Profile</text>
-            <text x="340" y="344" font-size="9" fill="#888">● Exec Summary</text>
-            <!-- Arrow Atlas → Sub-agents -->
-            <line x1="250" y1="283" x2="250" y2="290" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
+            <rect x="30" y="322" width="440" height="88" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
+            <text x="42" y="362" font-size="11" fill="#333">● TechSpec</text>
+            <text x="145" y="362" font-size="11" fill="#333">● Compliance</text>
+            <text x="260" y="362" font-size="11" fill="#333">● Architecture</text>
+            <text x="380" y="362" font-size="11" fill="#333">● Pricing / BQ</text>
+            <text x="42" y="382" font-size="11" fill="#333">● Timeline</text>
+            <text x="145" y="382" font-size="11" fill="#333">● Evaluator</text>
+            <text x="260" y="382" font-size="11" fill="#888">● Company Profile</text>
+            <text x="380" y="382" font-size="11" fill="#888">● Exec Summary</text>
+            <line x1="250" y1="316" x2="250" y2="322" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
 
-            <!-- Services column right -->
-            <rect x="494" y="152" width="250" height="80" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
-            <rect x="494" y="152" width="250" height="22" rx="5" fill="#c07000"/>
-            <rect x="494" y="166" width="250" height="8" fill="#c07000"/>
-            <text x="619" y="167" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Brave Search</text>
-            <text x="504" y="188" font-size="9" fill="#333">Web Search API · $5/mo</text>
-            <text x="504" y="202" font-size="9" fill="#555">Real-time web data &amp; research</text>
-            <text x="504" y="216" font-size="9" fill="#555">Used by Atlas for RFP context</text>
+            <!-- Services right column -->
+            <rect x="494" y="166" width="250" height="90" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="494" y="166" width="250" height="26" rx="5" fill="#c07000"/>
+            <rect x="494" y="184" width="250" height="8" fill="#c07000"/>
+            <text x="619" y="183" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Brave Search</text>
+            <text x="506" y="206" font-size="11" fill="#333">Web Search API · $5/mo</text>
+            <text x="506" y="222" font-size="11" fill="#555">Real-time web data &amp; research</text>
+            <text x="506" y="238" font-size="11" fill="#555">Used by Atlas for RFP context</text>
 
-            <rect x="494" y="248" width="250" height="80" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
-            <rect x="494" y="248" width="250" height="22" rx="5" fill="#c07000"/>
-            <rect x="494" y="262" width="250" height="8" fill="#c07000"/>
-            <text x="619" y="263" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">eSIM Bridge</text>
-            <text x="504" y="284" font-size="9" fill="#333">WhatsApp Orchestration · $4.90/mo</text>
-            <text x="504" y="298" font-size="9" fill="#555">Agent channel routing</text>
-            <text x="504" y="312" font-size="9" fill="#555">WhatsApp ↔ Discord bridged</text>
+            <rect x="494" y="272" width="250" height="90" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="494" y="272" width="250" height="26" rx="5" fill="#c07000"/>
+            <rect x="494" y="290" width="250" height="8" fill="#c07000"/>
+            <text x="619" y="289" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">eSIM Bridge</text>
+            <text x="506" y="312" font-size="11" fill="#333">WhatsApp Orchestration · $4.90/mo</text>
+            <text x="506" y="328" font-size="11" fill="#555">Agent channel routing</text>
+            <text x="506" y="344" font-size="11" fill="#555">WhatsApp ↔ Discord bridged</text>
 
-            <!-- OpenRouter dashed -->
-            <rect x="494" y="344" width="250" height="42" rx="5" fill="#f9f9f9" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
-            <text x="619" y="360" text-anchor="middle" font-size="10" font-weight="700" fill="#999">OpenRouter (Fallback)</text>
-            <text x="504" y="376" font-size="9" fill="#aaa">Claude · GPT-4o · Credit-based (~$10–20)</text>
+            <rect x="494" y="378" width="250" height="46" rx="5" fill="#f9f9f9" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="619" y="397" text-anchor="middle" font-size="11" font-weight="700" fill="#999">OpenRouter (Fallback)</text>
+            <text x="506" y="414" font-size="10" fill="#aaa">Claude · GPT-4o · Credit-based (~$10–20)</text>
 
             <!-- Arrows Atlas → services -->
-            <line x1="480" y1="192" x2="494" y2="192" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
-            <line x1="480" y1="240" x2="494" y2="288" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
-            <line x1="480" y1="260" x2="494" y2="362" stroke="#aaa" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrd)"/>
+            <line x1="480" y1="210" x2="494" y2="210" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
+            <line x1="480" y1="260" x2="494" y2="316" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
+            <line x1="480" y1="290" x2="494" y2="396" stroke="#aaa" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrd)"/>
 
-            <!-- Arrow down to Local -->
-            <line x1="380" y1="396" x2="380" y2="414" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
-            <text x="386" y="408" font-size="8" fill="#555">offload heavy tasks</text>
+            <!-- Arrow Cloud → Local -->
+            <line x1="380" y1="438" x2="380" y2="458" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="388" y="452" font-size="10" fill="#555">offload heavy tasks</text>
 
-            <!-- ══ ROW 3: LOCAL LAYER ══ -->
-            <rect x="8" y="414" width="744" height="220" rx="6" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1.5"/>
-            <rect x="8" y="414" width="744" height="24" rx="6" fill="#3a7bd5"/>
-            <rect x="8" y="430" width="744" height="8" fill="#3a7bd5"/>
-            <text x="380" y="429" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">LOCAL LAYER — RTX 5090 Workstation (Ollama)</text>
+            <!-- ROW 3: LOCAL LAYER -->
+            <rect x="8" y="458" width="744" height="240" rx="6" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="8" y="458" width="744" height="28" rx="6" fill="#3a7bd5"/>
+            <rect x="8" y="478" width="744" height="8" fill="#3a7bd5"/>
+            <text x="380" y="476" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">LOCAL LAYER — RTX 5090 Workstation (Ollama)</text>
 
             <!-- Qwen3 32B -->
-            <rect x="20" y="452" width="226" height="170" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
-            <rect x="20" y="452" width="226" height="22" rx="5" fill="#3a7bd5"/>
-            <rect x="20" y="466" width="226" height="8" fill="#3a7bd5"/>
-            <text x="133" y="467" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Qwen3 32B</text>
-            <text x="32" y="488" font-size="9" font-weight="600" fill="#3a5ea7">Primary · Q4_K_M Quantization</text>
-            <line x1="30" y1="495" x2="234" y2="495" stroke="#e8e8f0" stroke-width="1"/>
-            <text x="32" y="511" font-size="9" fill="#333">· Coding &amp; analysis</text>
-            <text x="32" y="526" font-size="9" fill="#333">· Document processing</text>
-            <text x="32" y="541" font-size="9" fill="#333">· Tool calling &amp; APIs</text>
-            <text x="32" y="556" font-size="9" fill="#333">· Tender drafting assist</text>
-            <text x="32" y="571" font-size="8" fill="#aaa">Apache 2.0 · 10K–100K tok/task</text>
-            <rect x="30" y="586" width="100" height="26" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
-            <text x="80" y="603" text-anchor="middle" font-size="8" font-weight="600" fill="#3a7bd5">PRIMARY MODEL</text>
+            <rect x="20" y="498" width="226" height="188" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="20" y="498" width="226" height="26" rx="5" fill="#3a7bd5"/>
+            <rect x="20" y="516" width="226" height="8" fill="#3a7bd5"/>
+            <text x="133" y="515" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Qwen3 32B</text>
+            <text x="32" y="540" font-size="11" font-weight="600" fill="#3a5ea7">Primary · Q4_K_M Quantization</text>
+            <line x1="30" y1="548" x2="234" y2="548" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="32" y="566" font-size="11" fill="#333">· Coding &amp; analysis</text>
+            <text x="32" y="583" font-size="11" fill="#333">· Document processing</text>
+            <text x="32" y="600" font-size="11" fill="#333">· Tool calling &amp; APIs</text>
+            <text x="32" y="617" font-size="11" fill="#333">· Tender drafting assist</text>
+            <text x="32" y="634" font-size="10" fill="#aaa">Apache 2.0 · 10K–100K tok/task</text>
+            <rect x="30" y="648" width="110" height="26" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
+            <text x="85" y="664" text-anchor="middle" font-size="10" font-weight="600" fill="#3a7bd5">PRIMARY MODEL</text>
 
             <!-- Qwen2.5 Coder -->
-            <rect x="260" y="452" width="226" height="170" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
-            <rect x="260" y="452" width="226" height="22" rx="5" fill="#3a7bd5"/>
-            <rect x="260" y="466" width="226" height="8" fill="#3a7bd5"/>
-            <text x="373" y="467" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Qwen2.5 Coder 32B</text>
-            <text x="272" y="488" font-size="9" font-weight="600" fill="#3a5ea7">Code Specialist · Secondary</text>
-            <line x1="270" y1="495" x2="474" y2="495" stroke="#e8e8f0" stroke-width="1"/>
-            <text x="272" y="511" font-size="9" fill="#333">· Code generation</text>
-            <text x="272" y="526" font-size="9" fill="#333">· Refactoring &amp; debugging</text>
-            <text x="272" y="541" font-size="9" fill="#333">· Multi-language support</text>
-            <text x="272" y="556" font-size="9" fill="#333">· Script automation</text>
-            <text x="272" y="571" font-size="8" fill="#aaa">50K+ tok/task typical</text>
+            <rect x="260" y="498" width="226" height="188" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="260" y="498" width="226" height="26" rx="5" fill="#3a7bd5"/>
+            <rect x="260" y="516" width="226" height="8" fill="#3a7bd5"/>
+            <text x="373" y="515" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Qwen2.5 Coder 32B</text>
+            <text x="272" y="540" font-size="11" font-weight="600" fill="#3a5ea7">Code Specialist · Secondary</text>
+            <line x1="270" y1="548" x2="474" y2="548" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="272" y="566" font-size="11" fill="#333">· Code generation</text>
+            <text x="272" y="583" font-size="11" fill="#333">· Refactoring &amp; debugging</text>
+            <text x="272" y="600" font-size="11" fill="#333">· Multi-language support</text>
+            <text x="272" y="617" font-size="11" fill="#333">· Script automation</text>
+            <text x="272" y="634" font-size="10" fill="#aaa">50K+ tok/task typical</text>
 
             <!-- Qwen3 8B -->
-            <rect x="500" y="452" width="240" height="170" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
-            <rect x="500" y="452" width="240" height="22" rx="5" fill="#3a7bd5"/>
-            <rect x="500" y="466" width="240" height="8" fill="#3a7bd5"/>
-            <text x="620" y="467" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Qwen3 8B</text>
-            <text x="512" y="488" font-size="9" font-weight="600" fill="#3a5ea7">Fast Triage · ~213 tok/s on 5090</text>
-            <line x1="510" y1="495" x2="730" y2="495" stroke="#e8e8f0" stroke-width="1"/>
-            <text x="512" y="511" font-size="9" fill="#333">· Quick task routing</text>
-            <text x="512" y="526" font-size="9" fill="#333">· Simple utility tasks</text>
-            <text x="512" y="541" font-size="9" fill="#333">· Minimal latency responses</text>
-            <text x="512" y="556" font-size="9" fill="#aaa">Minimal GPU usage</text>
+            <rect x="500" y="498" width="240" height="188" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="500" y="498" width="240" height="26" rx="5" fill="#3a7bd5"/>
+            <rect x="500" y="516" width="240" height="8" fill="#3a7bd5"/>
+            <text x="620" y="515" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Qwen3 8B</text>
+            <text x="512" y="540" font-size="11" font-weight="600" fill="#3a5ea7">Fast Triage · ~213 tok/s on 5090</text>
+            <line x1="510" y1="548" x2="730" y2="548" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="512" y="566" font-size="11" fill="#333">· Quick task routing</text>
+            <text x="512" y="583" font-size="11" fill="#333">· Simple utility tasks</text>
+            <text x="512" y="600" font-size="11" fill="#333">· Minimal latency responses</text>
+            <text x="512" y="617" font-size="10" fill="#aaa">Minimal GPU usage</text>
 
-            <!-- Arrow down to Hardware -->
-            <line x1="380" y1="634" x2="380" y2="652" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- Arrow Local → Hardware -->
+            <line x1="380" y1="698" x2="380" y2="718" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
 
-            <!-- ══ ROW 4: HARDWARE ══ -->
-            <rect x="8" y="652" width="744" height="72" rx="6" fill="#f2f2f0" stroke="#aaa" stroke-width="1.5"/>
-            <rect x="8" y="652" width="744" height="24" rx="6" fill="#888"/>
-            <rect x="8" y="668" width="744" height="8" fill="#888"/>
-            <text x="380" y="667" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">DEDICATED WORKSTATION</text>
-            <!-- Hardware chips row 1 -->
-            <rect x="18" y="682" width="114" height="20" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
-            <text x="75" y="695" text-anchor="middle" font-size="9" fill="#3a7bd5">RTX 5090 32GB VRAM</text>
-            <rect x="140" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
-            <text x="188" y="695" text-anchor="middle" font-size="9" fill="#444">Ryzen 9 9950X</text>
-            <rect x="244" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
-            <text x="292" y="695" text-anchor="middle" font-size="9" fill="#444">64GB DDR5 6400</text>
-            <rect x="348" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
-            <text x="396" y="695" text-anchor="middle" font-size="9" fill="#444">2TB Kioxia NVMe</text>
-            <rect x="452" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
-            <text x="500" y="695" text-anchor="middle" font-size="9" fill="#444">Asus TUF B650-E</text>
-            <rect x="556" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
-            <text x="604" y="695" text-anchor="middle" font-size="9" fill="#444">1200W Seasonic</text>
-            <rect x="660" y="682" width="84" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
-            <text x="702" y="695" text-anchor="middle" font-size="9" fill="#444">Win 11 Pro</text>
+            <!-- ROW 4: HARDWARE -->
+            <rect x="8" y="718" width="744" height="74" rx="6" fill="#f2f2f0" stroke="#aaa" stroke-width="1.5"/>
+            <rect x="8" y="718" width="744" height="28" rx="6" fill="#888"/>
+            <rect x="8" y="738" width="744" height="8" fill="#888"/>
+            <text x="380" y="736" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">DEDICATED WORKSTATION</text>
+            <rect x="18" y="752" width="124" height="24" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
+            <text x="80" y="768" text-anchor="middle" font-size="11" fill="#3a7bd5">RTX 5090 32GB VRAM</text>
+            <rect x="150" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="200" y="768" text-anchor="middle" font-size="11" fill="#444">Ryzen 9 9950X</text>
+            <rect x="258" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="308" y="768" text-anchor="middle" font-size="11" fill="#444">64GB DDR5 6400</text>
+            <rect x="366" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="416" y="768" text-anchor="middle" font-size="11" fill="#444">2TB Kioxia NVMe</text>
+            <rect x="474" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="524" y="768" text-anchor="middle" font-size="11" fill="#444">Asus TUF B650-E</text>
+            <rect x="582" y="752" width="90" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="627" y="768" text-anchor="middle" font-size="11" fill="#444">1200W Seasonic</text>
+            <rect x="680" y="752" width="64" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="712" y="768" text-anchor="middle" font-size="11" fill="#444">Win 11</text>
 
-            <!-- ══ ROW 5: COST + LEGEND ══ -->
-            <rect x="8" y="736" width="370" height="76" rx="6" fill="#fffbf0" stroke="#c07000" stroke-width="1.5"/>
-            <rect x="8" y="736" width="370" height="22" rx="6" fill="#c07000"/>
-            <rect x="8" y="750" width="370" height="8" fill="#c07000"/>
-            <text x="193" y="749" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">MONTHLY COST ESTIMATE</text>
-            <rect x="20" y="764" width="10" height="10" rx="2" fill="#1e8a5e"/><text x="36" y="773" font-size="9" fill="#333">Codex Plus</text><text x="140" y="773" text-anchor="end" font-size="9" font-weight="700" fill="#222">$30.00</text>
-            <rect x="148" y="764" width="10" height="10" rx="2" fill="#c07000"/><text x="164" y="773" font-size="9" fill="#333">Brave Search</text><text x="260" y="773" text-anchor="end" font-size="9" font-weight="700" fill="#222">$5.00</text>
-            <rect x="268" y="764" width="10" height="10" rx="2" fill="#c07000"/><text x="284" y="773" font-size="9" fill="#333">eSIM Bridge</text><text x="368" y="773" text-anchor="end" font-size="9" font-weight="700" fill="#222">$4.90</text>
-            <rect x="20" y="784" width="10" height="10" rx="2" fill="#3a7bd5"/><text x="36" y="793" font-size="9" fill="#333">Local LLM (RTX 5090)</text><text x="140" y="793" text-anchor="end" font-size="9" font-weight="700" fill="#1e8a5e">Free</text>
-            <text x="193" y="805" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1a10">$39.90 / month</text>
+            <!-- ROW 5: COST (full width) -->
+            <rect x="8" y="804" width="744" height="100" rx="6" fill="#fffbf0" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="8" y="804" width="744" height="28" rx="6" fill="#c07000"/>
+            <rect x="8" y="824" width="744" height="8" fill="#c07000"/>
+            <text x="380" y="822" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">MONTHLY COST ESTIMATE</text>
+            <!-- Cost items in 2 rows of 2 -->
+            <rect x="30" y="840" width="14" height="14" rx="2" fill="#1e8a5e"/>
+            <text x="50" y="852" font-size="12" fill="#333">Codex Plus</text>
+            <text x="230" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$30.00 / mo</text>
+            <rect x="260" y="840" width="14" height="14" rx="2" fill="#c07000"/>
+            <text x="280" y="852" font-size="12" fill="#333">Brave Search API</text>
+            <text x="460" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$5.00 / mo</text>
+            <rect x="490" y="840" width="14" height="14" rx="2" fill="#c07000"/>
+            <text x="510" y="852" font-size="12" fill="#333">eSIM Bridge</text>
+            <text x="700" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$4.90 / mo</text>
+            <rect x="30" y="864" width="14" height="14" rx="2" fill="#3a7bd5"/>
+            <text x="50" y="876" font-size="12" fill="#333">Local LLM (RTX 5090)</text>
+            <text x="230" y="876" text-anchor="end" font-size="12" font-weight="700" fill="#1e8a5e">Free</text>
+            <text x="490" y="876" font-size="12" fill="#aaa">OpenRouter (fallback)</text>
+            <text x="700" y="876" text-anchor="end" font-size="12" fill="#aaa">As needed</text>
+            <text x="380" y="895" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a10">TOTAL: $39.90 / month</text>
 
-            <!-- Legend -->
-            <rect x="390" y="736" width="362" height="76" rx="6" fill="#f8f8f5" stroke="#ddd" stroke-width="1.5"/>
-            <rect x="390" y="736" width="362" height="22" rx="6" fill="#888"/>
-            <rect x="390" y="750" width="362" height="8" fill="#888"/>
-            <text x="571" y="749" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">LEGEND</text>
-            <rect x="402" y="764" width="10" height="10" rx="2" fill="#7b5ea7"/><text x="418" y="773" font-size="9" fill="#555">User Channels</text>
-            <rect x="510" y="764" width="10" height="10" rx="2" fill="#1e8a5e"/><text x="526" y="773" font-size="9" fill="#555">Cloud (Codex)</text>
-            <rect x="618" y="764" width="10" height="10" rx="2" fill="#3a7bd5"/><text x="634" y="773" font-size="9" fill="#555">Local (RTX 5090)</text>
-            <rect x="402" y="784" width="10" height="10" rx="2" fill="#c07000"/><text x="418" y="793" font-size="9" fill="#555">External Services</text>
-            <rect x="510" y="784" width="10" height="10" rx="2" fill="#bbb" stroke-dasharray="2,1"/><text x="526" y="793" font-size="9" fill="#aaa">Fallback (OpenRouter)</text>
-            <!-- Design principle -->
-            <text x="571" y="806" text-anchor="middle" font-size="8" fill="#888">Cloud: chat (low tokens)  →  Local: compute (zero cost)  →  Sub-agents: tender output</text>
+            <!-- ROW 6: LEGEND -->
+            <rect x="8" y="916" width="744" height="56" rx="6" fill="#f8f8f5" stroke="#ddd" stroke-width="1.5"/>
+            <rect x="8" y="916" width="744" height="24" rx="6" fill="#888"/>
+            <rect x="8" y="932" width="744" height="8" fill="#888"/>
+            <text x="380" y="930" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">LEGEND</text>
+            <rect x="24" y="948" width="14" height="14" rx="2" fill="#7b5ea7"/><text x="44" y="960" font-size="11" fill="#555">User Channels</text>
+            <rect x="170" y="948" width="14" height="14" rx="2" fill="#1e8a5e"/><text x="190" y="960" font-size="11" fill="#555">Cloud (Codex)</text>
+            <rect x="316" y="948" width="14" height="14" rx="2" fill="#3a7bd5"/><text x="336" y="960" font-size="11" fill="#555">Local (RTX 5090)</text>
+            <rect x="470" y="948" width="14" height="14" rx="2" fill="#c07000"/><text x="490" y="960" font-size="11" fill="#555">External Services</text>
+            <rect x="624" y="948" width="14" height="14" rx="2" fill="#bbb"/><text x="644" y="960" font-size="11" fill="#aaa">Fallback</text>
           </svg>
         </div>
       </div>
@@ -665,34 +668,42 @@
           <div class="arch-row">
             <div class="arch-dot dot-primary"></div>
             <div class="arch-info">
-              <div class="arch-name">Atlas — Orchestrator</div>
-              <div class="arch-desc">Reads RFP, assigns tender sections to sub-agents, assembles final output</div>
+              <div class="arch-name">Atlas — Main Agent (Orchestrator)</div>
+              <div class="arch-desc">Powered by OpenAI Codex · GPT-5.4. Handles all user-facing chat, reads RFPs, assigns sections to sub-agents, and assembles the final tender output.</div>
             </div>
-            <div class="arch-pill">Codex OAuth</div>
+            <div class="arch-pill">Codex Plus · $30/mo</div>
           </div>
           <div class="arch-row arch-indent">
             <div class="arch-dot dot-secondary"></div>
             <div class="arch-info">
-              <div class="arch-name">Local LLM — RTX 5090</div>
-              <div class="arch-desc">Primary workhorse for routine drafting, summarising, formatting</div>
+              <div class="arch-name">Qwen3 32B — Primary Local Model</div>
+              <div class="arch-desc">Running on RTX 5090 via Ollama. Q4_K_M quantization. Handles coding, analysis, document processing, tool calling, and tender drafting at zero compute cost.</div>
             </div>
             <div class="arch-pill">Free · 24/7</div>
           </div>
           <div class="arch-row arch-indent">
             <div class="arch-dot dot-secondary"></div>
             <div class="arch-info">
-              <div class="arch-name">Codex (GPT-5.4) via OAuth</div>
-              <div class="arch-desc">Escalation when local LLM hits complexity limits</div>
+              <div class="arch-name">Qwen2.5 Coder 32B — Code Specialist</div>
+              <div class="arch-desc">Secondary local model for code generation, refactoring, debugging, and multi-language script automation. Activated by Atlas for code-heavy tasks.</div>
             </div>
-            <div class="arch-pill">Subscription</div>
+            <div class="arch-pill">Free · Local</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-secondary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Qwen3 8B — Fast Triage</div>
+              <div class="arch-desc">Lightweight model for quick routing decisions and simple utility tasks. ~213 tok/s on RTX 5090. Minimal GPU load.</div>
+            </div>
+            <div class="arch-pill">Free · Local</div>
           </div>
           <div class="arch-row arch-indent">
             <div class="arch-dot dot-tertiary"></div>
             <div class="arch-info">
-              <div class="arch-name">OpenRouter</div>
-              <div class="arch-desc">Model flexibility layer — Claude, GPT-4o, others as needed</div>
+              <div class="arch-name">OpenRouter — Fallback Layer</div>
+              <div class="arch-desc">Access to Claude, GPT-4o, and other models when a specific capability is needed beyond Codex or local LLM. Credit-based, used sparingly.</div>
             </div>
-            <div class="arch-pill">Credit-based</div>
+            <div class="arch-pill">~$10–20 topup</div>
           </div>
         </div>
       </div>
@@ -702,13 +713,15 @@
         <div class="card">
           <table class="data-table">
             <thead>
-              <tr><th>Task type</th><th>Routed to</th><th>Cost</th></tr>
+              <tr><th>Task Type</th><th>Routed To</th><th>Model</th><th>Cost</th></tr>
             </thead>
             <tbody>
-              <tr><td>Format, summarise, simple drafts</td><td>Local LLM (5090)</td><td>Free</td></tr>
-              <tr><td>Complex reasoning, tender drafting</td><td>Codex via OAuth</td><td>Subscription</td></tr>
-              <tr><td>Specific model needs</td><td>OpenRouter</td><td>Per use</td></tr>
-              <tr><td>Skill building, quality review</td><td>Claude Max (human layer)</td><td>Subscription</td></tr>
+              <tr><td>Chat, coordination, RFP reading</td><td>Atlas (Cloud)</td><td>Codex · GPT-5.4</td><td>$30/mo</td></tr>
+              <tr><td>Coding, analysis, doc processing</td><td>Local LLM (5090)</td><td>Qwen3 32B</td><td>Free</td></tr>
+              <tr><td>Code generation &amp; refactoring</td><td>Local LLM (5090)</td><td>Qwen2.5 Coder 32B</td><td>Free</td></tr>
+              <tr><td>Quick triage &amp; routing</td><td>Local LLM (5090)</td><td>Qwen3 8B</td><td>Free</td></tr>
+              <tr><td>Model-specific edge cases</td><td>OpenRouter</td><td>Claude / GPT-4o / others</td><td>~$10–20 credit</td></tr>
+              <tr><td>Skill building, quality review</td><td>Claude Max (Gabriel, manual)</td><td>Claude Sonnet/Opus</td><td>Subscription</td></tr>
             </tbody>
           </table>
         </div>
@@ -719,11 +732,15 @@
         <div class="card-grid">
           <div class="card">
             <h3>WhatsApp</h3>
-            <p>Mobile interface into Atlas. Existing number repurposed from Mac Mini. Quick inputs on the go.</p>
+            <p>Mobile interface into Atlas. Number repurposed from previous Mac Mini setup. Used for quick inputs and status checks on the go. Managed via eSIM Bridge ($4.90/mo).</p>
           </div>
           <div class="card">
             <h3>Discord</h3>
-            <p>Primary workspace. Fresh server with channels per project and skill area. Bridged to WhatsApp — no context repetition across channels.</p>
+            <p>Primary workspace. Fresh server with channels organised by project and skill area. Bridged to WhatsApp — no context repetition across channels. Supports richer multi-turn conversations.</p>
+          </div>
+          <div class="card">
+            <h3>MS Teams</h3>
+            <p>Future plan only. Not included in current PoC — runs off ATT network on personal hardware. May be scoped in once PoC is validated with Jackie.</p>
           </div>
         </div>
       </div>
