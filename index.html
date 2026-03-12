@@ -791,15 +791,15 @@
             <div class="phase-num">01</div>
             <div class="phase-name">Hardware Setup</div>
           </div>
-          <span class="badge badge-active">In Progress</span>
+          <span class="badge badge-active">Done</span>
         </div>
         <ul class="checklist">
-          <li class="check-item"><div class="check-box current"></div><div class="check-text">Unbox and assemble PC<span class="check-note">Asus A32 case, Corsair AIO, RTX 5090, Kioxia 2TB SSD</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">First boot and BIOS check<span class="check-note">Verify all components detected — RAM at 6400MHz, GPU recognised</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Activate Windows 11 Pro</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Run Windows Update fully</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Install NVIDIA drivers (RTX 5090 — Blackwell)<span class="check-note">Download from nvidia.com directly — do not use Windows auto-install</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Verify GPU detected and CUDA enabled</div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Unbox and assemble PC<span class="check-note">Asus A32 case, Corsair AIO, RTX 5090, Kioxia 2TB SSD</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First boot and BIOS check<span class="check-note">EXPO enabled — RAM confirmed at 6400MHz. Kioxia 2TB detected. Mobo: Asus TUF B650-E BIOS 3827</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Activate Windows 11 Pro<span class="check-note">Skipped for now — no key bundled. Will activate when needed.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Run Windows Update fully</div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install NVIDIA drivers (RTX 5090 — Blackwell)<span class="check-note">Driver 595.79 — installed via NVIDIA App</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Verify GPU detected and CUDA enabled<span class="check-note">RTX 5090 confirmed in Device Manager</span></div></li>
         </ul>
       </div>
 
@@ -809,15 +809,17 @@
             <div class="phase-num">02</div>
             <div class="phase-name">Core Stack Installation</div>
           </div>
-          <span class="badge badge-planned">Upcoming</span>
+          <span class="badge badge-active">In Progress</span>
         </div>
         <ul class="checklist">
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Install WSL2 (Ubuntu)<span class="check-note">Required for Linux-native AI tooling on Windows</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Install Ollama and select local LLM model<span class="check-note">Appropriate for 32GB VRAM</span></div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Install OpenClaw (latest version)</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect Codex OAuth to OpenClaw</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect OpenRouter API key</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Configure routing logic — Local LLM → Codex → OpenRouter</div></li>
+          <li class="check-item"><div class="check-box current"></div><div class="check-text">Install Ollama (Windows native)<span class="check-note">Download from ollama.com — Windows native install, no WSL2 needed</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Pull Qwen3 32B<span class="check-note">Primary local model — coding, analysis, doc processing, tender drafting</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Pull Qwen2.5 Coder 32B<span class="check-note">Code specialist — generation, refactoring, debugging</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Pull Qwen3 8B<span class="check-note">Fast triage model — quick routing, ~213 tok/s on RTX 5090</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Install OpenClaw (Windows native, latest version)</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect Codex OAuth to OpenClaw<span class="check-note">Codex Plus — GPT-5.4, $30/mo</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Connect OpenRouter API key<span class="check-note">Fallback layer — Claude / GPT-4o / others</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Configure routing logic — Qwen3 8B → Qwen3 32B → Codex → OpenRouter</div></li>
         </ul>
       </div>
 
