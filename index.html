@@ -293,11 +293,37 @@
   .content-panel { display: none; }
   .content-panel.active { display: block; }
 
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    padding: 8px 0 12px;
+  }
+
+  .mobile-nav-inner { display: flex; justify-content: space-around; }
+
+  .mobile-nav-btn {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; color: var(--faint); font-weight: 500;
+    cursor: pointer; padding: 4px 10px; transition: color 0.15s;
+  }
+
+  .mobile-nav-btn.active { color: var(--text); }
+  .mobile-nav-btn svg { width: 20px; height: 20px; }
+
   @media (max-width: 768px) {
     .sidebar { display: none; }
-    .main { margin-left: 0; padding: 32px 24px; }
+    .mobile-nav { display: block; }
+    .main { margin-left: 0; padding: 28px 20px 88px; }
     .stat-row { grid-template-columns: 1fr 1fr; }
     .card-grid { grid-template-columns: 1fr; }
+    .page-title { font-size: 1.6rem; }
   }
 </style>
 </head>
@@ -663,12 +689,41 @@
   </main>
 </div>
 
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-btn active" onclick="nav('overview',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+      Overview
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('architecture',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="3" r="2"/><circle cx="3" cy="13" r="2"/><circle cx="13" cy="13" r="2"/><path d="M8 5v3M8 8l-4.1 3.2M8 8l4.1 3.2"/></svg>
+      Arch
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('setup',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h5"/></svg>
+      Setup
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('skills',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 4 4.5.7-3.2 3.1.7 4.5L8 11l-4 2.3.7-4.5L1.5 5.7 6 5z"/></svg>
+      Skills
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('log',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
+      Log
+    </button>
+  </div>
+</nav>
+
 <script>
   function nav(id, btn) {
     document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.sidebar-link').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.sidebar-link, .mobile-nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
+    // sync the other nav
+    const idx = ['overview','architecture','setup','skills','log'].indexOf(id);
+    document.querySelectorAll('.sidebar-link')[idx]?.classList.add('active');
+    document.querySelectorAll('.mobile-nav-btn')[idx]?.classList.add('active');
   }
 </script>
 </body>
