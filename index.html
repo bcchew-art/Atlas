@@ -93,6 +93,7 @@
     position: fixed; top: var(--header-h); left: 0; bottom: 0;
     overflow-y: auto; border-right: 1px solid var(--border);
     padding: 28px 16px; scrollbar-width: none;
+    background: var(--bg); z-index: 90;
   }
 
   .sidebar::-webkit-scrollbar { display: none; }
@@ -450,6 +451,212 @@
         <div class="page-eyebrow">System Design</div>
         <div class="page-title">Architecture</div>
         <div class="page-desc">Atlas runs a multi-agent architecture. The orchestrator reads the RFP, assigns tasks to sub-agents by skill, and assembles the final output. Model routing is cost-optimised across three tiers.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">System Diagram</div>
+        <div style="background:#ffffff;border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-bottom:12px;">
+          <svg viewBox="0 0 760 820" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:Arial,sans-serif;background:#fff;">
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker>
+              <marker id="arrd" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#aaa"/></marker>
+              <marker id="arro" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c07000"/></marker>
+            </defs>
+
+            <!-- ══ ROW 1: USER CHANNELS ══ -->
+            <rect x="8" y="8" width="744" height="90" rx="6" fill="#f3f0fa" stroke="#7b5ea7" stroke-width="1.5"/>
+            <rect x="8" y="8" width="744" height="24" rx="6" fill="#7b5ea7"/>
+            <rect x="8" y="24" width="744" height="8" fill="#7b5ea7"/>
+            <text x="380" y="23" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">USER CHANNELS</text>
+            <!-- Person icon -->
+            <circle cx="50" cy="62" r="10" fill="#c8b8e8"/>
+            <circle cx="50" cy="58" r="5" fill="#7b5ea7"/>
+            <path d="M40,70 Q50,65 60,70" fill="#7b5ea7"/>
+            <text x="72" y="56" font-size="10" font-weight="700" fill="#333">Gabriel Jiang</text>
+            <text x="72" y="70" font-size="9" fill="#666">PM · ATT Infosoft</text>
+            <line x1="170" y1="42" x2="170" y2="90" stroke="#d0c8e8" stroke-width="1"/>
+            <text x="188" y="58" font-size="10" fill="#444">● WhatsApp</text>
+            <text x="188" y="74" font-size="10" fill="#444">● Discord</text>
+            <line x1="320" y1="42" x2="320" y2="90" stroke="#d0c8e8" stroke-width="1"/>
+            <rect x="336" y="52" width="180" height="22" rx="4" fill="#ede8f8" stroke="#b8a8d8" stroke-width="1"/>
+            <text x="426" y="67" text-anchor="middle" font-size="9" fill="#9070c0">MS Teams — Future Plan Only</text>
+            <line x1="530" y1="42" x2="530" y2="90" stroke="#d0c8e8" stroke-width="1"/>
+            <text x="548" y="58" font-size="9" fill="#555">All channels routed through</text>
+            <text x="548" y="72" font-size="9" fill="#555">Atlas via eSIM Bridge</text>
+
+            <!-- Arrow down -->
+            <line x1="380" y1="98" x2="380" y2="116" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="386" y="110" font-size="8" fill="#555">HTTPS</text>
+
+            <!-- ══ ROW 2: CLOUD LAYER ══ -->
+            <rect x="8" y="116" width="744" height="280" rx="6" fill="#eaf7f2" stroke="#1e8a5e" stroke-width="1.5"/>
+            <rect x="8" y="116" width="744" height="24" rx="6" fill="#1e8a5e"/>
+            <rect x="8" y="132" width="744" height="8" fill="#1e8a5e"/>
+            <text x="380" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">CLOUD LAYER</text>
+
+            <!-- Atlas Main Agent -->
+            <rect x="20" y="152" width="460" height="230" rx="5" fill="#fff" stroke="#1e8a5e" stroke-width="1.5"/>
+            <rect x="20" y="152" width="460" height="22" rx="5" fill="#1e8a5e"/>
+            <rect x="20" y="166" width="460" height="8" fill="#1e8a5e"/>
+            <text x="250" y="167" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">ATLAS — Main Agent (Orchestrator)</text>
+            <!-- robot icon -->
+            <rect x="32" y="182" width="26" height="22" rx="3" fill="#c8ede0" stroke="#1e8a5e" stroke-width="1"/>
+            <circle cx="39" cy="189" r="3" fill="#1e8a5e"/>
+            <circle cx="51" cy="189" r="3" fill="#1e8a5e"/>
+            <rect x="37" y="195" width="18" height="4" rx="2" fill="#1e8a5e"/>
+            <text x="66" y="188" font-size="10" font-weight="600" fill="#1e5a3e">OpenAI Codex · GPT-5.4</text>
+            <text x="66" y="202" font-size="9" fill="#777">$30/mo · Codex Plus OAuth</text>
+            <line x1="30" y1="213" x2="468" y2="213" stroke="#e0ede8" stroke-width="1"/>
+            <!-- 2 col bullets -->
+            <text x="32" y="228" font-size="9" fill="#333">· Chat &amp; task coordination</text>
+            <text x="32" y="243" font-size="9" fill="#333">· Orchestrates sub-agents by skill</text>
+            <text x="32" y="258" font-size="9" fill="#333">· Natural conversational tone</text>
+            <text x="32" y="273" font-size="9" fill="#333">· ~500–2K tokens per message</text>
+            <text x="250" y="228" font-size="9" fill="#555" font-style="italic">Routes heavy work → Local LLM (5090)</text>
+            <text x="250" y="243" font-size="9" fill="#555" font-style="italic">Fallback → OpenRouter</text>
+            <text x="250" y="258" font-size="9" fill="#555" font-style="italic">Reads RFP → assigns sub-agents</text>
+            <text x="250" y="273" font-size="9" fill="#555" font-style="italic">Assembles final tender output</text>
+
+            <!-- Sub-agents box -->
+            <rect x="30" y="290" width="440" height="78" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="250" y="308" text-anchor="middle" font-size="10" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
+            <text x="42" y="326" font-size="9" fill="#333">● TechSpec</text>
+            <text x="130" y="326" font-size="9" fill="#333">● Compliance</text>
+            <text x="230" y="326" font-size="9" fill="#333">● Architecture</text>
+            <text x="340" y="326" font-size="9" fill="#333">● Pricing / BQ</text>
+            <text x="42" y="344" font-size="9" fill="#333">● Timeline</text>
+            <text x="130" y="344" font-size="9" fill="#333">● Evaluator</text>
+            <text x="230" y="344" font-size="9" fill="#888">● Company Profile</text>
+            <text x="340" y="344" font-size="9" fill="#888">● Exec Summary</text>
+            <!-- Arrow Atlas → Sub-agents -->
+            <line x1="250" y1="283" x2="250" y2="290" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <!-- Services column right -->
+            <rect x="494" y="152" width="250" height="80" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="494" y="152" width="250" height="22" rx="5" fill="#c07000"/>
+            <rect x="494" y="166" width="250" height="8" fill="#c07000"/>
+            <text x="619" y="167" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Brave Search</text>
+            <text x="504" y="188" font-size="9" fill="#333">Web Search API · $5/mo</text>
+            <text x="504" y="202" font-size="9" fill="#555">Real-time web data &amp; research</text>
+            <text x="504" y="216" font-size="9" fill="#555">Used by Atlas for RFP context</text>
+
+            <rect x="494" y="248" width="250" height="80" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="494" y="248" width="250" height="22" rx="5" fill="#c07000"/>
+            <rect x="494" y="262" width="250" height="8" fill="#c07000"/>
+            <text x="619" y="263" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">eSIM Bridge</text>
+            <text x="504" y="284" font-size="9" fill="#333">WhatsApp Orchestration · $4.90/mo</text>
+            <text x="504" y="298" font-size="9" fill="#555">Agent channel routing</text>
+            <text x="504" y="312" font-size="9" fill="#555">WhatsApp ↔ Discord bridged</text>
+
+            <!-- OpenRouter dashed -->
+            <rect x="494" y="344" width="250" height="42" rx="5" fill="#f9f9f9" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="619" y="360" text-anchor="middle" font-size="10" font-weight="700" fill="#999">OpenRouter (Fallback)</text>
+            <text x="504" y="376" font-size="9" fill="#aaa">Claude · GPT-4o · Credit-based (~$10–20)</text>
+
+            <!-- Arrows Atlas → services -->
+            <line x1="480" y1="192" x2="494" y2="192" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
+            <line x1="480" y1="240" x2="494" y2="288" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
+            <line x1="480" y1="260" x2="494" y2="362" stroke="#aaa" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrd)"/>
+
+            <!-- Arrow down to Local -->
+            <line x1="380" y1="396" x2="380" y2="414" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="386" y="408" font-size="8" fill="#555">offload heavy tasks</text>
+
+            <!-- ══ ROW 3: LOCAL LAYER ══ -->
+            <rect x="8" y="414" width="744" height="220" rx="6" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="8" y="414" width="744" height="24" rx="6" fill="#3a7bd5"/>
+            <rect x="8" y="430" width="744" height="8" fill="#3a7bd5"/>
+            <text x="380" y="429" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">LOCAL LAYER — RTX 5090 Workstation (Ollama)</text>
+
+            <!-- Qwen3 32B -->
+            <rect x="20" y="452" width="226" height="170" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="20" y="452" width="226" height="22" rx="5" fill="#3a7bd5"/>
+            <rect x="20" y="466" width="226" height="8" fill="#3a7bd5"/>
+            <text x="133" y="467" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Qwen3 32B</text>
+            <text x="32" y="488" font-size="9" font-weight="600" fill="#3a5ea7">Primary · Q4_K_M Quantization</text>
+            <line x1="30" y1="495" x2="234" y2="495" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="32" y="511" font-size="9" fill="#333">· Coding &amp; analysis</text>
+            <text x="32" y="526" font-size="9" fill="#333">· Document processing</text>
+            <text x="32" y="541" font-size="9" fill="#333">· Tool calling &amp; APIs</text>
+            <text x="32" y="556" font-size="9" fill="#333">· Tender drafting assist</text>
+            <text x="32" y="571" font-size="8" fill="#aaa">Apache 2.0 · 10K–100K tok/task</text>
+            <rect x="30" y="586" width="100" height="26" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
+            <text x="80" y="603" text-anchor="middle" font-size="8" font-weight="600" fill="#3a7bd5">PRIMARY MODEL</text>
+
+            <!-- Qwen2.5 Coder -->
+            <rect x="260" y="452" width="226" height="170" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="260" y="452" width="226" height="22" rx="5" fill="#3a7bd5"/>
+            <rect x="260" y="466" width="226" height="8" fill="#3a7bd5"/>
+            <text x="373" y="467" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Qwen2.5 Coder 32B</text>
+            <text x="272" y="488" font-size="9" font-weight="600" fill="#3a5ea7">Code Specialist · Secondary</text>
+            <line x1="270" y1="495" x2="474" y2="495" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="272" y="511" font-size="9" fill="#333">· Code generation</text>
+            <text x="272" y="526" font-size="9" fill="#333">· Refactoring &amp; debugging</text>
+            <text x="272" y="541" font-size="9" fill="#333">· Multi-language support</text>
+            <text x="272" y="556" font-size="9" fill="#333">· Script automation</text>
+            <text x="272" y="571" font-size="8" fill="#aaa">50K+ tok/task typical</text>
+
+            <!-- Qwen3 8B -->
+            <rect x="500" y="452" width="240" height="170" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="500" y="452" width="240" height="22" rx="5" fill="#3a7bd5"/>
+            <rect x="500" y="466" width="240" height="8" fill="#3a7bd5"/>
+            <text x="620" y="467" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Qwen3 8B</text>
+            <text x="512" y="488" font-size="9" font-weight="600" fill="#3a5ea7">Fast Triage · ~213 tok/s on 5090</text>
+            <line x1="510" y1="495" x2="730" y2="495" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="512" y="511" font-size="9" fill="#333">· Quick task routing</text>
+            <text x="512" y="526" font-size="9" fill="#333">· Simple utility tasks</text>
+            <text x="512" y="541" font-size="9" fill="#333">· Minimal latency responses</text>
+            <text x="512" y="556" font-size="9" fill="#aaa">Minimal GPU usage</text>
+
+            <!-- Arrow down to Hardware -->
+            <line x1="380" y1="634" x2="380" y2="652" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <!-- ══ ROW 4: HARDWARE ══ -->
+            <rect x="8" y="652" width="744" height="72" rx="6" fill="#f2f2f0" stroke="#aaa" stroke-width="1.5"/>
+            <rect x="8" y="652" width="744" height="24" rx="6" fill="#888"/>
+            <rect x="8" y="668" width="744" height="8" fill="#888"/>
+            <text x="380" y="667" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">DEDICATED WORKSTATION</text>
+            <!-- Hardware chips row 1 -->
+            <rect x="18" y="682" width="114" height="20" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
+            <text x="75" y="695" text-anchor="middle" font-size="9" fill="#3a7bd5">RTX 5090 32GB VRAM</text>
+            <rect x="140" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="188" y="695" text-anchor="middle" font-size="9" fill="#444">Ryzen 9 9950X</text>
+            <rect x="244" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="292" y="695" text-anchor="middle" font-size="9" fill="#444">64GB DDR5 6400</text>
+            <rect x="348" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="396" y="695" text-anchor="middle" font-size="9" fill="#444">2TB Kioxia NVMe</text>
+            <rect x="452" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="500" y="695" text-anchor="middle" font-size="9" fill="#444">Asus TUF B650-E</text>
+            <rect x="556" y="682" width="96" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="604" y="695" text-anchor="middle" font-size="9" fill="#444">1200W Seasonic</text>
+            <rect x="660" y="682" width="84" height="20" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="702" y="695" text-anchor="middle" font-size="9" fill="#444">Win 11 Pro</text>
+
+            <!-- ══ ROW 5: COST + LEGEND ══ -->
+            <rect x="8" y="736" width="370" height="76" rx="6" fill="#fffbf0" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="8" y="736" width="370" height="22" rx="6" fill="#c07000"/>
+            <rect x="8" y="750" width="370" height="8" fill="#c07000"/>
+            <text x="193" y="749" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">MONTHLY COST ESTIMATE</text>
+            <rect x="20" y="764" width="10" height="10" rx="2" fill="#1e8a5e"/><text x="36" y="773" font-size="9" fill="#333">Codex Plus</text><text x="140" y="773" text-anchor="end" font-size="9" font-weight="700" fill="#222">$30.00</text>
+            <rect x="148" y="764" width="10" height="10" rx="2" fill="#c07000"/><text x="164" y="773" font-size="9" fill="#333">Brave Search</text><text x="260" y="773" text-anchor="end" font-size="9" font-weight="700" fill="#222">$5.00</text>
+            <rect x="268" y="764" width="10" height="10" rx="2" fill="#c07000"/><text x="284" y="773" font-size="9" fill="#333">eSIM Bridge</text><text x="368" y="773" text-anchor="end" font-size="9" font-weight="700" fill="#222">$4.90</text>
+            <rect x="20" y="784" width="10" height="10" rx="2" fill="#3a7bd5"/><text x="36" y="793" font-size="9" fill="#333">Local LLM (RTX 5090)</text><text x="140" y="793" text-anchor="end" font-size="9" font-weight="700" fill="#1e8a5e">Free</text>
+            <text x="193" y="805" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1a10">$39.90 / month</text>
+
+            <!-- Legend -->
+            <rect x="390" y="736" width="362" height="76" rx="6" fill="#f8f8f5" stroke="#ddd" stroke-width="1.5"/>
+            <rect x="390" y="736" width="362" height="22" rx="6" fill="#888"/>
+            <rect x="390" y="750" width="362" height="8" fill="#888"/>
+            <text x="571" y="749" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">LEGEND</text>
+            <rect x="402" y="764" width="10" height="10" rx="2" fill="#7b5ea7"/><text x="418" y="773" font-size="9" fill="#555">User Channels</text>
+            <rect x="510" y="764" width="10" height="10" rx="2" fill="#1e8a5e"/><text x="526" y="773" font-size="9" fill="#555">Cloud (Codex)</text>
+            <rect x="618" y="764" width="10" height="10" rx="2" fill="#3a7bd5"/><text x="634" y="773" font-size="9" fill="#555">Local (RTX 5090)</text>
+            <rect x="402" y="784" width="10" height="10" rx="2" fill="#c07000"/><text x="418" y="793" font-size="9" fill="#555">External Services</text>
+            <rect x="510" y="784" width="10" height="10" rx="2" fill="#bbb" stroke-dasharray="2,1"/><text x="526" y="793" font-size="9" fill="#aaa">Fallback (OpenRouter)</text>
+            <!-- Design principle -->
+            <text x="571" y="806" text-anchor="middle" font-size="8" fill="#888">Cloud: chat (low tokens)  →  Local: compute (zero cost)  →  Sub-agents: tender output</text>
+          </svg>
+        </div>
       </div>
 
       <div class="section">
