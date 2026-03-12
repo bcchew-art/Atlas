@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-12T17:57:11.653Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-12T16:38:30.827Z",
+    "lastRunVersion": "2026.3.11",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "ollama/qwen3:8b",
+          "ollama/qwen3:32b"
+        ]
+      },
+      "models": {
+        "openai-codex/gpt-5.4": {},
+        "ollama/qwen3:8b": {},
+        "ollama/qwen3:32b": {}
+      },
+      "workspace": "C:\\Users\\Admin\\.openclaw\\workspace",
+      "memorySearch": {
+        "provider": "ollama",
+        "model": "nomic-embed-text"
+      }
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "brave",
+        "apiKey": "BSAq2TNkmyXhVlJKxH2daj9IExdZ-oY"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "selfChatMode": false,
+      "allowFrom": [
+        "+6598315644",
+        "+6583229171",
+        "+6593663700"
+      ],
+      "groupPolicy": "allowlist",
+      "debounceMs": 0,
+      "mediaMaxMb": 50
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "7ae4317da9c57035f90de44cdf5c5b34556d737a7b6ac640"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "memory": {
+    "backend": "builtin"
+  },
+  "plugins": {
+    "entries": {
+      "whatsapp": {
+        "enabled": true
+      }
+    }
+  }
+}
