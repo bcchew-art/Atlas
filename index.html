@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Atlas — ATT Infosoft</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f8f6;
+    --border: #e8e8e4;
+    --border-light: #f0f0ec;
+    --text: #1a1a18;
+    --muted: #6b6b67;
+    --faint: #9b9b97;
+    --tag-bg: #f0f0ec;
+    --success-bg: #f0faf5;
+    --success: #0d7a4e;
+    --warning-bg: #fdf8f0;
+    --warning: #92600a;
+    --pending-bg: #f5f5f3;
+    --pending: #6b6b67;
+    --atlas: #0891b2;
+    --atlas-light: #e0f7fa;
+    --atlas-mid: #b2ebf2;
+    --sidebar-w: 240px;
+    --header-h: 56px;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 10px; }
+
+  .logo-mark {
+    width: 26px; height: 26px;
+    background: var(--atlas);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-mark span { color: #fff; font-size: 12px; font-weight: 700; }
+
+  .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+
+  .logo-version {
+    font-size: 11px; color: var(--atlas);
+    font-family: 'Inter', monospace;
+    border: 1px solid var(--atlas-mid);
+    background: var(--atlas-light);
+    padding: 1px 7px; border-radius: 100px;
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+
+  .nav-status {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--success); font-weight: 500;
+  }
+
+  .nav-status::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--atlas);
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .layout { display: flex; padding-top: var(--header-h); min-height: 100vh; }
+
+  .sidebar {
+    width: var(--sidebar-w); flex-shrink: 0;
+    position: fixed; top: var(--header-h); left: 0; bottom: 0;
+    overflow-y: auto; border-right: 1px solid var(--border);
+    padding: 28px 16px; scrollbar-width: none;
+    background: var(--bg); z-index: 90;
+  }
+
+  .sidebar::-webkit-scrollbar { display: none; }
+
+  .sidebar-section { margin-bottom: 28px; }
+
+  .sidebar-label {
+    font-size: 10px; font-weight: 600; color: var(--faint);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0 8px; margin-bottom: 6px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .sidebar-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: 6px;
+    font-size: 13.5px; color: var(--muted); font-weight: 500;
+    cursor: pointer; transition: all 0.15s;
+    border: none; background: none; width: 100%; text-align: left;
+  }
+
+  .sidebar-link:hover { background: var(--surface); color: var(--text); }
+  .sidebar-link.active { background: var(--atlas-light); color: var(--atlas); font-weight: 600; }
+
+  .sidebar-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.5; }
+  .sidebar-link.active .sidebar-icon { opacity: 1; color: var(--atlas); }
+
+  .main {
+    flex: 1; margin-left: var(--sidebar-w);
+    max-width: 780px; padding: 48px 56px;
+  }
+
+  .page-header { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+  .page-eyebrow {
+    font-size: 12px; font-weight: 500; color: var(--faint);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 10px; font-family: 'Inter', sans-serif;
+  }
+
+  .page-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+
+  .page-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 560px; }
+
+  .section { margin-bottom: 44px; }
+
+  .section-title {
+    font-size: 11px; font-weight: 600; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 14px; font-family: 'Inter', sans-serif;
+  }
+
+  h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 6px; }
+
+  p { font-size: 14.5px; color: var(--muted); line-height: 1.7; }
+
+  .stat-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; margin-bottom: 32px;
+  }
+
+  .stat-cell { background: var(--bg); padding: 18px 20px; }
+
+  .stat-label {
+    font-size: 11px; font-weight: 500; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 5px; font-family: 'Inter', sans-serif;
+  }
+
+  .stat-val { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 12px; color: var(--faint); margin-top: 2px; }
+
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; margin-bottom: 12px; }
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 2px 9px; border-radius: 100px; font-family: 'Inter', sans-serif;
+  }
+
+  .badge-active { background: var(--success-bg); color: var(--success); }
+  .badge-planned { background: var(--pending-bg); color: var(--pending); }
+  .badge-next { background: var(--warning-bg); color: var(--warning); }
+
+  .arch-row {
+    display: flex; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid var(--border-light);
+    gap: 14px;
+  }
+
+  .arch-row:last-child { border-bottom: none; }
+  .arch-indent { padding-left: 24px; }
+
+  .arch-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-primary { background: var(--text); }
+  .dot-secondary { background: #aaa; }
+  .dot-tertiary { background: #ccc; }
+
+  .arch-info { flex: 1; }
+  .arch-name { font-size: 14px; font-weight: 600; }
+  .arch-desc { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+
+  .arch-pill {
+    font-size: 11px; font-family: 'Inter', monospace;
+    padding: 3px 10px; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--muted); white-space: nowrap;
+  }
+
+  .phase { margin-bottom: 36px; }
+
+  .phase-header {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 12px;
+  }
+
+  .phase-title-row { display: flex; align-items: center; gap: 10px; }
+
+  .phase-num {
+    font-size: 11px; font-weight: 600; color: var(--faint);
+    font-family: 'Inter', monospace; width: 22px;
+  }
+
+  .phase-name { font-size: 15px; font-weight: 600; }
+
+  .checklist { list-style: none; border-left: 1px solid var(--border); margin-left: 10px; }
+
+  .check-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 16px; height: 16px; border-radius: 4px;
+    border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #fff;
+  }
+
+  .check-box.done { background: var(--success); border-color: var(--success); }
+  .check-box.skipped { background: #ddd; border-color: #ddd; color: #999; }
+  .check-box.current { border-color: var(--text); }
+
+  .check-text { font-size: 14px; }
+  .check-note { display: block; font-size: 12px; color: var(--faint); margin-top: 2px; }
+
+  .skill-row {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; padding: 14px 0;
+    border-bottom: 1px solid var(--border-light); gap: 16px;
+  }
+
+  .skill-row:last-child { border-bottom: none; }
+  .skill-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .log-row {
+    display: flex; gap: 24px; padding: 18px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .log-row:last-child { border-bottom: none; }
+
+  .log-date {
+    font-size: 12px; font-family: 'Inter', monospace;
+    color: var(--faint); min-width: 80px; padding-top: 2px;
+  }
+
+  .log-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  .log-body { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  .log-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+  .log-tag {
+    font-size: 11px; font-family: 'Inter', sans-serif;
+    padding: 2px 8px; border-radius: 4px;
+    background: var(--tag-bg); color: var(--muted);
+  }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+
+  .data-table th {
+    text-align: left; font-size: 11px; font-weight: 600;
+    color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0 12px 10px; font-family: 'Inter', sans-serif;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 11px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:first-child { color: var(--muted); width: 40%; }
+
+  .atlas-accent { color: var(--atlas); }
+
+  .progress-bar-wrap {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 4px;
+  }
+  .progress-bar {
+    flex: 1; max-width: 90px; height: 6px; background: var(--border);
+    border-radius: 100px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; background: var(--atlas);
+    border-radius: 100px; transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 1rem; font-weight: 700; color: var(--atlas);
+    font-family: 'Inter', monospace; letter-spacing: -0.02em;
+  }
+
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-bottom: 24px; width: 100%; }
+
+  .team-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 24px 20px; text-align: center; transition: border-color 0.2s;
+  }
+  .team-card:hover { border-color: var(--atlas-mid); }
+  .team-card.atlas-lead { border-color: var(--atlas); }
+
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    object-fit: cover; margin-bottom: 12px;
+    border: 2px solid var(--border);
+  }
+  .team-card.atlas-lead .team-avatar { border-color: var(--atlas); }
+
+  .team-avatar-placeholder {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--surface); border: 2px dashed var(--border);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 12px; font-size: 24px; color: var(--faint);
+  }
+
+  .team-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .team-role { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .team-status {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    padding: 2px 8px; border-radius: 100px; font-family: 'Inter', sans-serif;
+  }
+  .status-active { background: var(--success-bg); color: var(--success); }
+  .status-planned { background: var(--pending-bg); color: var(--pending); }
+  .status-building { background: var(--warning-bg); color: var(--warning); }
+
+  .content-panel { display: none; }
+  .content-panel.active { display: block; }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    padding: 8px 0 12px;
+  }
+
+  .mobile-nav-inner { display: flex; justify-content: space-around; }
+
+  .mobile-nav-btn {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; color: var(--faint); font-weight: 500;
+    cursor: pointer; padding: 4px 10px; transition: color 0.15s;
+  }
+
+  .mobile-nav-btn.active { color: var(--text); }
+  .mobile-nav-btn svg { width: 20px; height: 20px; }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: block; }
+    .main { margin-left: 0; padding: 28px 20px 88px; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .page-title { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-left">
+    <div class="logo-mark"><span>A</span></div>
+    <span class="logo-name">Project <span class="atlas-accent">Atlas</span></span>
+    <span class="logo-version">PoC v0.1</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-status" style="color:var(--atlas)">● Phase 04 — TechSpec Skill</span>
+    <span style="font-size:12px;color:var(--faint)">Updated 13 Mar 2026</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Project</div>
+      <button class="sidebar-link active" onclick="nav('overview',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+        Overview
+      </button>
+      <button class="sidebar-link" onclick="nav('architecture',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="3" r="2"/><circle cx="3" cy="13" r="2"/><circle cx="13" cy="13" r="2"/><path d="M8 5v3M8 8l-4.1 3.2M8 8l4.1 3.2"/></svg>
+        Architecture
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Execution</div>
+      <button class="sidebar-link" onclick="nav('setup',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h5"/></svg>
+        Setup Plan
+      </button>
+      <button class="sidebar-link" onclick="nav('skills',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 4 4.5.7-3.2 3.1.7 4.5L8 11l-4 2.3.7-4.5L1.5 5.7 6 5z"/></svg>
+        Skills Roadmap
+      </button>
+      <button class="sidebar-link" onclick="nav('log',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
+        Progress Log
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">People</div>
+      <button class="sidebar-link" onclick="nav('team',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="2.5"/><circle cx="11" cy="5" r="2.5"/><path d="M1 14c0-2.5 2-4 4-4s4 1.5 4 4M7 14c0-2.5 2-4 4-4s4 1.5 4 4"/></svg>
+        Team
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Project Lead</div>
+      <div style="padding:0 8px;">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;">Gabriel Jiang</div>
+        <div style="font-size:12px;color:var(--faint);line-height:1.7;">ATT Infosoft</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="content-panel active">
+      <div class="page-header">
+        <div class="page-eyebrow">ATT Infosoft — Internal PoC</div>
+        <div class="page-title">Project <span class="atlas-accent">Atlas</span></div>
+        <div class="page-desc">An AI agent system built to handle IT tender proposals end-to-end. Starting with technical specification writing, Atlas will be trained with company knowledge and purpose-built skills to produce competitive, high-quality tender submissions.</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-label">Agent</div>
+          <div class="stat-val"><span class="atlas-accent">Atlas</span></div>
+          <div class="stat-sub">Primary orchestrator</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Phase</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar"><div class="progress-bar-fill" style="width:75%"></div></div>
+            <span class="progress-label">3 / 4</span>
+          </div>
+          <div class="stat-sub">Phase 04 in progress</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">First Milestone</div>
+          <div class="stat-val">TechSpec</div>
+          <div class="stat-sub">Tender tech spec skill</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">GPU</div>
+          <div class="stat-val">RTX 5090</div>
+          <div class="stat-sub">32GB VRAM</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Objectives</div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Immediate goal</h3>
+            <p>Train Atlas to read an RFP and produce a structured technical specification section. Evaluate against past ATT submissions and iterate via a feedback loop.</p>
+          </div>
+          <div class="card">
+            <h3>Long-term vision</h3>
+            <p>Atlas orchestrates multiple sub-agents, each owning a tender section skill. Output is a complete, review-ready proposal assembled from specialist agents.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Hardware</div>
+        <div class="card">
+          <table class="data-table">
+            <tr><td>Processor</td><td>AMD Ryzen 9 9950X</td></tr>
+            <tr><td>Graphics Card</td><td>NVIDIA RTX 5090 32GB — Gigabyte</td></tr>
+            <tr><td>Memory</td><td>64GB DDR5 6400MHz — KingBank RGB</td></tr>
+            <tr><td>Storage</td><td>2TB Kioxia Gen.4 NVMe SSD</td></tr>
+            <tr><td>Motherboard</td><td>Asus TUF Gaming B650-E Wi-Fi 6E</td></tr>
+            <tr><td>Power Supply</td><td>Seasonic Vertex PX 1200W 80+ Platinum</td></tr>
+            <tr><td>Cooler</td><td>Corsair iCue Link Titan RX 360mm AIO</td></tr>
+            <tr><td>Operating System</td><td>Windows 11 Pro 64-bit</td></tr>
+            <tr><td>Network</td><td>Personal — off ATT infrastructure</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div id="architecture" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">System Design</div>
+        <div class="page-title">Architecture</div>
+        <div class="page-desc">Atlas runs a multi-agent architecture. The orchestrator reads the RFP, assigns tasks to sub-agents by skill, and assembles the final output. Model routing is cost-optimised across three tiers.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">System Diagram</div>
+        <div style="background:#ffffff;border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-bottom:12px;">
+          <svg viewBox="0 0 760 980" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:Arial,sans-serif;background:#fff;">
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker>
+              <marker id="arrd" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#aaa"/></marker>
+              <marker id="arro" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c07000"/></marker>
+            </defs>
+
+            <!-- ROW 1: USER CHANNELS -->
+            <rect x="8" y="8" width="744" height="100" rx="6" fill="#f3f0fa" stroke="#7b5ea7" stroke-width="1.5"/>
+            <rect x="8" y="8" width="744" height="28" rx="6" fill="#7b5ea7"/>
+            <rect x="8" y="28" width="744" height="8" fill="#7b5ea7"/>
+            <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">USER CHANNELS</text>
+            <circle cx="52" cy="70" r="12" fill="#c8b8e8"/>
+            <circle cx="52" cy="65" r="6" fill="#7b5ea7"/>
+            <path d="M40,79 Q52,73 64,79" fill="#7b5ea7"/>
+            <text x="80" y="62" font-size="12" font-weight="700" fill="#333">Gabriel Jiang</text>
+            <text x="80" y="78" font-size="11" fill="#666">PM · ATT Infosoft</text>
+            <line x1="185" y1="44" x2="185" y2="100" stroke="#d0c8e8" stroke-width="1"/>
+            <text x="200" y="62" font-size="12" fill="#444">● WA Group: Jackie + Sultan + Gabriel + Atlas</text>
+            <text x="200" y="80" font-size="12" fill="#444">● Individual DMs per person</text>
+            <line x1="340" y1="44" x2="340" y2="100" stroke="#d0c8e8" stroke-width="1"/>
+            <rect x="356" y="58" width="190" height="24" rx="4" fill="#ede8f8" stroke="#b8a8d8" stroke-width="1"/>
+            <text x="451" y="74" text-anchor="middle" font-size="11" fill="#9070c0">MS Teams — Future Plan Only</text>
+            <line x1="560" y1="44" x2="560" y2="100" stroke="#d0c8e8" stroke-width="1"/>
+            <text x="574" y="64" font-size="11" fill="#555">All channels routed through</text>
+            <text x="574" y="80" font-size="11" fill="#555">Atlas via eSIM Bridge</text>
+
+            <!-- Arrow -->
+            <line x1="380" y1="108" x2="380" y2="128" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="388" y="122" font-size="10" fill="#555">HTTPS</text>
+
+            <!-- ROW 2: CLOUD LAYER -->
+            <rect x="8" y="128" width="744" height="310" rx="6" fill="#eaf7f2" stroke="#1e8a5e" stroke-width="1.5"/>
+            <rect x="8" y="128" width="744" height="28" rx="6" fill="#1e8a5e"/>
+            <rect x="8" y="148" width="744" height="8" fill="#1e8a5e"/>
+            <text x="380" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">CLOUD LAYER</text>
+
+            <!-- Atlas Main Agent -->
+            <rect x="20" y="166" width="460" height="256" rx="5" fill="#fff" stroke="#1e8a5e" stroke-width="1.5"/>
+            <rect x="20" y="166" width="460" height="26" rx="5" fill="#1e8a5e"/>
+            <rect x="20" y="184" width="460" height="8" fill="#1e8a5e"/>
+            <text x="250" y="183" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">ATLAS — Main Agent (Orchestrator)</text>
+            <rect x="32" y="202" width="28" height="24" rx="3" fill="#c8ede0" stroke="#1e8a5e" stroke-width="1"/>
+            <circle cx="40" cy="210" r="4" fill="#1e8a5e"/>
+            <circle cx="52" cy="210" r="4" fill="#1e8a5e"/>
+            <rect x="38" y="217" width="18" height="5" rx="2" fill="#1e8a5e"/>
+            <text x="68" y="210" font-size="11" font-weight="600" fill="#1e5a3e">OpenAI Codex · GPT-5.4</text>
+            <text x="68" y="224" font-size="10" fill="#777">$30/mo · Codex Plus OAuth</text>
+            <line x1="30" y1="234" x2="468" y2="234" stroke="#e0ede8" stroke-width="1"/>
+            <text x="32" y="252" font-size="11" fill="#333">· Chat &amp; task coordination</text>
+            <text x="32" y="270" font-size="11" fill="#333">· Orchestrates sub-agents by skill</text>
+            <text x="32" y="288" font-size="11" fill="#333">· Natural conversational tone</text>
+            <text x="32" y="306" font-size="11" fill="#333">· ~500–2K tokens per message</text>
+            <text x="250" y="252" font-size="11" fill="#555" font-style="italic">Routes heavy work → Local LLM</text>
+            <text x="250" y="270" font-size="11" fill="#555" font-style="italic">Fallback → OpenRouter</text>
+            <text x="250" y="288" font-size="11" fill="#555" font-style="italic">Reads RFP → assigns sub-agents</text>
+            <text x="250" y="306" font-size="11" fill="#555" font-style="italic">Assembles final tender output</text>
+
+            <!-- Sub-agents box -->
+            <rect x="30" y="322" width="440" height="106" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
+            <text x="42" y="362" font-size="11" fill="#333">● Hermes — Technical Design</text>
+            <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance Matrix</text>
+            <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Functional Response</text>
+            <text x="42" y="382" font-size="11" fill="#333">● Midas — Pricing / BQ</text>
+            <text x="175" y="382" font-size="11" fill="#333">● Chronos — PMP</text>
+            <text x="310" y="382" font-size="11" fill="#333">● Argus — Evaluator</text>
+            <text x="42" y="400" font-size="11" fill="#888">● Athena — Company Profile</text>
+            <text x="240" y="400" font-size="11" fill="#888">● Hestia — Mgmt Summary</text>
+            <line x1="250" y1="316" x2="250" y2="322" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <!-- Services right column -->
+            <rect x="494" y="166" width="250" height="90" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="494" y="166" width="250" height="26" rx="5" fill="#c07000"/>
+            <rect x="494" y="184" width="250" height="8" fill="#c07000"/>
+            <text x="619" y="183" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Brave Search</text>
+            <text x="506" y="206" font-size="11" fill="#333">Web Search API · $5/mo</text>
+            <text x="506" y="222" font-size="11" fill="#555">Real-time web data &amp; research</text>
+            <text x="506" y="238" font-size="11" fill="#555">Used by Atlas for RFP context</text>
+
+            <rect x="494" y="272" width="250" height="90" rx="5" fill="#fff" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="494" y="272" width="250" height="26" rx="5" fill="#c07000"/>
+            <rect x="494" y="290" width="250" height="8" fill="#c07000"/>
+            <text x="619" y="289" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">eSIM Bridge</text>
+            <text x="506" y="312" font-size="11" fill="#333">WhatsApp Orchestration · $4.90/mo</text>
+            <text x="506" y="328" font-size="11" fill="#555">Agent channel routing</text>
+            <text x="506" y="344" font-size="11" fill="#555">Group + individual DMs per person</text>
+
+            <rect x="494" y="378" width="250" height="46" rx="5" fill="#f9f9f9" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="619" y="397" text-anchor="middle" font-size="11" font-weight="700" fill="#999">OpenRouter (Fallback)</text>
+            <text x="506" y="414" font-size="10" fill="#aaa">Claude · GPT-4o · Credit-based (~$10–20)</text>
+
+            <!-- Arrows Atlas → services -->
+            <line x1="480" y1="210" x2="494" y2="210" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
+            <line x1="480" y1="260" x2="494" y2="316" stroke="#c07000" stroke-width="1.5" marker-end="url(#arro)"/>
+            <line x1="480" y1="290" x2="494" y2="396" stroke="#aaa" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrd)"/>
+
+            <!-- Arrow Cloud → Local -->
+            <line x1="380" y1="438" x2="380" y2="458" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="388" y="452" font-size="10" fill="#555">offload heavy tasks</text>
+
+            <!-- ROW 3: LOCAL LAYER -->
+            <rect x="8" y="458" width="744" height="240" rx="6" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="8" y="458" width="744" height="28" rx="6" fill="#3a7bd5"/>
+            <rect x="8" y="478" width="744" height="8" fill="#3a7bd5"/>
+            <text x="380" y="476" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">LOCAL LAYER — RTX 5090 Workstation (Ollama)</text>
+
+            <!-- Qwen3 32B -->
+            <rect x="20" y="498" width="226" height="188" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="20" y="498" width="226" height="26" rx="5" fill="#3a7bd5"/>
+            <rect x="20" y="516" width="226" height="8" fill="#3a7bd5"/>
+            <text x="133" y="515" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Qwen3 32B</text>
+            <text x="32" y="540" font-size="11" font-weight="600" fill="#3a5ea7">Primary · Q4_K_M Quantization</text>
+            <line x1="30" y1="548" x2="234" y2="548" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="32" y="566" font-size="11" fill="#333">· Coding &amp; analysis</text>
+            <text x="32" y="583" font-size="11" fill="#333">· Document processing</text>
+            <text x="32" y="600" font-size="11" fill="#333">· Tool calling &amp; APIs</text>
+            <text x="32" y="617" font-size="11" fill="#333">· Tender drafting assist</text>
+            <text x="32" y="634" font-size="10" fill="#aaa">Apache 2.0 · 10K–100K tok/task</text>
+            <rect x="30" y="648" width="110" height="26" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
+            <text x="85" y="664" text-anchor="middle" font-size="10" font-weight="600" fill="#3a7bd5">PRIMARY MODEL</text>
+
+            <!-- Qwen2.5 Coder -->
+            <rect x="260" y="498" width="226" height="188" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="260" y="498" width="226" height="26" rx="5" fill="#3a7bd5"/>
+            <rect x="260" y="516" width="226" height="8" fill="#3a7bd5"/>
+            <text x="373" y="515" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Qwen2.5 Coder 32B</text>
+            <text x="272" y="540" font-size="11" font-weight="600" fill="#3a5ea7">Code Specialist · Secondary</text>
+            <line x1="270" y1="548" x2="474" y2="548" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="272" y="566" font-size="11" fill="#333">· Code generation</text>
+            <text x="272" y="583" font-size="11" fill="#333">· Refactoring &amp; debugging</text>
+            <text x="272" y="600" font-size="11" fill="#333">· Multi-language support</text>
+            <text x="272" y="617" font-size="11" fill="#333">· Script automation</text>
+            <text x="272" y="634" font-size="10" fill="#aaa">50K+ tok/task typical</text>
+
+            <!-- Qwen3 8B -->
+            <rect x="500" y="498" width="240" height="188" rx="5" fill="#fff" stroke="#3a7bd5" stroke-width="1.5"/>
+            <rect x="500" y="498" width="240" height="26" rx="5" fill="#3a7bd5"/>
+            <rect x="500" y="516" width="240" height="8" fill="#3a7bd5"/>
+            <text x="620" y="515" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Qwen3 8B</text>
+            <text x="512" y="540" font-size="11" font-weight="600" fill="#3a5ea7">Fast Triage · ~213 tok/s on 5090</text>
+            <line x1="510" y1="548" x2="730" y2="548" stroke="#e8e8f0" stroke-width="1"/>
+            <text x="512" y="566" font-size="11" fill="#333">· Quick task routing</text>
+            <text x="512" y="583" font-size="11" fill="#333">· Simple utility tasks</text>
+            <text x="512" y="600" font-size="11" fill="#333">· Minimal latency responses</text>
+            <text x="512" y="617" font-size="10" fill="#aaa">Minimal GPU usage</text>
+
+            <!-- Arrow Local → Hardware -->
+            <line x1="380" y1="698" x2="380" y2="718" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <!-- ROW 4: HARDWARE -->
+            <rect x="8" y="718" width="744" height="74" rx="6" fill="#f2f2f0" stroke="#aaa" stroke-width="1.5"/>
+            <rect x="8" y="718" width="744" height="28" rx="6" fill="#888"/>
+            <rect x="8" y="738" width="744" height="8" fill="#888"/>
+            <text x="380" y="736" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" letter-spacing="1">DEDICATED WORKSTATION</text>
+            <rect x="18" y="752" width="124" height="24" rx="3" fill="#eaf0ff" stroke="#3a7bd5" stroke-width="1"/>
+            <text x="80" y="768" text-anchor="middle" font-size="11" fill="#3a7bd5">RTX 5090 32GB VRAM</text>
+            <rect x="150" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="200" y="768" text-anchor="middle" font-size="11" fill="#444">Ryzen 9 9950X</text>
+            <rect x="258" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="308" y="768" text-anchor="middle" font-size="11" fill="#444">64GB DDR5 6400</text>
+            <rect x="366" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="416" y="768" text-anchor="middle" font-size="11" fill="#444">2TB Kioxia NVMe</text>
+            <rect x="474" y="752" width="100" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="524" y="768" text-anchor="middle" font-size="11" fill="#444">Asus TUF B650-E</text>
+            <rect x="582" y="752" width="90" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="627" y="768" text-anchor="middle" font-size="11" fill="#444">1200W Seasonic</text>
+            <rect x="680" y="752" width="64" height="24" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+            <text x="712" y="768" text-anchor="middle" font-size="11" fill="#444">Win 11</text>
+
+            <!-- ROW 5: COST (full width) -->
+            <rect x="8" y="804" width="744" height="100" rx="6" fill="#fffbf0" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="8" y="804" width="744" height="28" rx="6" fill="#c07000"/>
+            <rect x="8" y="824" width="744" height="8" fill="#c07000"/>
+            <text x="380" y="822" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">MONTHLY COST ESTIMATE</text>
+            <!-- Cost items in 2 rows of 2 -->
+            <rect x="30" y="840" width="14" height="14" rx="2" fill="#1e8a5e"/>
+            <text x="50" y="852" font-size="12" fill="#333">Codex Plus</text>
+            <text x="230" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$30.00 / mo</text>
+            <rect x="260" y="840" width="14" height="14" rx="2" fill="#c07000"/>
+            <text x="280" y="852" font-size="12" fill="#333">Brave Search API</text>
+            <text x="460" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$5.00 / mo</text>
+            <rect x="490" y="840" width="14" height="14" rx="2" fill="#c07000"/>
+            <text x="510" y="852" font-size="12" fill="#333">eSIM Bridge</text>
+            <text x="700" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$4.90 / mo</text>
+            <rect x="30" y="864" width="14" height="14" rx="2" fill="#3a7bd5"/>
+            <text x="50" y="876" font-size="12" fill="#333">Local LLM (RTX 5090)</text>
+            <text x="230" y="876" text-anchor="end" font-size="12" font-weight="700" fill="#1e8a5e">Free</text>
+            <text x="490" y="876" font-size="12" fill="#aaa">OpenRouter (fallback)</text>
+            <text x="700" y="876" text-anchor="end" font-size="12" fill="#aaa">As needed</text>
+            <text x="380" y="895" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a10">TOTAL: $39.90 / month</text>
+
+            <!-- ROW 6: LEGEND -->
+            <rect x="8" y="916" width="744" height="56" rx="6" fill="#f8f8f5" stroke="#ddd" stroke-width="1.5"/>
+            <rect x="8" y="916" width="744" height="24" rx="6" fill="#888"/>
+            <rect x="8" y="932" width="744" height="8" fill="#888"/>
+            <text x="380" y="930" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">LEGEND</text>
+            <rect x="24" y="948" width="14" height="14" rx="2" fill="#7b5ea7"/><text x="44" y="960" font-size="11" fill="#555">User Channels</text>
+            <rect x="170" y="948" width="14" height="14" rx="2" fill="#1e8a5e"/><text x="190" y="960" font-size="11" fill="#555">Cloud (Codex)</text>
+            <rect x="316" y="948" width="14" height="14" rx="2" fill="#3a7bd5"/><text x="336" y="960" font-size="11" fill="#555">Local (RTX 5090)</text>
+            <rect x="470" y="948" width="14" height="14" rx="2" fill="#c07000"/><text x="490" y="960" font-size="11" fill="#555">External Services</text>
+            <rect x="624" y="948" width="14" height="14" rx="2" fill="#bbb"/><text x="644" y="960" font-size="11" fill="#aaa">Fallback</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Agent Stack</div>
+        <div class="card">
+          <div class="arch-row">
+            <div class="arch-dot dot-primary"></div>
+            <div class="arch-info">
+              <div class="arch-name"><span class="atlas-accent">Atlas</span> — Main Agent (Orchestrator)</div>
+              <div class="arch-desc">Powered by OpenAI Codex · GPT-5.4. Handles all user-facing chat, reads RFPs, assigns sections to sub-agents, and assembles the final tender output.</div>
+            </div>
+            <div class="arch-pill">Codex Plus · $30/mo</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-secondary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Qwen3 32B — Primary Local Model</div>
+              <div class="arch-desc">Running on RTX 5090 via Ollama. Q4_K_M quantization. Handles coding, analysis, document processing, tool calling, and tender drafting at zero compute cost.</div>
+            </div>
+            <div class="arch-pill">Free · 24/7</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-secondary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Qwen2.5 Coder 32B — Code Specialist</div>
+              <div class="arch-desc">Secondary local model for code generation, refactoring, debugging, and multi-language script automation. Activated by Atlas for code-heavy tasks.</div>
+            </div>
+            <div class="arch-pill">Free · Local</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-secondary"></div>
+            <div class="arch-info">
+              <div class="arch-name">Qwen3 8B — Fast Triage</div>
+              <div class="arch-desc">Lightweight model for quick routing decisions and simple utility tasks. ~213 tok/s on RTX 5090. Minimal GPU load.</div>
+            </div>
+            <div class="arch-pill">Free · Local</div>
+          </div>
+          <div class="arch-row arch-indent">
+            <div class="arch-dot dot-tertiary"></div>
+            <div class="arch-info">
+              <div class="arch-name">OpenRouter — Fallback Layer</div>
+              <div class="arch-desc">Access to Claude, GPT-4o, and other models when a specific capability is needed beyond Codex or local LLM. Credit-based, used sparingly.</div>
+            </div>
+            <div class="arch-pill">~$10–20 topup</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Model Routing</div>
+        <div class="card">
+          <table class="data-table">
+            <thead>
+              <tr><th>Task Type</th><th>Routed To</th><th>Model</th><th>Cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Chat, coordination, RFP reading</td><td>Atlas (Cloud)</td><td>Codex · GPT-5.4</td><td>$30/mo</td></tr>
+              <tr><td>Coding, analysis, doc processing</td><td>Local LLM (5090)</td><td>Qwen3 32B</td><td>Free</td></tr>
+              <tr><td>Code generation &amp; refactoring</td><td>Local LLM (5090)</td><td>Qwen2.5 Coder 32B</td><td>Free</td></tr>
+              <tr><td>Quick triage &amp; routing</td><td>Local LLM (5090)</td><td>Qwen3 8B</td><td>Free</td></tr>
+              <tr><td>Model-specific edge cases</td><td>OpenRouter</td><td>Claude / GPT-4o / others</td><td>~$10–20 credit</td></tr>
+              <tr><td>Skill building, quality review</td><td>Claude Max (Gabriel, manual)</td><td>Claude Sonnet/Opus</td><td>Subscription</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Communication Channels</div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>WhatsApp Group</h3>
+            <p>Command centre. One group with Jackie, Sultan, Gabriel, and Atlas. All coordination, status updates, and decisions go through here. Managed via eSIM Bridge ($4.90/mo).</p>
+          </div>
+          <div class="card">
+            <h3>Individual DMs</h3>
+            <p>Each person (Jackie, Sultan, Gabriel) has a separate DM with Atlas for detailed one-on-one work — deep task discussion, private reviews, and context-rich interactions without group noise.</p>
+          </div>
+          <div class="card">
+            <h3>MS Teams</h3>
+            <p>Future plan only. Not included in current PoC — runs off ATT network on personal hardware. May be scoped in once PoC is validated with Jackie.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Memory Architecture</div>
+        <div class="card">
+          <table class="data-table">
+            <thead>
+              <tr><th>Layer</th><th>Location</th><th>Used By</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Shared memory</td><td>Monday.com private doc</td><td>Claude Chat, Cowork, Code, Atlas</td><td>Human-readable. Read at session start.</td></tr>
+              <tr><td>Local memory</td><td>MEMORY.md on 5090</td><td>Atlas</td><td>Persistent state across Atlas sessions.</td></tr>
+              <tr><td>Agent rules</td><td>AGENTS.md on 5090</td><td>Atlas</td><td>"Search memory before acting. Write decisions after every task."</td></tr>
+              <tr><td>Plugin</td><td>Supermemory (OpenClaw)</td><td>Atlas</td><td>Semantic memory retrieval within OpenClaw.</td></tr>
+              <tr><td>Decay</td><td>Temporal decay config</td><td>Atlas</td><td>Half-life: 30 days. Old memories fade over time.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Feedback Loop</div>
+        <div class="card">
+          <table class="data-table">
+            <tr><td>Input</td><td>Past RFP and ATT submission uploaded as reference</td></tr>
+            <tr><td>Evaluate</td><td>Atlas compares submission vs RFP requirements, identifies gaps</td></tr>
+            <tr><td>Draft</td><td>Generates improved version based on evaluation</td></tr>
+            <tr><td>Review</td><td>PM reviews output and provides corrections</td></tr>
+            <tr><td>Store</td><td>Corrections saved to skill memory for next run</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETUP -->
+    <div id="setup" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Execution</div>
+        <div class="page-title">Setup Plan</div>
+        <div class="page-desc">Four phases from hardware bring-up to first working skill. Currently in Phase 04.</div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">01</div>
+            <div class="phase-name">Hardware Setup</div>
+          </div>
+          <span class="badge badge-active">Done</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Unbox and assemble PC<span class="check-note">Asus A32 case, Corsair AIO, RTX 5090, Kioxia 2TB SSD</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First boot and BIOS check<span class="check-note">EXPO enabled — RAM confirmed at 6400MHz. Kioxia 2TB detected. Mobo: Asus TUF B650-E BIOS 3827</span></div></li>
+          <li class="check-item"><div class="check-box skipped">—</div><div class="check-text">Activate Windows 11 Pro<span class="check-note">Skipped for now — no key bundled. Will activate when needed.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Run Windows Update fully</div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install NVIDIA drivers (RTX 5090 — Blackwell)<span class="check-note">Driver 595.79 — installed via NVIDIA App</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Verify GPU detected and CUDA enabled<span class="check-note">RTX 5090 confirmed in Device Manager</span></div></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">02</div>
+            <div class="phase-name">Core Stack Installation</div>
+          </div>
+          <span class="badge badge-active">Done</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install Ollama v0.17.7 (Windows native)<span class="check-note">Windows native install, no WSL2</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Pull Qwen3 32B<span class="check-note">Primary local fallback — analysis, doc processing, tender drafting</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Pull Qwen2.5 Coder 32B<span class="check-note">Code specialist — generation, refactoring, debugging</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Pull Qwen3 8B<span class="check-note">Fast triage fallback — ~213 tok/s on RTX 5090</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install OpenClaw 2026.3.11<span class="check-note">Windows native + Git for Windows dependency</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">OpenClaw onboarding<span class="check-note">GPT-5.4 primary, WhatsApp allowlist, Brave search API</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Connect Codex OAuth<span class="check-note">Codex Plus — GPT-5.4</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">OpenClaw dashboard<span class="check-note">Fixed — use `openclaw dashboard` to launch with auth</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure model routing<span class="check-note">GPT-5.4 primary → Qwen3 8B → Qwen3 32B fallbacks</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install gateway service<span class="check-note">Via openclaw doctor --fix — auto-starts on boot</span></div></li>
+          <li class="check-item"><div class="check-box skipped">—</div><div class="check-text">Connect OpenRouter API key<span class="check-note">Deferred — not priority for now</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure embedding provider<span class="check-note">Ollama + nomic-embed-text (274MB) — free local embeddings</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Add Jackie + Sultan to WA allowlist<span class="check-note">Jackie (+6583229171), Sultan (+6593663700)</span></div></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">03</div>
+            <div class="phase-name"><span class="atlas-accent">Atlas</span> Identity and Channels</div>
+          </div>
+          <span class="badge badge-active">Done</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Create IDENTITY.md<span class="check-note">Name, role, emoji, stack, communication style per stakeholder</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Create SOUL.md<span class="check-note">Core behavioral rules, boundaries, proactive behavior, continuity</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Create AGENTS.md<span class="check-note">Session startup, memory rules, tender work rules, sub-agents, red lines</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure MEMORY.md and memory/ directory on 5090<span class="check-note">Embedding: Ollama + nomic-embed-text, temporal decay 30-day half-life</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Deregister WhatsApp from Mac Mini<span class="check-note">Done — number freed</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Link WhatsApp number to Atlas on 5090<span class="check-note">+6598198569 linked via eSIM Bridge</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Atlas first contact + tone calibration<span class="check-note">Atlas alive on WA. Tone corrected from corporate to casual colleague. Preference saved to memory.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Memory persistence verified<span class="check-note">End-to-end: user speaks → Atlas adapts → writes memory file → git commits → persists</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">WA group policy configured<span class="check-note">groupPolicy: open, requireMention: false. SOUL.md controls listen-first reply behavior.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Profile picture generated<span class="check-note">AI-generated portrait — team voted on final pick. Set as WA profile.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Create WhatsApp group<span class="check-note">"Project Atlas" — Jackie + Sultan + Gabriel + Atlas</span></div></li>
+          <li class="check-item"><div class="check-box skipped">—</div><div class="check-text">Set up individual DMs with Atlas<span class="check-note">Deferred — not needed yet</span></div></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title-row">
+            <div class="phase-num">04</div>
+            <div class="phase-name">First Skill — Tender Tech Spec</div>
+          </div>
+          <span class="badge badge-active">In Progress</span>
+        </div>
+        <ul class="checklist">
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Upload past tender RFPs as reference<span class="check-note">CAG T3 IIDS Refresh RFP uploaded — 04A, 04C, 04F Appendix K</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Build Hermes — Technical Design agent<span class="check-note">Live on ollama/qwen3:32b. Generates 06 + 07 for CAG-style tenders.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Build Chronos — Project Management Plan agent<span class="check-note">Live on ollama/qwen3:32b. Generates sections 08, 09, 10 for CAG-style tenders.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First clean Ollama run — all 5 CAG docs generated<span class="check-note">Test 10: stable generation pipeline confirmed. Bundled deterministic scripts resolved syntax errors.</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Improve output depth — content quality review with Jackie</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Build Daedalus — Functional Response agent</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div id="skills" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Tender Skills</div>
+        <div class="page-title">Skills Roadmap</div>
+        <div class="page-desc">One skill per tender section. Each skill is an independent module assigned to a sub-agent. Atlas activates skills based on the RFP. Skills improve through the feedback loop over time.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Skill Registry</div>
+        <div class="card">
+          <div class="skill-row">
+            <div><div class="skill-name">Hermes — Technical Design</div><div class="skill-desc">Generates the full technical design section: development approach, system architecture, cloud services setup, hosting environment, tech standards, and security design. Architecture is a sub-section here — not a separate document.</div></div>
+            <span class="badge badge-active" style="flex-shrink:0">Live</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Daedalus — Functional Response</div><div class="skill-desc">The largest section. Produces a feature-by-feature solution description mapped to every functional requirement in the RFP. Covers what the system does, how each requirement is met, UI workflows, and data handling. Typically 50–80 pages.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Themis — Compliance Matrix</div><div class="skill-desc">Generates a paragraph-by-paragraph C / NC / PC compliance statement against every RFP clause — General, Functional, and ICT Security. Flags gaps and provides justifications for non-compliances.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Chronos — Project Management Plan</div><div class="skill-desc">Generates project team structure, Gantt chart, QA plan, change control procedure, and risk register. Maps directly to the PMP section of the tender submission.</div></div>
+            <span class="badge badge-active" style="flex-shrink:0">Live</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Midas — Pricing / BQ</div><div class="skill-desc">Generates structured cost schedule based on scope, mandays, and rates. References past BQ formats and market benchmarks to produce competitive and defensible pricing.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Athena — Company Profile</div><div class="skill-desc">ATT Infosoft background, past project references, and relevant track record. Tailored to the domain of each tender to maximise relevance score with evaluators.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Hestia — Management Summary</div><div class="skill-desc">High-level overview synthesised from all completed sections. Generated last. Frames ATT's value proposition and key differentiators for the evaluating committee.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div><div class="skill-name">Argus — Evaluator</div><div class="skill-desc">Cross-checks every section against RFP requirements and the tender's evaluation criteria weightings. Scores submission quality, flags missing items, and highlights inconsistencies before final output.</div></div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOG -->
+    <div id="log" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Activity</div>
+        <div class="page-title">Progress Log</div>
+        <div class="page-desc">Dated record of planning sessions, decisions, and milestones.</div>
+      </div>
+
+      <div class="card">
+        <div class="log-row">
+          <div class="log-date">13–14 Mar 2026</div>
+          <div>
+            <div class="log-title">Sessions 9–15 — Hermes &amp; Chronos live on Ollama</div>
+            <div class="log-body">Built Chronos (PMP sub-agent) covering CAG sections 08, 09, 10. Resolved a 10-test gauntlet to get both Hermes and Chronos running on ollama/qwen3:32b: fixed model routing (spawn-call level parameter), Ollama auth (agent auth store), exec/sandbox conflicts, extracted-file naming, and JS syntax errors in generated scripts. Breakthrough fix: bundled deterministic generator scripts inside each skill (skills/hermes/scripts/generate-cag.js, skills/chronos/scripts/generate-cag.js) instead of asking the model to write them from scratch. Test 10 was the first clean Ollama pass — all 5 CAG documents generated and verified. Content depth (~1,000–1,800 words per doc) is the remaining focus before Jackie review.</div>
+            <div class="log-tags">
+              <span class="log-tag">Phase 04</span>
+              <span class="log-tag">Hermes</span>
+              <span class="log-tag">Chronos</span>
+              <span class="log-tag">Ollama</span>
+              <span class="log-tag">CAG Tender</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="log-row">
+          <div class="log-date">13 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 8 — Phase 03 complete, Atlas operational</div>
+            <div class="log-body">Atlas alive on WhatsApp — first contact successful. Tone calibrated from corporate to casual colleague (preference saved to Atlas memory, git committed). Memory persistence verified end-to-end. WA group policy configured: groupPolicy "open" + requireMention false — SOUL.md controls listen-first reply behavior. QMD memory attempted but incompatible with Windows (requires /bin/sh), reverted to builtin. Profile picture generated (AI portrait, team voted). WA group "Project Atlas" created with Jackie, Sultan, Gabriel, Atlas. Individual DMs deferred. Phase 03 complete.</div>
+            <div class="log-tags">
+              <span class="log-tag">Phase 03</span>
+              <span class="log-tag">WhatsApp</span>
+              <span class="log-tag">Group Policy</span>
+              <span class="log-tag">Memory</span>
+              <span class="log-tag">Identity</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
+          <div class="log-date">13 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 7 — Atlas identity installed</div>
+            <div class="log-body">Atlas persona files created and deployed to OpenClaw workspace: IDENTITY.md (name, role, stack, comm style), SOUL.md (behavioral rules, boundaries, proactive behavior), AGENTS.md (session startup, memory rules, sub-agents, red lines). Embedding provider configured: Ollama + nomic-embed-text for free local semantic search. WA allowlist updated with Jackie and Sultan. Phase 02 complete. Phase 03 in progress — remaining: WA number linking and group creation.</div>
+            <div class="log-tags">
+              <span class="log-tag">Phase 03</span>
+              <span class="log-tag">Identity</span>
+              <span class="log-tag">Memory</span>
+              <span class="log-tag">Config</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
+          <div class="log-date">13 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 6 — Core stack operational</div>
+            <div class="log-body">Dashboard issue resolved — gateway wasn't running; fixed with gateway.cmd and service install via openclaw doctor --fix. PowerShell execution policy set to RemoteSigned (was blocking CLI). All 3 Ollama models confirmed. Codex OAuth connected. Model routing configured: GPT-5.4 primary → Qwen3 8B → Qwen3 32B as fallbacks. GPT-5.4 kept as primary for stakeholder communication quality. OpenRouter deferred. Remaining: embedding provider for memory semantic search, WA allowlist for Jackie + Sultan.</div>
+            <div class="log-tags">
+              <span class="log-tag">Phase 02</span>
+              <span class="log-tag">OpenClaw</span>
+              <span class="log-tag">Model Routing</span>
+              <span class="log-tag">Fix</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
+          <div class="log-date">12 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 2 — Architecture finalised</div>
+            <div class="log-body">Communication strategy updated: WhatsApp group (Jackie + Sultan + Gabriel + Atlas) as command centre, with individual DMs per person. Discord dropped. Memory architecture decided: Monday.com private doc as shared memory across all Claude surfaces and Atlas. Local MEMORY.md + AGENTS.md + Supermemory plugin on 5090, with 30-day temporal decay. Sub-agents named (Greek mythology): Hermes, Midas, Argus, Themis, Daedalus, Chronos, Athena, Hestia. Multi-agent fleet (Titan, Forge) deferred — Atlas PoC first. GitHub (bcchew-art/Atlas) confirmed for code and site assets. Cowork confirmed able to deploy directly to GitHub.</div>
+            <div class="log-tags">
+              <span class="log-tag">Architecture</span>
+              <span class="log-tag">Memory</span>
+              <span class="log-tag">Communication</span>
+              <span class="log-tag">Decisions</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
+          <div class="log-date">12 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 1 — Project Atlas scoped</div>
+            <div class="log-body">Defined full project scope, agent architecture, model routing strategy, and skill roadmap. Hardware confirmed as RTX 5090 workstation. Agent named Atlas. WhatsApp as primary channel. First milestone set as TechSpec skill. PoC to run off-network on personal hardware per Jackie's direction. Multi-agent fleet diagram designed.</div>
+            <div class="log-tags">
+              <span class="log-tag">Planning</span>
+              <span class="log-tag">Architecture</span>
+              <span class="log-tag">Scoping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <div id="team" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">People</div>
+        <div class="page-title"><span class="atlas-accent">Atlas</span> Team</div>
+        <div class="page-desc">The orchestrator and her sub-agents. Each agent owns a specific tender skill and will be activated as skills are built.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Orchestrator</div>
+        <div class="team-grid">
+          <div class="team-card atlas-lead" style="padding:28px 24px;">
+            <img src="assets/atlas-profile.png" alt="Atlas" class="team-avatar" style="width:88px;height:88px;">
+            <div class="team-name" style="font-size:16px;"><span class="atlas-accent">Atlas</span></div>
+            <div class="team-role">Main Orchestrator</div>
+            <span class="team-status status-active" style="margin-bottom:10px;">Active</span>
+            <p style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px;text-align:left;">ATT Infosoft's AI tender specialist. She analyses requirements, shapes proposal responses, and orchestrates specialist agents for tender development.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Sub-Agents</div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar-placeholder">H</div>
+            <div class="team-name">Hermes</div>
+            <div class="team-role">TechSpec Writer</div>
+            <span class="team-status status-active">Live</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">T</div>
+            <div class="team-name">Themis</div>
+            <div class="team-role">Compliance Matrix</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">D</div>
+            <div class="team-name">Daedalus</div>
+            <div class="team-role">Functional Response</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">M</div>
+            <div class="team-name">Midas</div>
+            <div class="team-role">Pricing / BQ</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">C</div>
+            <div class="team-name">Chronos</div>
+            <div class="team-role">Project Mgmt Plan</div>
+            <span class="team-status status-active">Live</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">A</div>
+            <div class="team-name">Athena</div>
+            <div class="team-role">Company Profile</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">H</div>
+            <div class="team-name">Hestia</div>
+            <div class="team-role">Executive Summary</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">A</div>
+            <div class="team-name">Argus</div>
+            <div class="team-role">Quality Evaluator</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-btn active" onclick="nav('overview',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+      Overview
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('architecture',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="3" r="2"/><circle cx="3" cy="13" r="2"/><circle cx="13" cy="13" r="2"/><path d="M8 5v3M8 8l-4.1 3.2M8 8l4.1 3.2"/></svg>
+      Arch
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('setup',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h5"/></svg>
+      Setup
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('skills',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 4 4.5.7-3.2 3.1.7 4.5L8 11l-4 2.3.7-4.5L1.5 5.7 6 5z"/></svg>
+      Skills
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('log',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
+      Log
+    </button>
+    <button class="mobile-nav-btn" onclick="nav('team',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="2.5"/><circle cx="11" cy="5" r="2.5"/><path d="M1 14c0-2.5 2-4 4-4s4 1.5 4 4M7 14c0-2.5 2-4 4-4s4 1.5 4 4"/></svg>
+      Team
+    </button>
+  </div>
+</nav>
+
+<script>
+  function nav(id, btn) {
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-link, .mobile-nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    // sync the other nav
+    const idx = ['overview','architecture','setup','skills','log','team'].indexOf(id);
+    document.querySelectorAll('.sidebar-link')[idx]?.classList.add('active');
+    document.querySelectorAll('.mobile-nav-btn')[idx]?.classList.add('active');
+  }
+</script>
+</body>
+</html>
