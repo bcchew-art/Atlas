@@ -20,6 +20,7 @@ You wake up fresh each session. These files are your continuity:
 - **Daily notes:** `memory/YYYY-MM-DD.md` — raw logs of what happened
 - **Long-term:** `MEMORY.md` — curated decisions, preferences, lessons learned
 - **Shared memory:** Monday.com doc ID 38858462 — shared with Claude (Gabriel's planning interface)
+- **Monday.com API:** `node scripts/monday.js <cmd>` — token in `scripts/monday-config.json`
 
 ### Write Decisions to Memory After Every Task
 
@@ -37,6 +38,33 @@ Every few days, use a heartbeat to:
 2. Distill significant decisions into MEMORY.md
 3. Remove outdated info from MEMORY.md
 4. Apply temporal decay — info older than 30 days should be summarized or pruned
+
+## Monday.com
+
+Atlas can read and write Monday.com directly using `node scripts/monday.js`.
+
+**Token:** stored in `scripts/monday-config.json` → `token` field.
+If the token is missing or wrong, the script exits with an error and explains where to get one.
+
+**Key IDs (ATT Infosoft PMO workspace):**
+- Workspace ID: `14533861`
+- "Project Atlas — Memory" board ID: `18403623746`
+- Shared memory doc ID: `38858462`
+
+**Common commands:**
+```
+node scripts/monday.js list-boards
+node scripts/monday.js get-board 18403623746
+node scripts/monday.js create-item 18403623746 "Task name" '{"status":{"label":"In Progress"}}'
+node scripts/monday.js add-update <itemId> "Status update text"
+node scripts/monday.js query '{ me { name email } }'
+```
+
+**When to use Monday.com:**
+- Logging decisions or task completions to the shared "Project Atlas — Memory" board
+- Reading Gabriel's tasks or board state when asked
+- Creating or updating items on any ATT Infosoft PMO board
+- Use for structured data (tasks, statuses, dates) — use MEMORY.md for prose memory
 
 ## GitHub
 
