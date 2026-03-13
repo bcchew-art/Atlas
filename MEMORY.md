@@ -75,6 +75,19 @@ CAG reruns established the following operational lessons for Atlas's knowledge b
 - **Chronos-specific lesson:** Chronos must use plain `exec` for `node generate.js` in this environment. Attempts to force host/security/pty/elevated/sandbox settings triggered avoidable runtime failures.
 - **Test 7 result:** after targeted SKILL.md fixes, Hermes improved to partial output generation and Chronos improved to a narrow generated-JS syntax failure. This means the remaining blockers are now generated-script quality issues, not OpenClaw model routing, auth, or gateway config.
 - **Current debugging strategy:** when Ollama runs fail now, inspect the actual generated JS/docx artifacts and patch the skills surgically. The problem space has moved from infrastructure to prompt/skill reliability.
+- **Deterministic script fix (breakthrough):** prompt-only SKILL tightening was not enough. The stable fix was to stop asking Hermes and Chronos to invent `generate.js` from scratch and instead bundle known-good generator scripts inside each skill:
+  - `skills/hermes/scripts/generate-cag.js`
+  - `skills/chronos/scripts/generate-cag.js`
+- **Test 10 result (first clean Ollama pass):** with bundled deterministic scripts, both Hermes and Chronos successfully generated the expected CAG documents on `ollama/qwen3:32b`, and Atlas verified the files directly in `C:\Users\Admin\.openclaw\tender\CAG\tender submission`.
+- **Verified output set from test 10:**
+  - `06 Technical Proposal.docx` (~32.9 KB)
+  - `07 System Design and Technical Architecture.docx` (~33.5 KB)
+  - `08 Project Plan - CAG T3 IIDS Refresh.docx` (~31.1 KB)
+  - `09 Project Governance and Management - CAG T3 IIDS Refresh.docx` (~30.9 KB)
+  - `10 Team Organisation and Competencies - CAG T3 IIDS Refresh.docx` (~30.8 KB)
+  - `Chronos Notes - Assumptions and Gaps.txt`
+  - `hermes-generation-notes.txt`
+- **Operational lesson:** when a subagent completion message is unreliable or self-contradictory, trust the direct folder/file verification over the model's narrative. Atlas should always check the actual output folder before declaring success.
 
 ## Backup Log
 
