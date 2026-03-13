@@ -31,19 +31,19 @@ Atlas will give you some combination of:
 1. **RFP technical requirements** — the tender section specifying what the technical submission must contain (often called Annex IV, Schedule 4, Schedule 5, Appendix K, etc.)
 2. **Evaluation criteria** — what the evaluators are scoring and how much it's worth
 3. **Project context** — project name, system type, tender reference, client name
-4. **Format reference** — a past ATT submission for document format only (NOT for content)
+4. **Format reference** — the ATT document format is defined in this SKILL.md; no external reference needed
 5. **Known solution details** — ATT products proposed, hardware specs, any customisation
 
 If any of these are missing, ask Atlas before proceeding. The RFP requirements and evaluation criteria are mandatory.
 
 ## File handling rules (critical)
 
-- Prefer extracted text files over raw PDFs whenever Atlas has provided an `_extracted` folder.
-- For CAG, the extracted filenames include the original PDF extension, e.g. `04F PR_Appendix K - Tender Submission Requirements.pdf.txt`.
-- Do **not** assume extracted files will be named without the `.pdf` part.
-- If an expected extracted text file is not found, list the `_extracted` folder and use the actual filename that exists.
-
-**Finding source files:** Extracted text versions of tender documents are in `.openclaw/tender/<ClientName>/_extracted/`. The naming convention is `<original-filename-including-extension>.txt` — for example, `04F PR_Appendix K - Tender Submission Requirements.pdf.txt` (not `.txt` alone). Always list the `_extracted/` folder first to confirm exact filenames before trying to read them.
+- Read source documents directly from `.openclaw/tender/<ClientName>/`.
+- To inspect a tender folder, use `exec` with a directory listing command. **Do not use `read` on a directory path.**
+- Do **not** assume any pre-extracted text folder exists. Work from whatever files Atlas gives you.
+- Use plain `exec` only for `node generate.js`. Do **not** set `host`, `security`, `pty`, `elevated`, or sandbox-related options on `exec`.
+- **Never use `write` to create a `.docx` file directly.** `.docx` files must be produced by the `docx` library via `node generate.js`.
+- If a generated `.docx` is under 10 KB, treat it as invalid placeholder output and regenerate — do not report success.
 
 ## Step 1: Analyse the RFP before writing
 
@@ -68,6 +68,15 @@ Create a brief mental checklist of requirements before you start writing. A docu
 Check the RFP's Tender Submission Requirements or submission checklist to confirm.
 
 ## Step 3: Write the document(s)
+
+Use the bundled deterministic generator script for CAG instead of inventing docx scaffolding from scratch.
+
+### Deterministic script path (preferred for CAG)
+
+- Script: `scripts/generate-cag.js`
+- This script already contains the known-good ATT document scaffolding, logo/header/footer handling, TOC setup, section structure and output paths for the CAG tender.
+- For CAG runs, your job is to read the three source PDFs, validate that the tender context still matches CAG T3 IIDS Refresh, and then run this script with plain `exec`.
+- Only fall back to hand-written generation logic if Atlas explicitly says the bundled script is unusable.
 
 Use the **docx skill** to produce a professional .docx. Follow the ATT document format below exactly — this is non-negotiable for client-facing output.
 
@@ -218,16 +227,14 @@ Packer.toBuffer(doc).then(buf => {
 ```
 
 **How to generate the file — follow these steps exactly:**
-1. Write the complete, populated code above to a **new file** in your working directory. Name it `generate.js`. Do not look for a pre-existing script — you must create it fresh every run.
-2. Replace ALL placeholders before saving: `TENDER TITLE`, `YYYY-MM-DD`, and expand the `// (Add sections here)` comment with the actual document content (headings, paragraphs, tables).
-3. Run: `node generate.js`
-4. This produces `output.docx` in the current working directory.
-5. Rename and move it to: `.openclaw/tender/<ClientName>/tender submission/<filename>.docx`
-   - Use the client/tender name Atlas gave you for the folder.
-   - Use the filename specified in the RFP submission checklist (e.g. "06 Technical Proposal", "07 System Design and Technical Architecture") — not a generic name.
-   - Create the `tender submission/` folder if it does not exist.
+1. For CAG, run the bundled script: `node skills/hermes/scripts/generate-cag.js`
+2. Let the script generate the required `.docx` files directly into `.openclaw/tender/CAG/tender submission/`.
+3. Verify the resulting `.docx` files are real generated files:
+   - files exist
+   - sizes are comfortably above placeholder size (not 3–4 bytes; typically far above 10 KB)
+4. If the bundled script throws a JS/runtime error, fix the script itself under `skills/hermes/scripts/generate-cag.js` and rerun. Do not switch back to writing ad hoc `.docx` files with `write`.
 
-Do NOT look for a pre-existing `generate.js`. Do NOT try to read or open the output file as an input. Write → Run → Move.
+Do NOT try to read or open the output file as an input. Do NOT use `write` to create `.docx` content directly. Run bundled script → Verify.
 
 ### Standard section structure
 
