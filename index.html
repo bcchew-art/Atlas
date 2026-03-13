@@ -26,6 +26,9 @@
     --atlas: #0891b2;
     --atlas-light: #e0f7fa;
     --atlas-mid: #b2ebf2;
+    --hermes: #d97706;
+    --hermes-light: #fffbeb;
+    --hermes-mid: #fde68a;
     --sidebar-w: 240px;
     --header-h: 56px;
   }
@@ -297,6 +300,7 @@
   .data-table td:first-child { color: var(--muted); width: 40%; }
 
   .atlas-accent { color: var(--atlas); }
+  .hermes-accent { color: var(--hermes); }
 
   .progress-bar-wrap {
     display: flex; align-items: center; gap: 10px;
@@ -323,6 +327,8 @@
   }
   .team-card:hover { border-color: var(--atlas-mid); }
   .team-card.atlas-lead { border-color: var(--atlas); }
+  .team-card.hermes-card { border-color: var(--hermes-mid); }
+  .team-card.hermes-card:hover { border-color: var(--hermes); }
 
   .team-avatar {
     width: 72px; height: 72px; border-radius: 50%;
@@ -330,6 +336,7 @@
     border: 2px solid var(--border);
   }
   .team-card.atlas-lead .team-avatar { border-color: var(--atlas); }
+  .team-card.hermes-card .team-avatar { border-color: var(--hermes); }
 
   .team-avatar-placeholder {
     width: 72px; height: 72px; border-radius: 50%;
@@ -588,7 +595,7 @@
             <!-- Sub-agents box -->
             <rect x="30" y="322" width="440" height="122" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
             <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
-            <text x="42" y="362" font-size="11" fill="#333">● Hermes — Technical Design</text>
+            <text x="42" y="362" font-size="11" fill="#d97706">● Hermes — Technical Design</text>
             <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance Matrix</text>
             <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Functional Response</text>
             <text x="42" y="380" font-size="11" fill="#333">● Midas — Pricing / BQ</text>
@@ -955,7 +962,7 @@
         <div class="section-title">Skill Registry</div>
         <div class="card">
           <div class="skill-row">
-            <div><div class="skill-name">Hermes — Technical Design</div><div class="skill-desc">Generates the full technical design section: development approach, system architecture, cloud services setup, hosting environment, tech standards, and security design. Architecture is a sub-section here — not a separate document.</div></div>
+            <div><div class="skill-name" style="color:var(--hermes);">Hermes — Technical Design</div><div class="skill-desc">Generates the full technical design section: development approach, system architecture, cloud services setup, hosting environment, tech standards, and security design. Architecture is a sub-section here — not a separate document.</div></div>
             <span class="badge badge-next" style="flex-shrink:0">Building Next</span>
           </div>
           <div class="skill-row">
@@ -1123,9 +1130,9 @@
       <div class="section">
         <div class="section-title">Sub-Agents</div>
         <div class="team-grid">
-          <div class="team-card">
+          <div class="team-card hermes-card" style="padding:28px 24px;">
             <img src="assets/hermes-profile.png" alt="Hermes" class="team-avatar" style="width:88px;height:88px;">
-            <div class="team-name">Hermes</div>
+            <div class="team-name" style="font-size:15px;"><span class="hermes-accent">Hermes</span></div>
             <div class="team-role">TechSpec Writer</div>
             <span class="team-status status-active" style="margin-bottom:10px;">Live</span>
             <p style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px;text-align:left;">ATT's technical design specialist. Give him an RFP and he'll translate it into a submission-ready architecture document — precise, structured, and built to score.</p>
