@@ -584,14 +584,14 @@
             <!-- Sub-agents box -->
             <rect x="30" y="322" width="440" height="106" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
             <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
-            <text x="42" y="362" font-size="11" fill="#333">● Hermes — TechSpec</text>
-            <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance</text>
-            <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Architecture</text>
+            <text x="42" y="362" font-size="11" fill="#333">● Hermes — Technical Design</text>
+            <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance Matrix</text>
+            <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Functional Response</text>
             <text x="42" y="382" font-size="11" fill="#333">● Midas — Pricing / BQ</text>
-            <text x="175" y="382" font-size="11" fill="#333">● Chronos — Timeline</text>
+            <text x="175" y="382" font-size="11" fill="#333">● Chronos — PMP</text>
             <text x="310" y="382" font-size="11" fill="#333">● Argus — Evaluator</text>
             <text x="42" y="400" font-size="11" fill="#888">● Athena — Company Profile</text>
-            <text x="240" y="400" font-size="11" fill="#888">● Hestia — Exec Summary</text>
+            <text x="240" y="400" font-size="11" fill="#888">● Hestia — Mgmt Summary</text>
             <line x1="250" y1="316" x2="250" y2="322" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
 
             <!-- Services right column -->
@@ -950,35 +950,35 @@
         <div class="section-title">Skill Registry</div>
         <div class="card">
           <div class="skill-row">
-            <div><div class="skill-name">Hermes — TechSpec</div><div class="skill-desc">Reads RFP and generates detailed technical approach, system architecture description, and compliance mapping for the technical specification section.</div></div>
+            <div><div class="skill-name">Hermes — Technical Design</div><div class="skill-desc">Generates the full technical design section: development approach, system architecture, cloud services setup, hosting environment, tech standards, and security design. Architecture is a sub-section here — not a separate document.</div></div>
             <span class="badge badge-next" style="flex-shrink:0">Building Next</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Themis — Compliance</div><div class="skill-desc">Maps RFP requirements to relevant standards such as ISO and government frameworks. Highlights compliance gaps and associated risks.</div></div>
+            <div><div class="skill-name">Daedalus — Functional Response</div><div class="skill-desc">The largest section. Produces a feature-by-feature solution description mapped to every functional requirement in the RFP. Covers what the system does, how each requirement is met, UI workflows, and data handling. Typically 50–80 pages.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Daedalus — Architecture</div><div class="skill-desc">Generates system design descriptions, component breakdowns, and integration approach based on RFP scope.</div></div>
+            <div><div class="skill-name">Themis — Compliance Matrix</div><div class="skill-desc">Generates a paragraph-by-paragraph C / NC / PC compliance statement against every RFP clause — General, Functional, and ICT Security. Flags gaps and provides justifications for non-compliances.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Midas — Pricing / BQ</div><div class="skill-desc">Generates structured pricing based on scope, mandays, and rates. References past BQ formats from ATT submissions.</div></div>
+            <div><div class="skill-name">Chronos — Project Management Plan</div><div class="skill-desc">Generates project team structure, Gantt chart, QA plan, change control procedure, and risk register. Maps directly to the PMP section of the tender submission.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Chronos — Timeline</div><div class="skill-desc">Generates realistic project schedules based on scope size, resource allocation, and submission deadlines.</div></div>
+            <div><div class="skill-name">Midas — Pricing / BQ</div><div class="skill-desc">Generates structured cost schedule based on scope, mandays, and rates. References past BQ formats and market benchmarks to produce competitive and defensible pricing.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Athena — Company Profile</div><div class="skill-desc">ATT Infosoft background, track record, and past projects. Tailored to the domain of each tender.</div></div>
+            <div><div class="skill-name">Athena — Company Profile</div><div class="skill-desc">ATT Infosoft background, past project references, and relevant track record. Tailored to the domain of each tender to maximise relevance score with evaluators.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Hestia — Executive Summary</div><div class="skill-desc">High-level overview synthesised from all completed sections. Generated last by the orchestrator.</div></div>
+            <div><div class="skill-name">Hestia — Management Summary</div><div class="skill-desc">High-level overview synthesised from all completed sections. Generated last. Frames ATT's value proposition and key differentiators for the evaluating committee.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Argus — Evaluator</div><div class="skill-desc">Cross-section review agent. Checks consistency, flags missing requirements, and scores overall submission quality before final output.</div></div>
+            <div><div class="skill-name">Argus — Evaluator</div><div class="skill-desc">Cross-checks every section against RFP requirements and the tender's evaluation criteria weightings. Scores submission quality, flags missing items, and highlights inconsistencies before final output.</div></div>
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
         </div>
@@ -1095,13 +1095,13 @@
           <div class="team-card">
             <div class="team-avatar-placeholder">T</div>
             <div class="team-name">Themis</div>
-            <div class="team-role">Compliance Checker</div>
+            <div class="team-role">Compliance Matrix</div>
             <span class="team-status status-planned">Planned</span>
           </div>
           <div class="team-card">
             <div class="team-avatar-placeholder">D</div>
             <div class="team-name">Daedalus</div>
-            <div class="team-role">Architecture Designer</div>
+            <div class="team-role">Functional Response</div>
             <span class="team-status status-planned">Planned</span>
           </div>
           <div class="team-card">
@@ -1113,7 +1113,7 @@
           <div class="team-card">
             <div class="team-avatar-placeholder">C</div>
             <div class="team-name">Chronos</div>
-            <div class="team-role">Timeline Planner</div>
+            <div class="team-role">Project Mgmt Plan</div>
             <span class="team-status status-planned">Planned</span>
           </div>
           <div class="team-card">
