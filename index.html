@@ -427,6 +427,10 @@
         <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
         Progress Log
       </button>
+      <button class="sidebar-link" onclick="nav('issues',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5M8 11v.5"/></svg>
+        Known Issues
+      </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">People</div>
@@ -1123,7 +1127,7 @@
             <div class="team-avatar-placeholder">H</div>
             <div class="team-name">Hermes</div>
             <div class="team-role">TechSpec Writer</div>
-            <span class="team-status status-building">Building Next</span>
+            <span class="team-status status-active">Live</span>
           </div>
           <div class="team-card">
             <div class="team-avatar-placeholder">T</div>
@@ -1177,6 +1181,73 @@
       </div>
     </div>
 
+    <!-- ISSUES -->
+    <div id="issues" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">Platform</div>
+        <div class="page-title">Known Issues</div>
+        <div class="page-desc">Running log of problems encountered, current workarounds, and notes for future OpenClaw fixes.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Open Issues</div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">ISSUE-002</span>
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">MEDIUM</span>
+            <span style="font-size:11px;background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:4px;">Workaround in place</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Sub-agent model routing ignored (model: frontmatter not applied)</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">OpenClaw does not honour the <code>model:</code> field in SKILL.md when spawning a subagent. Hermes's first CAG run used gpt-5.4 (default) instead of ollama/qwen3:32b as intended. Workaround: Atlas must explicitly include the model in the subagent task prompt per the rule in AGENTS.md. Future fix: OpenClaw should apply SKILL.md model: frontmatter automatically at spawn time.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">ISSUE-004</span>
+            <span style="font-size:11px;font-weight:700;background:#e2e3e5;color:#383d41;padding:2px 8px;border-radius:4px;">LOW</span>
+            <span style="font-size:11px;background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:4px;">By design — documented</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Sub-agents not visible in Agents tab</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Sub-agents (Hermes etc.) are ephemeral runs, not registered agents — so they don't appear in the dashboard Agents tab. Workaround: use Chat tab → session dropdown → select the subagent session by label. Future fix: OpenClaw could show active subagent runs in a separate panel.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">ISSUE-005</span>
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">MEDIUM</span>
+            <span style="font-size:11px;background:#ffeeba;color:#856404;padding:2px 8px;border-radius:4px;">Pending re-run</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Hermes output thin on first run (gpt-5.4 baseline, ~32KB per doc)</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">First CAG run produced structurally correct docs but content depth was insufficient for real submission. Root cause: ran on gpt-5.4 due to ISSUE-002. Re-run with qwen3:32b expected to produce richer, submission-ready content. Also: SKILL.md could enforce minimum depth targets regardless of model.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Resolved Issues</div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">ISSUE-001</span>
+            <span style="font-size:11px;font-weight:700;background:#f8d7da;color:#721c24;padding:2px 8px;border-radius:4px;">HIGH</span>
+            <span style="font-size:11px;background:#d4edda;color:#155724;padding:2px 8px;border-radius:4px;">✓ Resolved 13 Mar 2026</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Gateway outage goes undetected</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Gateway dropped silently — no alert, no restart. Gabriel only noticed when WhatsApp messages got no reply. Root cause: Scheduled Task had no restart policy. Fix: Recreated task with RestartCount=999, RestartInterval=PT1M, StartWhenAvailable=True. Remaining gap: no proactive external alert if gateway is down for >5 minutes — morning recap is still the only passive health signal.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:11px;font-weight:700;background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;">ISSUE-003</span>
+            <span style="font-size:11px;font-weight:700;background:#e2e3e5;color:#383d41;padding:2px 8px;border-radius:4px;">LOW</span>
+            <span style="font-size:11px;background:#d4edda;color:#155724;padding:2px 8px;border-radius:4px;">✓ Resolved 13 Mar 2026</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Cannot self-update while gateway is running (EBUSY file lock)</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">npm threw EBUSY errors during openclaw update — gateway had files locked. Fix: documented update sequence in AGENTS.md — stop gateway first, back up, update, restart. Atlas prepares commands, Gabriel executes. Future fix: OpenClaw updater should handle graceful stop/update/restart as one atomic operation.</div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -1216,7 +1287,7 @@
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
     // sync the other nav
-    const idx = ['overview','architecture','setup','skills','log','team'].indexOf(id);
+    const idx = ['overview','architecture','setup','skills','log','issues','team'].indexOf(id);
     document.querySelectorAll('.sidebar-link')[idx]?.classList.add('active');
     document.querySelectorAll('.mobile-nav-btn')[idx]?.classList.add('active');
   }
