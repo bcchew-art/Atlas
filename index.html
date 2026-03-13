@@ -504,12 +504,12 @@
               <td><span style="color:#d97706;font-weight:600;">◑ Live — Quality Testing</span> — First CAG run complete. Pending re-run on qwen3:32b to validate content depth before production use</td>
             </tr>
             <tr>
-              <td style="font-weight:600;color:var(--muted);">Next Agent</td>
-              <td><span style="color:#6b7280;font-weight:600;">○ To Be Decided</span> — Daedalus (Functional Response) or Chronos (PMP). Decision pending Hermes quality sign-off</td>
+              <td style="font-weight:600;color:#7c3aed;">Chronos</td>
+              <td><span style="color:#7c3aed;font-weight:600;">◑ Built — Not Yet Run</span> — SKILL.md complete (13 Mar). Covers PMP, Governance, Team Org + CVs. Next: first live tender run</td>
             </tr>
             <tr>
-              <td style="color:var(--faint);">Remaining (6)</td>
-              <td style="color:var(--faint);">Themis, Midas, Athena, Hephaestus, Hestia, Argus — Planned</td>
+              <td style="color:var(--faint);">Remaining (5)</td>
+              <td style="color:var(--faint);">Daedalus, Themis, Midas, Athena, Hephaestus, Hestia, Argus — Planned</td>
             </tr>
           </table>
         </div>
@@ -520,7 +520,7 @@
         <div class="card-grid">
           <div class="card">
             <h3>Current focus</h3>
-            <p>Validate Hermes output quality on qwen3:32b. Once signed off, decide and build the next sub-agent to expand ATT's automated tender coverage.</p>
+            <p>Validate Hermes output quality on qwen3:32b. Chronos (PMP) built — first live run next. Then Daedalus (Functional Response) to expand coverage.</p>
           </div>
           <div class="card">
             <h3>Long-term vision</h3>
@@ -971,7 +971,9 @@
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First live tender run — CAG T3 IIDS Refresh<span class="check-note">Both docs produced (06 + 07), structure correct. Run used gpt-5.4 — model routing fix applied to AGENTS.md</span></div></li>
           <li class="check-item"><div class="check-box"></div><div class="check-text">Re-run Hermes on qwen3:32b — validate content depth<span class="check-note">First run was thin (~32KB). qwen3:32b expected to produce richer, submission-ready output</span></div></li>
           <li class="check-item"><div class="check-box"></div><div class="check-text">Review Hermes output with Jackie — sign off for production use</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Build next sub-agent — Daedalus or Chronos (TBD after Hermes sign-off)</div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Build Chronos — PMP sub-agent<span class="check-note">SKILL.md, evals (3 test cases), reference docs, Schedule 6 CV template. Not yet run on live tender.</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">First live Chronos run — CAG T3 IIDS PMP section</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Build next sub-agent — Daedalus (Functional Response)</div></li>
         </ul>
       </div>
     </div>
@@ -1000,8 +1002,8 @@
             <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
           </div>
           <div class="skill-row">
-            <div><div class="skill-name">Chronos — Project Management Plan</div><div class="skill-desc">Generates project team structure, Gantt chart, QA plan, change control procedure, and risk register. Maps directly to the PMP section of the tender submission.</div></div>
-            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+            <div><div class="skill-name" style="color:#7c3aed;">Chronos — Project Management Plan</div><div class="skill-desc">Generates project plan + Gantt, project governance & management, team organisation chart, roles/responsibilities, and CVs in Schedule 6 format. Covers CAG Sections 8–10 and PMO equivalent.</div></div>
+            <span class="badge badge-next" style="flex-shrink:0;background:#f3e8ff;color:#6b21a8;border-color:#d8b4fe;">Built — Not Yet Run</span>
           </div>
           <div class="skill-row">
             <div><div class="skill-name">Midas — Pricing / BQ</div><div class="skill-desc">Generates structured cost schedule based on scope, mandays, and rates. References past BQ formats and market benchmarks to produce competitive and defensible pricing.</div></div>
@@ -1033,6 +1035,22 @@
         <div class="page-eyebrow">Activity</div>
         <div class="page-title">Progress Log</div>
         <div class="page-desc">Dated record of planning sessions, decisions, and milestones.</div>
+      </div>
+
+      <div class="card">
+        <div class="log-row">
+          <div class="log-date">13 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 12 — Chronos built (PMP sub-agent)</div>
+            <div class="log-body">Chronos SKILL.md built and registered. Covers CAG Sections 8–10: Project Plan (implementation schedule, SDLC phases, Gantt, QA plan, change management), Project Governance & Management (methodology, communication plan, risk register, contingency, exit plan), and Team Organisation & Competencies (org chart, roles/responsibilities, CVs in Schedule 6 format). Three eval cases written. Reference docs included: Schedule 6 CV template, standard risk register (10 risks), ICA AQS PMP structure. PMO CPIB past submission PMP not accessible (OneDrive sync issue) — built from CAG Appendix K requirements + ICA AQS real PMP. Ready for first live run on CAG tender.</div>
+            <div class="log-tags">
+              <span class="log-tag" style="background:#f3e8ff;color:#6b21a8;border-color:#d8b4fe;">Chronos</span>
+              <span class="log-tag">Phase 04</span>
+              <span class="log-tag">PMP Skill</span>
+              <span class="log-tag">Sub-Agent Fleet</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="card">
@@ -1181,11 +1199,11 @@
             <div class="team-role">Pricing / BQ</div>
             <span class="team-status status-planned">Planned</span>
           </div>
-          <div class="team-card">
-            <div class="team-avatar-placeholder">C</div>
-            <div class="team-name">Chronos</div>
+          <div class="team-card" style="border-color:#d8b4fe;">
+            <div class="team-avatar-placeholder" style="border-color:#7c3aed;background:#f3e8ff;color:#6b21a8;">C</div>
+            <div class="team-name" style="color:#7c3aed;">Chronos</div>
             <div class="team-role">Project Mgmt Plan</div>
-            <span class="team-status status-planned">Planned</span>
+            <span class="team-status" style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:600;">Built</span>
           </div>
           <div class="team-card">
             <div class="team-avatar-placeholder">A</div>
