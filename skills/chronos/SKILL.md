@@ -76,14 +76,109 @@ Check the RFP's Tender Submission Requirements to confirm.
 
 ## Step 3: Write the document(s)
 
-Use the bundled deterministic generator script for CAG instead of inventing docx scaffolding from scratch.
+### 3a — Write the section content first (MANDATORY before running the script)
 
-### Deterministic script path (preferred for CAG)
+**The script `scripts/generate-cag.js` requires `scripts/section-content.json` to exist. It will error if not found.**
 
-- Script: `scripts/generate-cag.js`
-- This script already contains the known-good ATT PMP document scaffolding, logo/header/footer handling, TOC setup, section structure and output paths for the CAG tender.
-- For CAG runs, your job is to read the three source PDFs, validate that the tender context still matches CAG T3 IIDS Refresh, and then run this script with plain `exec`.
-- Only fall back to hand-written generation logic if Atlas explicitly says the bundled script is unusable.
+Draft the full content for all three documents and write it to `skills/chronos/scripts/section-content.json`. The script reads this file and renders it.
+
+**Minimum word counts — hard targets:**
+
+| Document | Section | Minimum words |
+|---|---|---|
+| 08 Project Plan | 1. Project Overview | 300 |
+| 08 Project Plan | 2. Delivery Methodology (all 8 phases combined) | 1,200 |
+| 08 Project Plan | 3. Schedule (narrative around Gantt) | 250 |
+| 08 Project Plan | 4. Quality Assurance Plan | 400 |
+| 08 Project Plan | 5. Change Management Plan | 300 |
+| 08 Project Plan | **Total doc 08** | **≥ 2,500 words** |
+| 09 Governance | 1. Governance Framework | 400 |
+| 09 Governance | 2. Stakeholder Management | 300 |
+| 09 Governance | 3. Knowledge Management | 200 |
+| 09 Governance | 4. Supplier Management | 200 |
+| 09 Governance | 5. Communication Plan (narrative around table) | 200 |
+| 09 Governance | 6. Risk Management (narrative around table) | 300 |
+| 09 Governance | 7. Contingency + Exit Plan | 300 |
+| 09 Governance | **Total doc 09** | **≥ 2,000 words** |
+| 10 Team | 1. Organisation Structure | 300 |
+| 10 Team | 2. Proposed Members (narrative around table) | 200 |
+| 10 Team | 3. Roles & Responsibilities (narrative around table) | 200 |
+| 10 Team | 4. Team Sizing Justification | 300 |
+| 10 Team | 5. Key Personnel Change Management | 200 |
+| 10 Team | 6. CV Format / Placeholders | 200 |
+| 10 Team | **Total doc 10** | **≥ 1,500 words** |
+
+**Content quality rules:**
+- Write in full paragraphs — every section must have at least 2 paragraphs of substantive narrative before/after any bullet list or table.
+- Paragraphs should be 80–150 words each. One-sentence paragraphs are not acceptable.
+- Phase descriptions (2.1–2.8) must each have at least 3 bullets AND a preceding narrative paragraph explaining the phase intent, key activities, and what evaluators should take away.
+- Reference specific RFP clauses by number (e.g. "in accordance with Appendix K Clause 8.4", "as required by 04A Clause 3.1").
+- Risk register: include at least 7 risks. After the table, add a paragraph explaining the overall risk posture and how ATT manages the top 3 risks in practice.
+- Communication plan: after the table, add a paragraph on how ATT runs status meetings for airport-critical projects specifically.
+
+**JSON format for `section-content.json`:**
+
+```json
+{
+  "doc08": [
+    {"type": "h1", "text": "1. Project Overview"},
+    {"type": "p", "text": "Full narrative paragraph — 80-150 words. Describe the project, client, implementation scope, methodology, and why this approach is right for an airport environment."},
+    {"type": "p", "text": "Second paragraph expanding on delivery model and key milestones."},
+    {"type": "bullet", "text": "Client: Changi Airport Group (CAG)."},
+    {"type": "bullet", "text": "Project: Refresh of Terminal 3 Integrated Information Display System."},
+    ...
+    {"type": "h1", "text": "3. Implementation Schedule and Gantt Summary"},
+    {"type": "p", "text": "Narrative paragraph setting context for the Gantt — describe the critical path, which phases overlap, and what CAG participation is required at each milestone."},
+    {"type": "table_gantt"},
+    {"type": "p", "text": "Post-table paragraph explaining key milestones, go-live target, and DLP timeline."},
+    ...
+    {"type": "h1", "text": "6. Risk Management"},
+    {"type": "p", "text": "Narrative paragraph before the risk register."},
+    {"type": "table_risk_register"},
+    {"type": "p", "text": "Post-table paragraph explaining risk posture and how ATT manages the top risks."}
+  ],
+  "doc09": [
+    ...same pattern for governance content...
+    {"type": "table_communication"},
+    ...
+  ],
+  "doc10": [
+    ...same pattern for team content...
+    {"type": "table_team_members"},
+    ...
+    {"type": "table_roles"},
+    ...
+  ],
+  "notes": "Chronos generation notes — date, assumptions, gaps"
+}
+```
+
+**Supported type values in the JSON:**
+- `h1`, `h2`, `h3` — headings (text field)
+- `p` — body paragraph (text field, 80–150 words)
+- `bullet` — bullet point (text field; optional `"level": 1` for sub-bullets)
+- `placeholder` — italic grey note
+- `table_gantt` — 12-month Gantt schedule table
+- `table_communication` — communication plan matrix
+- `table_risk_register` — risk register (7+ rows)
+- `table_team_members` — proposed team members table
+- `table_roles` — roles and responsibilities table
+
+Write to: `C:/Users/Admin/.openclaw/workspace/skills/chronos/scripts/section-content.json`
+
+### 3b — Run the script
+
+After writing `section-content.json`:
+
+```
+node skills/chronos/scripts/generate-cag.js
+```
+
+(Run from workspace root: `C:/Users/Admin/.openclaw/workspace/`)
+
+The script reads `section-content.json` and generates all three .docx files into `.openclaw/tender/CAG/tender submission/`.
+
+Use plain `exec` only. Do **not** set `host`, `security`, `pty`, `elevated`, or sandbox-related options. Do not request config changes or gateway restarts.
 
 Use the **docx skill** to produce professional .docx output(s). Follow the ATT document format exactly — same standards as Hermes.
 
@@ -111,18 +206,13 @@ Use the **docx skill** to produce professional .docx output(s). Follow the ATT d
 
 **Close:** `--- END OF THIS SECTION ---` centred, bold italic.
 
-**How to generate each file — follow these steps exactly:**
-1. For CAG, run the bundled script: `node skills/chronos/scripts/generate-cag.js`
-   - Use plain `exec` only.
-   - Do **not** set `host`, `security`, `pty`, `elevated`, or sandbox-related options.
-   - Do **not** try to change OpenClaw config, sandbox mode, or gateway settings.
-2. Let the script generate the required `.docx` files directly into `.openclaw/tender/CAG/tender submission/`.
-3. Verify the resulting `.docx` files are real generated files:
-   - files exist
-   - sizes are comfortably above placeholder size (not 3–4 bytes; typically far above 10 KB)
-4. If the bundled script throws a JS/runtime error, fix the script itself under `skills/chronos/scripts/generate-cag.js` and rerun. Do not switch back to writing ad hoc `.docx` files with `write`.
+**How to generate the files — two-step process:**
+1. Write `skills/chronos/scripts/section-content.json` with full section content (see Step 3a above for format + word count targets). This is mandatory — the script will error without it.
+2. Run: `node skills/chronos/scripts/generate-cag.js` (from workspace root, plain `exec` only — no host/security/pty/elevated/sandbox options)
+3. Verify output: three files exist in `.openclaw/tender/CAG/tender submission/`, each well above 10 KB (target 80–150 KB+ for a substantive PMP doc).
+4. If the script errors, the message will say exactly what is missing or malformed in `section-content.json`. Fix and rerun.
 
-Do NOT look for pre-existing .docx files as inputs. Do NOT try to open the output file. Do NOT request config changes or elevated permissions. Do NOT use `write` to fake `.docx` output. Run bundled script → Verify. If the script errors, repair the bundled script and rerun.
+Do NOT use `write` to create `.docx` files directly. Do NOT skip writing `section-content.json`. Do NOT request OpenClaw config changes. Content first → script second.
 
 ---
 

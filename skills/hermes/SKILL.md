@@ -69,14 +69,93 @@ Check the RFP's Tender Submission Requirements or submission checklist to confir
 
 ## Step 3: Write the document(s)
 
-Use the bundled deterministic generator script for CAG instead of inventing docx scaffolding from scratch.
+### 3a — Write the section content first (MANDATORY before running the script)
 
-### Deterministic script path (preferred for CAG)
+**The script `scripts/generate-cag.js` requires `scripts/section-content.json` to exist. It will error if not found.**
 
-- Script: `scripts/generate-cag.js`
-- This script already contains the known-good ATT document scaffolding, logo/header/footer handling, TOC setup, section structure and output paths for the CAG tender.
-- For CAG runs, your job is to read the three source PDFs, validate that the tender context still matches CAG T3 IIDS Refresh, and then run this script with plain `exec`.
-- Only fall back to hand-written generation logic if Atlas explicitly says the bundled script is unusable.
+Your job is to draft the full content for both documents and write it to `scripts/section-content.json`. The script reads this file and renders it into properly formatted .docx output.
+
+**Minimum word counts — these are hard targets, not suggestions:**
+
+| Document | Section | Minimum words |
+|---|---|---|
+| 06 Technical Proposal | 1. Executive Summary | 400 |
+| 06 Technical Proposal | 2. Functional Overview (all sub-sections combined) | 700 |
+| 06 Technical Proposal | 3. Detailed Solutioning | 600 |
+| 06 Technical Proposal | 4. Implementation Schedule | 300 |
+| 06 Technical Proposal | 5. Compliance Highlights (table + prose) | 300 |
+| 06 Technical Proposal | Total doc 06 | **≥ 2,500 words** |
+| 07 System Design | 1–2. Overview + Architecture (design, modules, functional info) | 700 |
+| 07 System Design | 3. Interfaces | 500 |
+| 07 System Design | 4. Redundancy & Resiliency | 400 |
+| 07 System Design | 5. Security Architecture | 600 |
+| 07 System Design | 6–7. Detailed Design + Capacity | 500 |
+| 07 System Design | Total doc 07 | **≥ 3,000 words** |
+
+**Content quality rules:**
+- Write in full paragraphs — not just headings and bullets. Each section must include at least 2–3 paragraphs of substantive narrative prose.
+- Paragraphs should be 80–150 words each. One-sentence paragraphs are not acceptable.
+- Reference specific RFP clauses and requirements by number where possible (e.g. "as required by clause 5.1", "in accordance with Schedule 5 Section 3.2").
+- Make technical claims specific: name the technology (ATT-SCALA), the standard (ISO/IEC 27001, OWASP ASVS), the metric (99.5% availability, 90 MPPA current / 140 MPPA future). Avoid vague generalities.
+- Use bullets to supplement paragraphs, not replace them. Each bullet point group must be preceded by a proper paragraph that sets context.
+
+**JSON format for `section-content.json`:**
+
+```json
+{
+  "doc06": [
+    {"type": "h1", "text": "1. Executive Summary"},
+    {"type": "p", "text": "Full substantive paragraph here — minimum 80 words. Describe the proposed solution, its name, what it does for the client, why ATT is proposing it this way, and what the key design priorities are."},
+    {"type": "p", "text": "Second paragraph continuing the executive summary. Reference the tender context specifically."},
+    {"type": "bullet", "text": "Key benefit or differentiator 1 — one sentence."},
+    {"type": "bullet", "text": "Key benefit or differentiator 2."},
+    {"type": "h1", "text": "2. Functional Overview"},
+    {"type": "h2", "text": "2.1 Proposed Solution Overview"},
+    {"type": "p", "text": "..."},
+    ...
+    {"type": "table_design_considerations"},
+    ...
+    {"type": "table_compliance_highlights"}
+  ],
+  "doc07": [
+    {"type": "h1", "text": "1. Overview"},
+    {"type": "p", "text": "..."},
+    ...
+    {"type": "table_hardware_env"}
+  ],
+  "notes": "Hermes generation notes — date, assumptions, gaps"
+}
+```
+
+**Supported type values in the JSON:**
+- `h1`, `h2`, `h3` — headings (text field)
+- `p` — body paragraph (text field, prose, 80–150 words per paragraph)
+- `bullet` — bullet point (text field, one sentence; optional `"level": 1` for sub-bullets)
+- `placeholder` — italic grey note e.g. `[Architecture diagram — to be inserted]`
+- `table_design_considerations` — renders the standard ATT design considerations comparison table
+- `table_compliance_highlights` — renders the standard compliance highlights table
+- `table_hardware_env` — renders the hardware/environment summary table
+
+Do **not** include the cover page, TOC, or `END OF THIS SECTION` in the JSON — those are rendered automatically by the script.
+
+**Write `section-content.json` to `skills/hermes/scripts/section-content.json`** (relative to the workspace root, i.e. `C:/Users/Admin/.openclaw/workspace/skills/hermes/scripts/section-content.json`).
+
+### 3b — Run the script
+
+After writing `section-content.json`, run:
+
+```
+node skills/hermes/scripts/generate-cag.js
+```
+
+(Run from the workspace root: `C:/Users/Admin/.openclaw/workspace/`)
+
+The script:
+1. Reads `section-content.json`
+2. Renders all content into ATT-formatted .docx files
+3. Saves output to `.openclaw/tender/CAG/tender submission/`
+
+Use plain `exec` only. Do **not** set `host`, `security`, `pty`, `elevated`, or sandbox-related options.
 
 Use the **docx skill** to produce a professional .docx. Follow the ATT document format below exactly — this is non-negotiable for client-facing output.
 
@@ -226,15 +305,13 @@ Packer.toBuffer(doc).then(buf => {
 });
 ```
 
-**How to generate the file — follow these steps exactly:**
-1. For CAG, run the bundled script: `node skills/hermes/scripts/generate-cag.js`
-2. Let the script generate the required `.docx` files directly into `.openclaw/tender/CAG/tender submission/`.
-3. Verify the resulting `.docx` files are real generated files:
-   - files exist
-   - sizes are comfortably above placeholder size (not 3–4 bytes; typically far above 10 KB)
-4. If the bundled script throws a JS/runtime error, fix the script itself under `skills/hermes/scripts/generate-cag.js` and rerun. Do not switch back to writing ad hoc `.docx` files with `write`.
+**How to generate the files — two-step process:**
+1. Write `skills/hermes/scripts/section-content.json` with all section content (see Step 3a above for format + word count targets). This is mandatory — the script will error without it.
+2. Run: `node skills/hermes/scripts/generate-cag.js` (from workspace root)
+3. Verify output: files exist in `.openclaw/tender/CAG/tender submission/`, each file is well above 10 KB (target 50–100 KB+ for a substantive doc).
+4. If the script throws an error, read the error message — it will tell you exactly what is missing or malformed in `section-content.json`. Fix and rerun.
 
-Do NOT try to read or open the output file as an input. Do NOT use `write` to create `.docx` content directly. Run bundled script → Verify.
+Do NOT use `write` to create `.docx` files directly. Do NOT skip writing `section-content.json`. Content first → script second.
 
 ### Standard section structure
 
