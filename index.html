@@ -462,32 +462,56 @@
       <div class="page-header">
         <div class="page-eyebrow">ATT Infosoft — Internal PoC</div>
         <div class="page-title">Project <span class="atlas-accent">Atlas</span></div>
-        <div class="page-desc">An AI agent system built to handle IT tender proposals end-to-end. Starting with technical specification writing, Atlas will be trained with company knowledge and purpose-built skills to produce competitive, high-quality tender submissions.</div>
+        <div class="page-desc">An AI agent system built to handle IT tender proposals end-to-end. Atlas orchestrates a fleet of specialist sub-agents, each owning one tender section. Together they produce competitive, review-ready submissions from a single RFP brief.</div>
       </div>
 
       <div class="stat-row">
         <div class="stat-cell">
-          <div class="stat-label">Agent</div>
+          <div class="stat-label">Orchestrator</div>
           <div class="stat-val"><span class="atlas-accent">Atlas</span></div>
-          <div class="stat-sub">Primary orchestrator</div>
+          <div class="stat-sub">Production ready</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Phase</div>
+          <div class="stat-label">Setup Phase</div>
           <div class="progress-bar-wrap">
-            <div class="progress-bar"><div class="progress-bar-fill" style="width:75%"></div></div>
-            <span class="progress-label">3 / 4</span>
+            <div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
+            <span class="progress-label">4 / 4</span>
           </div>
-          <div class="stat-sub">Phase 04 in progress</div>
+          <div class="stat-sub">All phases complete</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">First Milestone</div>
-          <div class="stat-val">TechSpec</div>
-          <div class="stat-sub">Tender tech spec skill</div>
+          <div class="stat-label">Skills Live</div>
+          <div class="stat-val">1 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 9</span></div>
+          <div class="stat-sub">Hermes — TechSpec</div>
         </div>
         <div class="stat-cell">
           <div class="stat-label">GPU</div>
           <div class="stat-val">RTX 5090</div>
-          <div class="stat-sub">32GB VRAM</div>
+          <div class="stat-sub">32GB VRAM — Local LLM</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Agent Fleet Status</div>
+        <div class="card">
+          <table class="data-table">
+            <tr>
+              <td style="font-weight:600;color:var(--atlas);">Atlas</td>
+              <td><span style="color:#16a34a;font-weight:600;">● Production Ready</span> — Orchestrator live on WhatsApp, memory persistent, tender workflow active</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--hermes);">Hermes</td>
+              <td><span style="color:#d97706;font-weight:600;">◑ Live — Quality Testing</span> — First CAG run complete. Pending re-run on qwen3:32b to validate content depth before production use</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--muted);">Next Agent</td>
+              <td><span style="color:#6b7280;font-weight:600;">○ To Be Decided</span> — Daedalus (Functional Response) or Chronos (PMP). Decision pending Hermes quality sign-off</td>
+            </tr>
+            <tr>
+              <td style="color:var(--faint);">Remaining (6)</td>
+              <td style="color:var(--faint);">Themis, Midas, Athena, Hephaestus, Hestia, Argus — Planned</td>
+            </tr>
+          </table>
         </div>
       </div>
 
@@ -495,12 +519,12 @@
         <div class="section-title">Objectives</div>
         <div class="card-grid">
           <div class="card">
-            <h3>Immediate goal</h3>
-            <p>Train Atlas to read an RFP and produce a structured technical specification section. Evaluate against past ATT submissions and iterate via a feedback loop.</p>
+            <h3>Current focus</h3>
+            <p>Validate Hermes output quality on qwen3:32b. Once signed off, decide and build the next sub-agent to expand ATT's automated tender coverage.</p>
           </div>
           <div class="card">
             <h3>Long-term vision</h3>
-            <p>Atlas orchestrates multiple sub-agents, each owning a tender section skill. Output is a complete, review-ready proposal assembled from specialist agents.</p>
+            <p>A full 9-agent fleet where Atlas reads an RFP and assembles a complete, submission-ready proposal — each section owned by a specialist agent, reviewed before send.</p>
           </div>
         </div>
       </div>
@@ -935,17 +959,19 @@
         <div class="phase-header">
           <div class="phase-title-row">
             <div class="phase-num">04</div>
-            <div class="phase-name">First Skill — Tender Tech Spec</div>
+            <div class="phase-name">Sub-Agent Fleet — <span class="hermes-accent">Hermes</span> First</div>
           </div>
-          <span class="badge badge-planned">Upcoming</span>
+          <span class="badge badge-next">In Progress</span>
         </div>
         <ul class="checklist">
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Upload past tender RFPs as reference</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Upload past ATT submissions for evaluation</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Build TechSpec skill — draft generation layer</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Build evaluation layer — score submission vs RFP</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Build feedback store — save corrections for continuous improvement</div></li>
-          <li class="check-item"><div class="check-box"></div><div class="check-text">Test run with real RFP — review output with Jackie</div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Upload past tender RFPs as reference<span class="check-note">PA TACS, PMO CPIB, CAG T3 IIDS — in .openclaw/tender/</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Upload past ATT submissions for format reference<span class="check-note">06 Technical Proposal + 07 System Design — in past-submission-reference/ per tender</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Build Hermes TechSpec skill — SKILL.md, assets, evals<span class="check-note">ATT format: Book Antiqua, ATT logo header/footer, cover page, TOC. Evals: 2 iterations, 100% pass</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Tender folder workflow — Atlas auto-discovers, no README needed<span class="check-note">Outputs auto-saved to tender submission/ subfolder</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First live tender run — CAG T3 IIDS Refresh<span class="check-note">Both docs produced (06 + 07), structure correct. Run used gpt-5.4 — model routing fix applied to AGENTS.md</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Re-run Hermes on qwen3:32b — validate content depth<span class="check-note">First run was thin (~32KB). qwen3:32b expected to produce richer, submission-ready output</span></div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Review Hermes output with Jackie — sign off for production use</div></li>
+          <li class="check-item"><div class="check-box"></div><div class="check-text">Build next sub-agent — Daedalus or Chronos (TBD after Hermes sign-off)</div></li>
         </ul>
       </div>
     </div>
@@ -963,7 +989,7 @@
         <div class="card">
           <div class="skill-row">
             <div><div class="skill-name" style="color:var(--hermes);">Hermes — Technical Design</div><div class="skill-desc">Generates the full technical design section: development approach, system architecture, cloud services setup, hosting environment, tech standards, and security design. Architecture is a sub-section here — not a separate document.</div></div>
-            <span class="badge badge-next" style="flex-shrink:0">Building Next</span>
+            <span class="badge badge-next" style="flex-shrink:0;background:#fef3c7;color:#92400e;border-color:#fde68a;">Live — Testing</span>
           </div>
           <div class="skill-row">
             <div><div class="skill-name">Daedalus — Functional Response</div><div class="skill-desc">The largest section. Produces a feature-by-feature solution description mapped to every functional requirement in the RFP. Covers what the system does, how each requirement is met, UI workflows, and data handling. Typically 50–80 pages.</div></div>
