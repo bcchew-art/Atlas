@@ -1002,6 +1002,20 @@
         <div class="log-row">
           <div class="log-date">13 Mar 2026</div>
           <div>
+            <div class="log-title">Session 11 — Hermes first live tender run (CAG T3 IIDS Refresh)</div>
+            <div class="log-body">Hermes completed her first real tender run end-to-end. Atlas was pointed at .openclaw/tender/CAG, auto-discovered the requirements, spawned Hermes as a subagent, and produced both required documents — "06 Technical Proposal.docx" and "07 System Design and Technical Architecture.docx" — saved into tender submission/ subfolder. Structure confirmed correct: ATT logo in header, TOC, proper heading hierarchy, correct filenames. Content depth (gpt-5.4 run) is a baseline — next run will use qwen3:32b for richer output. Key learnings: model: frontmatter in SKILL.md is not auto-applied by OpenClaw; Atlas must explicitly pass the model in the subagent task prompt. Sub-agents are not visible in the Agents tab — use the Chat tab session dropdown to monitor a live subagent run. AGENTS.md updated with sub-agent model routing rules. Workspace backed up (108MB). Hermes milestone: sub-agent fleet operational.</div>
+            <div class="log-tags">
+              <span class="log-tag">Hermes</span>
+              <span class="log-tag">Phase 04</span>
+              <span class="log-tag">First Live Run</span>
+              <span class="log-tag">CAG Tender</span>
+              <span class="log-tag">Sub-Agent Fleet</span>
+            </div>
+          </div>
+        </div>
+        <div class="log-row" style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px;">
+          <div class="log-date">13 Mar 2026</div>
+          <div>
             <div class="log-title">Session 10 — Hermes complete + gateway hardened</div>
             <div class="log-body">Hermes skill finalised: pinned to ollama/qwen3:32b (no API cost), ATT logo extracted from real CAG submission, professional docx output with Book Antiqua font / header / footer / cover page / TOC. Demo document generated and validated. CAG tender test folder set up at .openclaw/tender/CAG — Atlas auto-discovers documents and routes to correct agents with no README needed. Outputs saved to tender submission/ subfolder. Gateway incident: dropped at noon due to Scheduled Task having no restart policy. Atlas diagnosed and fixed it autonomously — new task XML with RestartCount=999, RestartInterval=PT1M, StartWhenAvailable=True. Gateway confirmed running post-fix.</div>
             <div class="log-tags">
