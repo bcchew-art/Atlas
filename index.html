@@ -315,6 +315,39 @@
     font-family: 'Inter', monospace; letter-spacing: -0.02em;
   }
 
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+
+  .team-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 24px 20px; text-align: center; transition: border-color 0.2s;
+  }
+  .team-card:hover { border-color: var(--atlas-mid); }
+  .team-card.atlas-lead { border-color: var(--atlas); }
+
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    object-fit: cover; margin-bottom: 12px;
+    border: 2px solid var(--border);
+  }
+  .team-card.atlas-lead .team-avatar { border-color: var(--atlas); }
+
+  .team-avatar-placeholder {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--surface); border: 2px dashed var(--border);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 12px; font-size: 24px; color: var(--faint);
+  }
+
+  .team-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .team-role { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .team-status {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    padding: 2px 8px; border-radius: 100px; font-family: 'Inter', sans-serif;
+  }
+  .status-active { background: var(--success-bg); color: var(--success); }
+  .status-planned { background: var(--pending-bg); color: var(--pending); }
+  .status-building { background: var(--warning-bg); color: var(--warning); }
+
   .content-panel { display: none; }
   .content-panel.active { display: block; }
 
@@ -393,6 +426,13 @@
       <button class="sidebar-link" onclick="nav('log',this)">
         <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
         Progress Log
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">People</div>
+      <button class="sidebar-link" onclick="nav('team',this)">
+        <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="2.5"/><circle cx="11" cy="5" r="2.5"/><path d="M1 14c0-2.5 2-4 4-4s4 1.5 4 4M7 14c0-2.5 2-4 4-4s4 1.5 4 4"/></svg>
+        Team
       </button>
     </div>
     <div class="sidebar-section">
@@ -1022,6 +1062,81 @@
       </div>
     </div>
 
+    <!-- TEAM -->
+    <div id="team" class="content-panel">
+      <div class="page-header">
+        <div class="page-eyebrow">People</div>
+        <div class="page-title"><span class="atlas-accent">Atlas</span> Team</div>
+        <div class="page-desc">The orchestrator and her sub-agents. Each agent owns a specific tender skill and will be activated as skills are built.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Orchestrator</div>
+        <div class="team-grid">
+          <div class="team-card atlas-lead">
+            <img src="assets/atlas-profile.png" alt="Atlas" class="team-avatar">
+            <div class="team-name"><span class="atlas-accent">Atlas</span></div>
+            <div class="team-role">Main Orchestrator</div>
+            <span class="team-status status-active">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Sub-Agents</div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar-placeholder">H</div>
+            <div class="team-name">Hermes</div>
+            <div class="team-role">TechSpec Writer</div>
+            <span class="team-status status-building">Building Next</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">T</div>
+            <div class="team-name">Themis</div>
+            <div class="team-role">Compliance Checker</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">D</div>
+            <div class="team-name">Daedalus</div>
+            <div class="team-role">Architecture Designer</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">M</div>
+            <div class="team-name">Midas</div>
+            <div class="team-role">Pricing / BQ</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">C</div>
+            <div class="team-name">Chronos</div>
+            <div class="team-role">Timeline Planner</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">A</div>
+            <div class="team-name">Athena</div>
+            <div class="team-role">Company Profile</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">H</div>
+            <div class="team-name">Hestia</div>
+            <div class="team-role">Executive Summary</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar-placeholder">A</div>
+            <div class="team-name">Argus</div>
+            <div class="team-role">Quality Evaluator</div>
+            <span class="team-status status-planned">Planned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -1047,6 +1162,10 @@
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
       Log
     </button>
+    <button class="mobile-nav-btn" onclick="nav('team',this)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="2.5"/><circle cx="11" cy="5" r="2.5"/><path d="M1 14c0-2.5 2-4 4-4s4 1.5 4 4M7 14c0-2.5 2-4 4-4s4 1.5 4 4"/></svg>
+      Team
+    </button>
   </div>
 </nav>
 
@@ -1057,7 +1176,7 @@
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
     // sync the other nav
-    const idx = ['overview','architecture','setup','skills','log'].indexOf(id);
+    const idx = ['overview','architecture','setup','skills','log','team'].indexOf(id);
     document.querySelectorAll('.sidebar-link')[idx]?.classList.add('active');
     document.querySelectorAll('.mobile-nav-btn')[idx]?.classList.add('active');
   }
