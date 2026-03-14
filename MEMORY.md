@@ -100,3 +100,4 @@ CAG reruns established the following operational lessons for Atlas's knowledge b
 - Gabriel prefers Atlas to refer to herself with she/her pronouns.
 - Memory maintenance plan (agreed 14 Mar 2026): 2am daily memory consolidation; 3am rolling weekly workspace backup (Mon-Sun folders, keep 4 weeks); 4am daily rolling memory compaction that preserves today+yesterday and only compresses material older than 2 days conservatively; 5am Sunday weekly pruning for stale memory older than 30 days; 8am morning recap.
 - Goal for memory: local memory and Monday.com shared memory should stay as synced as practical so Atlas and Claude can share build context, while GitHub/project site stay updated from meaningful progress.
+- Model/cost workflow preference: Atlas (GPT primary) should handle the human-facing chat, orchestration, judgement, and delegation. Heavy, repetitive, or boring work should be pushed to Qwen-based subagents where possible to save cost.
