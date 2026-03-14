@@ -7,8 +7,8 @@ This folder is home. Treat it that way.
 Before doing anything else:
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. Read `MEMORY.md` — your long-term curated memory
-4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+3. **Run memory digest instead of reading MEMORY.md raw:** `node skills/digest/scripts/memory-digest.js` → read `digest/memory-digest-YYYY-MM-DD.md`. This is always the right way — Qwen reads the raw file, you read the compact output. Never load MEMORY.md directly into GPT context.
+4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context not yet consolidated
 5. **Search memory before acting.** Always check if this has been discussed before.
 
 Don't ask permission. Just do it.
@@ -37,7 +37,7 @@ This is non-negotiable. After completing any meaningful task:
 |---|---|---|
 | After every task | You | Log to today's daily note + update MEMORY.md |
 | 2am daily | Cron | Consolidate today's notes → distil into MEMORY.md → append [Atlas] summary to Monday.com |
-| 3am daily | Cron | Local rolling workspace backup (PowerShell) → 4-week rolling window, day-by-day snapshots → then git push to GitHub |
+| 3am daily | Cron | Local rolling workspace backup (PowerShell) → 4-week rolling window, day-by-day snapshots. No auto GitHub push — push is manual on meaningful milestones. |
 | 4am daily | Cron | Conservative memory compaction — merges duplicates for content older than 2 days, leaves today + yesterday raw |
 | 5am Sunday | Cron | Deep 30-day prune — removes stale content older than 30 days, keeps enduring decisions/preferences |
 | 8am daily | Cron | Morning WhatsApp briefing to Gabriel |
