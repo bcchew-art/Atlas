@@ -458,7 +458,7 @@
       </button>
       <button class="sidebar-link" onclick="nav('skills',this)">
         <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 4 4.5.7-3.2 3.1.7 4.5L8 11l-4 2.3.7-4.5L1.5 5.7 6 5z"/></svg>
-        Skills Roadmap
+        Skills Library
       </button>
       <button class="sidebar-link" onclick="nav('log',this)">
         <svg class="sidebar-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5 6h6M5 9h4"/></svg>
@@ -908,7 +908,8 @@
               <tr><td><strong>Daily notes</strong></td><td>memory/YYYY-MM-DD.md — 5090</td><td>Atlas</td><td>Raw activity log. 2am consolidation summarises into MEMORY.md.</td></tr>
               <tr><td><strong>Agent rules</strong></td><td>AGENTS.md — 5090</td><td>Atlas</td><td>Operating instructions: "search memory before acting, write after every task."</td></tr>
               <tr><td><strong>Semantic search</strong></td><td>Supermemory plugin</td><td>Atlas</td><td>Semantic retrieval across all memory within OpenClaw sessions.</td></tr>
-              <tr><td><strong>Cold backup</strong></td><td>GitHub — bcchew-art/Atlas</td><td>Both</td><td>Full workspace snapshot. 3am nightly push. Disaster recovery + version history.</td></tr>
+              <tr><td><strong>Local backup</strong></td><td>workspace/backups/ — 5090</td><td>Atlas</td><td>Rolling 4-week window, day-by-day snapshots (Mon–Sun). Fast local recovery. Runs 3am nightly.</td></tr>
+              <tr><td><strong>Cold backup</strong></td><td>GitHub — bcchew-art/Atlas</td><td>Both</td><td>Offsite disaster recovery. Pushed nightly at 3am after local backup. Full version history.</td></tr>
             </tbody>
           </table>
         </div>
@@ -1079,6 +1080,9 @@
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Build Hermes — Technical Design agent<span class="check-note">Live on ollama/qwen3:32b. Generates 06 + 07 for CAG-style tenders.</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Build Chronos — Project Management Plan agent<span class="check-note">Live on ollama/qwen3:32b. Generates sections 08, 09, 10 for CAG-style tenders.</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">First clean Ollama run — all 5 CAG docs generated<span class="check-note">Test 10: stable generation pipeline confirmed. Bundled deterministic scripts resolved syntax errors.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Redesign agent/skill model — decouple roles from skills<span class="check-note">Agents now have job titles. Skills are independent capabilities. Atlas has Tender Orchestration skill.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Connect Monday.com — Atlas can read/write shared memory<span class="check-note">API token configured, monday.js CLI built. Append-only write rule prevents Claude/Atlas collision.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Automate memory schedule — 5 cron jobs<span class="check-note">2am consolidation, 3am backup, 4am compaction, Sunday 5am 30-day prune, 8am briefing.</span></div></li>
           <li class="check-item"><div class="check-box"></div><div class="check-text">Improve output depth — content quality review with Jackie</div></li>
           <li class="check-item"><div class="check-box"></div><div class="check-text">Build Daedalus — Functional Response agent</div></li>
         </ul>
@@ -1168,6 +1172,14 @@
           </div>
           <div class="skill-row">
             <div>
+              <div class="skill-name">O&amp;M, Training &amp; Documentation</div>
+              <div class="skill-desc">Generates the post-implementation support plan: L1/L2 service structure, SLA compliance, hardware and software maintenance strategy, patch management, training programme with course syllabi, and full documentation list. Covers CAG sections 11–13 and equivalent O&M/training sections in other tenders.</div>
+              <div style="margin-top:6px;font-size:11.5px;color:var(--faint);font-family:'Inter',sans-serif;">Owner: <strong>Hephaestus</strong> — Operations Engineer</div>
+            </div>
+            <span class="badge badge-planned" style="flex-shrink:0">Planned</span>
+          </div>
+          <div class="skill-row">
+            <div>
               <div class="skill-name">Quality Evaluation</div>
               <div class="skill-desc">Cross-checks every section against RFP requirements and evaluation criteria weightings. Scores submission quality, flags missing items, and highlights inconsistencies before final output.</div>
               <div style="margin-top:6px;font-size:11.5px;color:var(--faint);font-family:'Inter',sans-serif;">Owner: <strong>Argus</strong> — QA Engineer</div>
@@ -1184,6 +1196,23 @@
         <div class="page-eyebrow">Activity</div>
         <div class="page-title">Progress Log</div>
         <div class="page-desc">Dated record of planning sessions, decisions, and milestones.</div>
+      </div>
+
+      <div class="card">
+        <div class="log-row">
+          <div class="log-date">14 Mar 2026</div>
+          <div>
+            <div class="log-title">Session 16 — Architecture redesign, Monday.com live, memory automation</div>
+            <div class="log-body">Major architecture rethink: decoupled agents from skills — agents now have job roles (Technical Engineer, Project Manager, etc.) and skills are independent capabilities that can be assigned across agents. Atlas gets her own Tender Orchestration skill. Site fully revamped to reflect new model: team tab shows role + skill tags (green = live, grey = planned), Skills Library tab decoupled from agent names with Owner column, endgame progress tracker added (3/9 skills live). Monday.com integration connected — API token configured, monday.js CLI tool built, append-only write rule enforced to prevent Claude/Atlas memory collision. Automated memory schedule wired up: 2am consolidation, 3am rolling local backup + GitHub push, 4am daily compaction (Atlas's enhancement), Sunday 5am 30-day deep prune (Atlas's enhancement), 8am morning briefing already live. Atlas wrote the PowerShell backup script and added the 4am/5am jobs herself while Gabriel was out.</div>
+            <div class="log-tags">
+              <span class="log-tag">Architecture</span>
+              <span class="log-tag">Monday.com</span>
+              <span class="log-tag">Memory</span>
+              <span class="log-tag">Automation</span>
+              <span class="log-tag">Site</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="card">
@@ -1285,8 +1314,8 @@
         <div class="endgame-title">Endgame — Full Tender Pipeline</div>
         <div class="endgame-sub">Target: all 9 skills live across the team. Atlas can then handle any tender end-to-end.</div>
         <div class="endgame-track">
-          <div class="endgame-fill-wrap"><div class="endgame-fill" style="width:33%"></div></div>
-          <div class="endgame-pct">3 / 9</div>
+          <div class="endgame-fill-wrap"><div class="endgame-fill" style="width:30%"></div></div>
+          <div class="endgame-pct">3 / 10</div>
         </div>
         <div class="endgame-milestones">
           <span class="endgame-milestone done">✓ Orchestration</span>
@@ -1297,6 +1326,7 @@
           <span class="endgame-milestone">Pricing / BQ</span>
           <span class="endgame-milestone">Company Profile</span>
           <span class="endgame-milestone">Mgmt Summary</span>
+          <span class="endgame-milestone">O&amp;M / Training</span>
           <span class="endgame-milestone">Quality Evaluation</span>
         </div>
       </div>
@@ -1385,6 +1415,15 @@
             <span class="team-status status-planned" style="margin-bottom:10px;">Planned</span>
             <div class="agent-skills">
               <span class="skill-tag skill-tag-planned">Mgmt Summary</span>
+            </div>
+          </div>
+          <div class="team-card sub-atlas">
+            <div class="team-avatar-placeholder">H</div>
+            <div class="team-name">Hephaestus</div>
+            <div class="team-role">Operations Engineer</div>
+            <span class="team-status status-planned" style="margin-bottom:10px;">Planned</span>
+            <div class="agent-skills">
+              <span class="skill-tag skill-tag-planned">O&amp;M / Training</span>
             </div>
           </div>
           <div class="team-card sub-atlas">
