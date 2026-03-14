@@ -46,6 +46,21 @@ Atlas can read and write Monday.com directly using `node scripts/monday.js`.
 **Token:** stored in `scripts/monday-config.json` → `token` field.
 If the token is missing or wrong, the script exits with an error and explains where to get one.
 
+### ⚠️ Write Rule — NEVER overwrite, ALWAYS append
+
+Both Atlas and Claude write to the same Monday.com board. To prevent either from wiping the other's memory:
+
+- **ALWAYS use `add-update` (comments)** — this appends a new timestamped entry. Monday.com keeps the full history. Nothing is lost.
+- **NEVER use `update-item` or `change_multiple_column_values` for memory content** — this overwrites the field and destroys whatever was there before.
+- **Always prefix your entries** so the feed stays readable:
+  - Atlas writes: `[Atlas] <summary>`
+  - Claude writes: `[Claude] <summary>`
+
+Example correct usage:
+```
+node scripts/monday.js add-update 12345678 "[Atlas] 2am consolidation — completed CAG tender run, Hermes + Chronos output verified, next: Jackie review"
+```
+
 **Key IDs (ATT Infosoft PMO workspace):**
 - Workspace ID: `14533861`
 - "Project Atlas — Memory" board ID: `18403623746`
