@@ -560,7 +560,7 @@
       <div class="section">
         <div class="section-title">System Diagram</div>
         <div style="background:#ffffff;border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-bottom:12px;">
-          <svg viewBox="0 0 760 980" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:Arial,sans-serif;background:#fff;">
+          <svg viewBox="0 0 760 1008" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:Arial,sans-serif;background:#fff;">
             <defs>
               <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker>
               <marker id="arrd" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#aaa"/></marker>
@@ -731,11 +731,11 @@
             <text x="712" y="768" text-anchor="middle" font-size="11" fill="#444">Win 11</text>
 
             <!-- ROW 5: COST (full width) -->
-            <rect x="8" y="804" width="744" height="100" rx="6" fill="#fffbf0" stroke="#c07000" stroke-width="1.5"/>
+            <rect x="8" y="804" width="744" height="128" rx="6" fill="#fffbf0" stroke="#c07000" stroke-width="1.5"/>
             <rect x="8" y="804" width="744" height="28" rx="6" fill="#c07000"/>
             <rect x="8" y="824" width="744" height="8" fill="#c07000"/>
             <text x="380" y="822" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">MONTHLY COST ESTIMATE</text>
-            <!-- Cost items in 2 rows of 2 -->
+            <!-- Cost row 1 -->
             <rect x="30" y="840" width="14" height="14" rx="2" fill="#1e8a5e"/>
             <text x="50" y="852" font-size="12" fill="#333">Codex Plus</text>
             <text x="230" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$30.00 / mo</text>
@@ -745,23 +745,32 @@
             <rect x="490" y="840" width="14" height="14" rx="2" fill="#c07000"/>
             <text x="510" y="852" font-size="12" fill="#333">eSIM Bridge</text>
             <text x="700" y="852" text-anchor="end" font-size="12" font-weight="700" fill="#222">$4.90 / mo</text>
+            <!-- Cost row 2 -->
             <rect x="30" y="864" width="14" height="14" rx="2" fill="#3a7bd5"/>
             <text x="50" y="876" font-size="12" fill="#333">Local LLM (RTX 5090)</text>
             <text x="230" y="876" text-anchor="end" font-size="12" font-weight="700" fill="#1e8a5e">Free</text>
-            <text x="490" y="876" font-size="12" fill="#aaa">OpenRouter (fallback)</text>
-            <text x="700" y="876" text-anchor="end" font-size="12" fill="#aaa">As needed</text>
-            <text x="380" y="895" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a10">TOTAL: $39.90 / month</text>
+            <rect x="260" y="864" width="14" height="14" rx="2" fill="#7b5ea7"/>
+            <text x="280" y="876" font-size="12" fill="#333">Claude Max (Gabriel — Planning &amp; Setup)</text>
+            <text x="700" y="876" text-anchor="end" font-size="12" font-weight="700" fill="#7b5ea7">SGD$218 / mo</text>
+            <!-- Cost row 3 -->
+            <rect x="30" y="888" width="14" height="14" rx="2" fill="#bbb"/>
+            <text x="50" y="900" font-size="12" fill="#aaa">OpenRouter (fallback)</text>
+            <text x="230" y="900" text-anchor="end" font-size="12" fill="#aaa">As needed</text>
+            <!-- Totals -->
+            <text x="190" y="921" text-anchor="middle" font-size="13" font-weight="700" fill="#555">Atlas ops: $39.90 USD / mo</text>
+            <text x="380" y="921" font-size="13" fill="#aaa" text-anchor="middle">  +  </text>
+            <text x="560" y="921" text-anchor="middle" font-size="13" font-weight="700" fill="#7b5ea7">Claude Max: SGD$218 / mo</text>
 
             <!-- ROW 6: LEGEND -->
-            <rect x="8" y="916" width="744" height="56" rx="6" fill="#f8f8f5" stroke="#ddd" stroke-width="1.5"/>
-            <rect x="8" y="916" width="744" height="24" rx="6" fill="#888"/>
-            <rect x="8" y="932" width="744" height="8" fill="#888"/>
-            <text x="380" y="930" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">LEGEND</text>
-            <rect x="24" y="948" width="14" height="14" rx="2" fill="#7b5ea7"/><text x="44" y="960" font-size="11" fill="#555">User Channels</text>
-            <rect x="170" y="948" width="14" height="14" rx="2" fill="#1e8a5e"/><text x="190" y="960" font-size="11" fill="#555">Cloud (Codex)</text>
-            <rect x="316" y="948" width="14" height="14" rx="2" fill="#3a7bd5"/><text x="336" y="960" font-size="11" fill="#555">Local (RTX 5090)</text>
-            <rect x="470" y="948" width="14" height="14" rx="2" fill="#c07000"/><text x="490" y="960" font-size="11" fill="#555">External Services</text>
-            <rect x="624" y="948" width="14" height="14" rx="2" fill="#bbb"/><text x="644" y="960" font-size="11" fill="#aaa">Fallback</text>
+            <rect x="8" y="944" width="744" height="56" rx="6" fill="#f8f8f5" stroke="#ddd" stroke-width="1.5"/>
+            <rect x="8" y="944" width="744" height="24" rx="6" fill="#888"/>
+            <rect x="8" y="960" width="744" height="8" fill="#888"/>
+            <text x="380" y="958" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">LEGEND</text>
+            <rect x="24" y="976" width="14" height="14" rx="2" fill="#7b5ea7"/><text x="44" y="988" font-size="11" fill="#555">User / Planning</text>
+            <rect x="160" y="976" width="14" height="14" rx="2" fill="#1e8a5e"/><text x="180" y="988" font-size="11" fill="#555">Cloud (Codex)</text>
+            <rect x="296" y="976" width="14" height="14" rx="2" fill="#3a7bd5"/><text x="316" y="988" font-size="11" fill="#555">Local (RTX 5090)</text>
+            <rect x="450" y="976" width="14" height="14" rx="2" fill="#c07000"/><text x="470" y="988" font-size="11" fill="#555">External Services</text>
+            <rect x="620" y="976" width="14" height="14" rx="2" fill="#bbb"/><text x="640" y="988" font-size="11" fill="#aaa">Fallback</text>
           </svg>
         </div>
       </div>
