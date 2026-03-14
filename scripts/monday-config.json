@@ -1,4 +1,4 @@
 {
-  "token": "REPLACE_WITH_YOUR_MONDAY_API_TOKEN",
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjYyNDM4MjM3MiwiYWFpIjoxMSwidWlkIjo0MTY3ODU3OCwiaWFkIjoiMjAyNi0wMi0yM1QwNDoxMDozMy4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTUxNjg1MDcsInJnbiI6InVzZTEifQ.hhFXm4gjVCi9mvKBFDl98RnxWHvzNGSwehpWNsWuHG0",
   "_comment": "Get your token: monday.com → Profile (top-right avatar) → Developers → My API Tokens → Personal API Token → Copy"
 }
