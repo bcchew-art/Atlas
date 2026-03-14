@@ -26,6 +26,9 @@
     --atlas: #0891b2;
     --atlas-light: #e0f7fa;
     --atlas-mid: #b2ebf2;
+    --sub-atlas: #0ea5c9;
+    --sub-atlas-light: #e0f2fe;
+    --sub-atlas-mid: #bae6fd;
     --sidebar-w: 240px;
     --header-h: 56px;
   }
@@ -323,6 +326,9 @@
   }
   .team-card:hover { border-color: var(--atlas-mid); }
   .team-card.atlas-lead { border-color: var(--atlas); }
+  .team-card.sub-atlas { border-color: var(--sub-atlas); }
+  .team-card.sub-atlas .team-name { color: var(--sub-atlas); }
+  .team-card.sub-atlas .team-avatar { border-color: var(--sub-atlas); }
 
   .team-avatar {
     width: 72px; height: 72px; border-radius: 50%;
@@ -1103,49 +1109,51 @@
       <div class="section">
         <div class="section-title">Sub-Agents</div>
         <div class="team-grid">
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <img src="assets/chronos-profile.png" alt="Chronos" class="team-avatar">
             <div class="team-name">Chronos</div>
             <div class="team-role">Project Mgmt Plan</div>
-            <span class="team-status status-active">Live</span>
+            <span class="team-status status-active" style="margin-bottom:10px;">Live</span>
+            <p style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px;text-align:left;">Owns the full project management section. Builds Gantt charts, team structures, risk registers, QA plans, and change control procedures — everything evaluators need to trust ATT can deliver on time.</p>
           </div>
-          <div class="team-card">
-            <div class="team-avatar-placeholder">H</div>
+          <div class="team-card sub-atlas">
+            <img src="assets/hermes-profile.png" alt="Hermes" class="team-avatar">
             <div class="team-name">Hermes</div>
-            <div class="team-role">TechSpec Writer</div>
-            <span class="team-status status-active">Live</span>
+            <div class="team-role">Technical Design</div>
+            <span class="team-status status-active" style="margin-bottom:10px;">Live</span>
+            <p style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px;text-align:left;">Translates RFP technical requirements into ATT's full technical design — system architecture, hosting environment, development approach, security standards, and tech stack. Built to score against evaluator criteria, not just answer the brief.</p>
           </div>
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <div class="team-avatar-placeholder">T</div>
             <div class="team-name">Themis</div>
             <div class="team-role">Compliance Matrix</div>
             <span class="team-status status-planned">Planned</span>
           </div>
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <div class="team-avatar-placeholder">D</div>
             <div class="team-name">Daedalus</div>
             <div class="team-role">Functional Response</div>
             <span class="team-status status-planned">Planned</span>
           </div>
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <div class="team-avatar-placeholder">M</div>
             <div class="team-name">Midas</div>
             <div class="team-role">Pricing / BQ</div>
             <span class="team-status status-planned">Planned</span>
           </div>
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <div class="team-avatar-placeholder">A</div>
             <div class="team-name">Athena</div>
             <div class="team-role">Company Profile</div>
             <span class="team-status status-planned">Planned</span>
           </div>
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <div class="team-avatar-placeholder">H</div>
             <div class="team-name">Hestia</div>
             <div class="team-role">Executive Summary</div>
             <span class="team-status status-planned">Planned</span>
           </div>
-          <div class="team-card">
+          <div class="team-card sub-atlas">
             <div class="team-avatar-placeholder">A</div>
             <div class="team-name">Argus</div>
             <div class="team-role">Quality Evaluator</div>
