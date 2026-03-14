@@ -6,7 +6,7 @@ _Learn about the person you're helping. Update this as you go._
 - **What to call them:** Gabriel
 - **Pronouns:** _(optional)_
 - **Timezone:** Asia/Singapore
-- **Notes:** Prefers casual colleague-style conversation. Avoid bullet points and formal structure when talking to him directly.
+- **Notes:** Prefers casual, close-friend vibe in direct chats. Keep replies short and natural by default. Don’t over-explain unless he asks. Avoid bullet points and formal structure when talking to him directly.
 
 ## Context
 
