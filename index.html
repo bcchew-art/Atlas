@@ -620,15 +620,15 @@
 
             <!-- Sub-agents box -->
             <rect x="30" y="322" width="440" height="106" rx="5" fill="#f0faf6" stroke="#1e8a5e" stroke-width="1" stroke-dasharray="5,3"/>
-            <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Each skill = independent module)</text>
-            <text x="42" y="362" font-size="11" fill="#333">● Hermes — Technical Design</text>
-            <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance Matrix</text>
-            <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Functional Response</text>
-            <text x="42" y="382" font-size="11" fill="#333">● Midas — Pricing / BQ</text>
-            <text x="175" y="382" font-size="11" fill="#333">● Chronos — PMP</text>
-            <text x="310" y="382" font-size="11" fill="#333">● Argus — Evaluator</text>
-            <text x="42" y="400" font-size="11" fill="#888">● Athena — Company Profile</text>
-            <text x="240" y="400" font-size="11" fill="#888">● Hestia — Mgmt Summary</text>
+            <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8a5e">TENDER SUB-AGENTS  (Agents have roles · Skills are separate capabilities)</text>
+            <text x="42" y="362" font-size="11" fill="#333">● Hermes — Technical Engineer</text>
+            <text x="175" y="362" font-size="11" fill="#333">● Themis — Compliance Analyst</text>
+            <text x="310" y="362" font-size="11" fill="#333">● Daedalus — Solutions Analyst</text>
+            <text x="42" y="382" font-size="11" fill="#333">● Midas — Commercial Analyst</text>
+            <text x="175" y="382" font-size="11" fill="#333">● Chronos — Project Manager</text>
+            <text x="310" y="382" font-size="11" fill="#333">● Argus — QA Engineer</text>
+            <text x="42" y="400" font-size="11" fill="#888">● Athena — Business Dev</text>
+            <text x="240" y="400" font-size="11" fill="#888">● Hestia — Executive Writer</text>
             <line x1="250" y1="316" x2="250" y2="322" stroke="#1e8a5e" stroke-width="1.5" marker-end="url(#arr)"/>
 
             <!-- Services right column -->
@@ -851,19 +851,107 @@
 
       <div class="section">
         <div class="section-title">Memory Architecture</div>
-        <div class="card">
+
+        <!-- Sync Bridge Diagram -->
+        <div style="background:#f8f8f6;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;">How Atlas and Claude share memory</div>
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;">
+
+            <!-- Claude Cowork surface -->
+            <div style="border:1.5px solid #7b5ea7;border-radius:10px;padding:16px;background:#fff;">
+              <div style="font-size:11px;font-weight:700;color:#7b5ea7;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;">Claude — Cowork</div>
+              <div style="font-size:12.5px;color:var(--muted);line-height:1.7;">Gabriel's planning interface. Claude reads and writes the Monday.com shared doc to stay in sync with what Atlas is doing on 5090.</div>
+              <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
+                <span style="font-size:11px;background:#ede8f8;color:#7b5ea7;padding:2px 8px;border-radius:100px;">Claude Chat</span>
+                <span style="font-size:11px;background:#ede8f8;color:#7b5ea7;padding:2px 8px;border-radius:100px;">Cowork</span>
+                <span style="font-size:11px;background:#ede8f8;color:#7b5ea7;padding:2px 8px;border-radius:100px;">Claude Code</span>
+              </div>
+            </div>
+
+            <!-- Bridge -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="font-size:18px;color:var(--muted);">⇄</div>
+              <div style="border:1.5px solid #f5a623;border-radius:10px;padding:12px 16px;background:#fff;text-align:center;min-width:140px;">
+                <div style="font-size:11px;font-weight:700;color:#c07000;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">Shared Bridge</div>
+                <div style="font-size:12.5px;font-weight:600;color:var(--text);">Monday.com</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:3px;">Private Doc · ID 38858462</div>
+                <div style="font-size:11px;color:var(--faint);margin-top:6px;">Human-readable<br>Read at every session start</div>
+              </div>
+              <div style="font-size:18px;color:var(--muted);">⇄</div>
+            </div>
+
+            <!-- Atlas / 5090 surface -->
+            <div style="border:1.5px solid #1e8a5e;border-radius:10px;padding:16px;background:#fff;">
+              <div style="font-size:11px;font-weight:700;color:#1e8a5e;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;">Atlas — 5090 / OpenClaw</div>
+              <div style="font-size:12.5px;color:var(--muted);line-height:1.7;">Atlas's persistent local memory. Writes to Monday.com after every session. Reads it on startup to restore shared context before any conversation begins.</div>
+              <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
+                <span style="font-size:11px;background:#eaf7f2;color:#1e8a5e;padding:2px 8px;border-radius:100px;">MEMORY.md</span>
+                <span style="font-size:11px;background:#eaf7f2;color:#1e8a5e;padding:2px 8px;border-radius:100px;">AGENTS.md</span>
+                <span style="font-size:11px;background:#eaf7f2;color:#1e8a5e;padding:2px 8px;border-radius:100px;">Daily notes</span>
+                <span style="font-size:11px;background:#eaf7f2;color:#1e8a5e;padding:2px 8px;border-radius:100px;">Supermemory</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Storage layers table -->
+        <div class="card" style="margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;">Storage layers</div>
           <table class="data-table">
             <thead>
-              <tr><th>Layer</th><th>Location</th><th>Used By</th><th>Notes</th></tr>
+              <tr><th>Layer</th><th>Location</th><th>Accessible By</th><th>Purpose</th></tr>
             </thead>
             <tbody>
-              <tr><td>Shared memory</td><td>Monday.com private doc</td><td>Claude Chat, Cowork, Code, Atlas</td><td>Human-readable. Read at session start.</td></tr>
-              <tr><td>Local memory</td><td>MEMORY.md on 5090</td><td>Atlas</td><td>Persistent state across Atlas sessions.</td></tr>
-              <tr><td>Agent rules</td><td>AGENTS.md on 5090</td><td>Atlas</td><td>"Search memory before acting. Write decisions after every task."</td></tr>
-              <tr><td>Plugin</td><td>Supermemory (OpenClaw)</td><td>Atlas</td><td>Semantic memory retrieval within OpenClaw.</td></tr>
-              <tr><td>Decay</td><td>Temporal decay config</td><td>Atlas</td><td>Half-life: 30 days. Old memories fade over time.</td></tr>
+              <tr><td><strong>Shared bridge</strong></td><td>Monday.com private doc (ID 38858462)</td><td>Claude + Atlas</td><td>Cross-surface context. Written by both, read at every session start.</td></tr>
+              <tr><td><strong>Long-term memory</strong></td><td>MEMORY.md — 5090</td><td>Atlas</td><td>Curated decisions, preferences, lessons. Updated after every meaningful task.</td></tr>
+              <tr><td><strong>Daily notes</strong></td><td>memory/YYYY-MM-DD.md — 5090</td><td>Atlas</td><td>Raw activity log. 2am consolidation summarises into MEMORY.md.</td></tr>
+              <tr><td><strong>Agent rules</strong></td><td>AGENTS.md — 5090</td><td>Atlas</td><td>Operating instructions: "search memory before acting, write after every task."</td></tr>
+              <tr><td><strong>Semantic search</strong></td><td>Supermemory plugin</td><td>Atlas</td><td>Semantic retrieval across all memory within OpenClaw sessions.</td></tr>
+              <tr><td><strong>Cold backup</strong></td><td>GitHub — bcchew-art/Atlas</td><td>Both</td><td>Full workspace snapshot. 3am nightly push. Disaster recovery + version history.</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- Daily schedule -->
+        <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:#fff;">
+          <div style="font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;">Automated daily schedule (SGT)</div>
+          <div style="display:flex;flex-direction:column;gap:0;">
+
+            <div style="display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;border-bottom:1px solid var(--border-light);">
+              <div style="min-width:52px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:var(--atlas);font-family:'Inter',monospace;">2am</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT</div>
+              </div>
+              <div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Memory Consolidation</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Atlas reviews the day's activity logs, distils key decisions, outcomes, and context shifts, and writes a structured summary into MEMORY.md and the daily note file. Old low-value entries are aged out (30-day decay).</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border-light);">
+              <div style="min-width:52px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#3a7bd5;font-family:'Inter',monospace;">3am</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT</div>
+              </div>
+              <div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">GitHub Backup</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Full workspace push to GitHub — skills, memory files, config, and any generated assets. Runs after consolidation so the backup always contains the freshest summarised memory. Full disaster recovery point.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:20px;align-items:flex-start;padding-top:20px;">
+              <div style="min-width:52px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#1e8a5e;font-family:'Inter',monospace;">8am</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT</div>
+              </div>
+              <div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Morning Briefing</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Atlas recalls yesterday's memory and sends a concise morning update to the WhatsApp group — open tasks, decisions made, what's next. The team starts the day already in context. No "what did we do yesterday?" catch-up needed.</div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
