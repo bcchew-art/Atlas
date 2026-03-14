@@ -103,4 +103,5 @@ CAG reruns established the following operational lessons for Atlas's knowledge b
 - Model/cost workflow preference: Atlas (GPT primary) should handle the human-facing chat, orchestration, judgement, and delegation. Heavy, repetitive, or boring work should be pushed to Qwen-based subagents where possible to save cost.
 - Atlas and Claude now use `DISCUSSION.md` as an append-only async handoff channel inside the workspace; Gabriel can tell either side to "check DISCUSSION.md" instead of manually relaying context.
 - Digest pipeline is live in workspace via `node skills/digest/scripts/memory-digest.js` and `state-diff.js`; Atlas should use these digests instead of loading large raw memory/context into GPT whenever possible to save weekly quota.
+- Monday.com shared memory updates must remain append-only: use `add-update`, never overwrite existing memory content.
 - Post-change checklist lesson: if cron/job files are edited, restart the OpenClaw Gateway and verify the live cron list so file state and scheduler state stay in sync.
