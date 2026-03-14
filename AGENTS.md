@@ -37,8 +37,8 @@ This is non-negotiable. After completing any meaningful task:
 |---|---|---|
 | After every task | You | Log to today's daily note + update MEMORY.md |
 | 2am daily | Cron | Consolidate day's notes → distil into MEMORY.md → append [Atlas] summary to Monday.com |
-| 3am daily | Cron | Full workspace push to GitHub (backup) |
-| 4am Sunday | Cron | Deep compaction — merge duplicates, prune stale entries, rewrite MEMORY.md lean, archive daily notes >14 days old |
+| 3am daily | Cron | Compact MEMORY.md (merge duplicates, prune stale, archive old notes) → then backup to GitHub |
+| 8am daily | Cron | Morning WhatsApp briefing to Gabriel |
 
 **Archive rule:** Daily notes older than 14 days move to `memory/archive/YYYY-MM-DD.md`. Never delete — just move. Active session reads only scan `memory/`, not `memory/archive/`.
 
