@@ -892,7 +892,7 @@
             <!-- Atlas / 5090 surface -->
             <div style="border:1.5px solid #1e8a5e;border-radius:10px;padding:16px;background:#fff;">
               <div style="font-size:11px;font-weight:700;color:#1e8a5e;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;">Atlas — 5090 / OpenClaw</div>
-              <div style="font-size:12.5px;color:var(--muted);line-height:1.7;">Atlas's persistent local memory. Writes to Monday.com after every session. Reads it on startup to restore shared context before any conversation begins.</div>
+              <div style="font-size:12.5px;color:var(--muted);line-height:1.7;">Atlas's persistent local memory. Updates Monday.com shared memory through scheduled consolidation jobs and meaningful milestone updates — not after every session. Reads it on startup to restore shared context before any conversation begins.</div>
               <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
                 <span style="font-size:11px;background:#eaf7f2;color:#1e8a5e;padding:2px 8px;border-radius:100px;">MEMORY.md</span>
                 <span style="font-size:11px;background:#eaf7f2;color:#1e8a5e;padding:2px 8px;border-radius:100px;">AGENTS.md</span>
@@ -912,13 +912,13 @@
               <tr><th>Layer</th><th>Location</th><th>Accessible By</th><th>Purpose</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Shared bridge</strong></td><td>Monday.com private doc (ID 38858462)</td><td>Claude + Atlas</td><td>Cross-surface context. Written by both, read at every session start.</td></tr>
+              <tr><td><strong>Shared bridge</strong></td><td>Monday.com private doc (ID 38858462)</td><td>Claude + Atlas</td><td>Cross-agent memory bridge between Atlas and Claude. Append-only writes via scheduled jobs and meaningful milestones. Full bidirectional auto-sync is the direction, not yet fully built.</td></tr>
               <tr><td><strong>Long-term memory</strong></td><td>MEMORY.md — 5090</td><td>Atlas</td><td>Curated decisions, preferences, lessons. Updated after every meaningful task.</td></tr>
               <tr><td><strong>Daily notes</strong></td><td>memory/YYYY-MM-DD.md — 5090</td><td>Atlas</td><td>Raw activity log. 2am consolidation summarises into MEMORY.md.</td></tr>
               <tr><td><strong>Agent rules</strong></td><td>AGENTS.md — 5090</td><td>Atlas</td><td>Operating instructions: "search memory before acting, write after every task."</td></tr>
               <tr><td><strong>Semantic search</strong></td><td>Supermemory plugin</td><td>Atlas</td><td>Semantic retrieval across all memory within OpenClaw sessions.</td></tr>
-              <tr><td><strong>Local backup</strong></td><td>workspace/backups/ — 5090</td><td>Atlas</td><td>Rolling 4-week window, day-by-day snapshots (Mon–Sun). Fast local recovery. Runs 3am nightly.</td></tr>
-              <tr><td><strong>Cold backup</strong></td><td>GitHub — bcchew-art/Atlas</td><td>Both</td><td>Offsite disaster recovery. Pushed nightly at 3am after local backup. Full version history.</td></tr>
+              <tr><td><strong>Local backup</strong></td><td>workspace/backups/ — 5090</td><td>Atlas</td><td>Rolling 4-week window, day-by-day snapshots (Mon–Sun). Fast local recovery. Automated at 3am nightly.</td></tr>
+              <tr><td><strong>Cold backup</strong></td><td>GitHub — bcchew-art/Atlas</td><td>Both</td><td>Offsite disaster recovery and full version history. Push is manual / on meaningful milestones — not part of the nightly automated backup.</td></tr>
             </tbody>
           </table>
         </div>
@@ -945,8 +945,8 @@
                 <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT · daily</div>
               </div>
               <div>
-                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Local Backup + GitHub Push</div>
-                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Runs the rolling workspace backup (4-week window, day-by-day snapshots) then pushes to GitHub for offsite protection. Local backup is fast recovery — GitHub is the safety net if the machine dies.</div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Rolling Local Backup</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Runs the rolling workspace backup — 4-week window, day-by-day Mon–Sun folder snapshots. Local backup is fast recovery. GitHub push is manual / on meaningful milestones, not automated nightly.</div>
               </div>
             </div>
 
@@ -1044,7 +1044,7 @@
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">OpenClaw onboarding<span class="check-note">GPT-5.4 primary, WhatsApp allowlist, Brave search API</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Connect Codex OAuth<span class="check-note">Codex Plus — GPT-5.4</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">OpenClaw dashboard<span class="check-note">Fixed — use `openclaw dashboard` to launch with auth</span></div></li>
-          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure model routing<span class="check-note">GPT-5.4 primary → Qwen3 8B → Qwen3 32B fallbacks</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure model routing<span class="check-note">GPT-5.4 = human-facing chat, orchestration, final review. Qwen3 32B/8B = heavy repetitive work (doc reading, extraction, drafting, classification). Cost split by role, not just speed.</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Install gateway service<span class="check-note">Via openclaw doctor --fix — auto-starts on boot</span></div></li>
           <li class="check-item"><div class="check-box skipped">—</div><div class="check-text">Connect OpenRouter API key<span class="check-note">Deferred — not priority for now</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure embedding provider<span class="check-note">Ollama + nomic-embed-text (274MB) — free local embeddings</span></div></li>
@@ -1067,7 +1067,7 @@
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Configure MEMORY.md and memory/ directory on 5090<span class="check-note">Embedding: Ollama + nomic-embed-text, temporal decay 30-day half-life</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Deregister WhatsApp from Mac Mini<span class="check-note">Done — number freed</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Link WhatsApp number to Atlas on 5090<span class="check-note">+6598198569 linked via eSIM Bridge</span></div></li>
-          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Atlas first contact + tone calibration<span class="check-note">Atlas alive on WA. Tone corrected from corporate to casual colleague. Preference saved to memory.</span></div></li>
+          <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Atlas first contact + tone calibration<span class="check-note">Atlas alive on WA. Tone corrected from corporate to close friend — shorter replies by default, only detail when asked. Preference saved to memory.</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Memory persistence verified<span class="check-note">End-to-end: user speaks → Atlas adapts → writes memory file → git commits → persists</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">WA group policy configured<span class="check-note">groupPolicy: open, requireMention: false. SOUL.md controls listen-first reply behavior.</span></div></li>
           <li class="check-item"><div class="check-box done">✓</div><div class="check-text">Profile picture generated<span class="check-note">AI-generated portrait — team voted on final pick. Set as WA profile.</span></div></li>
@@ -1212,7 +1212,7 @@
           <div class="log-date">14 Mar 2026</div>
           <div>
             <div class="log-title">Session 16 — Architecture redesign, Monday.com live, memory automation</div>
-            <div class="log-body">Major architecture rethink: decoupled agents from skills — agents now have job roles (Technical Engineer, Project Manager, etc.) and skills are independent capabilities that can be assigned across agents. Atlas gets her own Tender Orchestration skill. Site fully revamped to reflect new model: team tab shows role + skill tags (green = live, grey = planned), Skills Library tab decoupled from agent names with Owner column, endgame progress tracker added (3/9 skills live). Monday.com integration connected — API token configured, monday.js CLI tool built, append-only write rule enforced to prevent Claude/Atlas memory collision. Automated memory schedule wired up: 2am consolidation, 3am rolling local backup + GitHub push, 4am daily compaction (Atlas's enhancement), Sunday 5am 30-day deep prune (Atlas's enhancement), 8am morning briefing already live. Atlas wrote the PowerShell backup script and added the 4am/5am jobs herself while Gabriel was out.</div>
+            <div class="log-body">Major architecture rethink: decoupled agents from skills — agents now have job roles (Technical Engineer, Project Manager, etc.) and skills are independent capabilities that can be assigned across agents. Atlas gets her own Tender Orchestration skill. Site fully revamped to reflect new model: team tab shows role + skill tags (green = live, grey = planned), Skills Library tab decoupled from agent names with Owner column, endgame progress tracker added (3/9 skills live). Monday.com integration connected — API token configured, monday.js CLI tool built, append-only write rule enforced to prevent Claude/Atlas memory collision. Automated memory schedule wired up: 2am consolidation, 3am rolling local backup (no auto GitHub push), 4am daily compaction (Atlas's enhancement), Sunday 5am 30-day deep prune (Atlas's enhancement), 8am morning briefing already live. Atlas wrote the PowerShell backup script and added the 4am/5am jobs herself while Gabriel was out.</div>
             <div class="log-tags">
               <span class="log-tag">Architecture</span>
               <span class="log-tag">Monday.com</span>
