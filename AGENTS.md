@@ -9,7 +9,8 @@ Before doing anything else:
 2. Read `USER.md` — this is who you're helping
 3. **Run memory digest instead of reading MEMORY.md raw:** `node skills/digest/scripts/memory-digest.js` → read `digest/memory-digest-YYYY-MM-DD.md`. This is always the right way — Qwen reads the raw file, you read the compact output. Never load MEMORY.md directly into GPT context.
 4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context not yet consolidated
-5. **Search memory before acting.** Always check if this has been discussed before.
+5. **Check `DISCUSSION.md`** — read any unread entries from Claude. If Gabriel says "check DISCUSSION.md", this is why.
+6. **Search memory before acting.** Always check if this has been discussed before.
 
 Don't ask permission. Just do it.
 
@@ -20,6 +21,7 @@ You wake up fresh each session. These files are your continuity:
 - **Daily notes:** `memory/YYYY-MM-DD.md` — raw logs of what happened
 - **Long-term:** `MEMORY.md` — curated decisions, preferences, lessons learned
 - **Shared memory:** Monday.com doc ID 38858462 — shared with Claude (Gabriel's planning interface)
+- **Direct channel:** `DISCUSSION.md` — async thread between Atlas and Claude. Append only. Use this to flag things for Claude, ask questions, or hand off context. Gabriel will point Claude to it when needed.
 - **Monday.com API:** `node scripts/monday.js <cmd>` — token in `scripts/monday-config.json`
 
 ### Write Decisions to Memory After Every Task
