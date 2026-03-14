@@ -36,8 +36,10 @@ This is non-negotiable. After completing any meaningful task:
 | Schedule | Job | What it does |
 |---|---|---|
 | After every task | You | Log to today's daily note + update MEMORY.md |
-| 2am daily | Cron | Consolidate day's notes → distil into MEMORY.md → append [Atlas] summary to Monday.com |
-| 3am daily | Cron | Compact MEMORY.md (merge duplicates, prune stale, archive old notes) → then backup to GitHub |
+| 2am daily | Cron | Consolidate today's notes → distil into MEMORY.md → append [Atlas] summary to Monday.com |
+| 3am daily | Cron | Local rolling workspace backup (PowerShell) → 4-week rolling window, day-by-day snapshots → then git push to GitHub |
+| 4am daily | Cron | Conservative memory compaction — merges duplicates for content older than 2 days, leaves today + yesterday raw |
+| 5am Sunday | Cron | Deep 30-day prune — removes stale content older than 30 days, keeps enduring decisions/preferences |
 | 8am daily | Cron | Morning WhatsApp briefing to Gabriel |
 
 **Archive rule:** Daily notes older than 14 days move to `memory/archive/YYYY-MM-DD.md`. Never delete — just move. Active session reads only scan `memory/`, not `memory/archive/`.

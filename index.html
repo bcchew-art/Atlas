@@ -921,33 +921,55 @@
             <div style="display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;border-bottom:1px solid var(--border-light);">
               <div style="min-width:52px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:var(--atlas);font-family:'Inter',monospace;">2am</div>
-                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT · daily</div>
               </div>
               <div>
                 <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Memory Consolidation</div>
-                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Atlas reviews the day's activity logs, distils key decisions, outcomes, and context shifts, and writes a structured summary into MEMORY.md and the daily note file. Old low-value entries are aged out (30-day decay).</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Atlas reviews today's activity log, distils key decisions, outcomes, and context shifts into MEMORY.md. Appends a timestamped [Atlas] summary to Monday.com so Claude stays in sync.</div>
               </div>
             </div>
 
             <div style="display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border-light);">
               <div style="min-width:52px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:#3a7bd5;font-family:'Inter',monospace;">3am</div>
-                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT · daily</div>
               </div>
               <div>
-                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Compact + GitHub Backup</div>
-                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">First compacts MEMORY.md — merges duplicates, removes superseded entries, prunes anything older than 30 days, archives daily notes older than 14 days. Then pushes the full workspace to GitHub. Memory stays lean every single day, not just on weekends.</div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Local Backup + GitHub Push</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Runs the rolling workspace backup (4-week window, day-by-day snapshots) then pushes to GitHub for offsite protection. Local backup is fast recovery — GitHub is the safety net if the machine dies.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border-light);">
+              <div style="min-width:52px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#c07000;font-family:'Inter',monospace;">4am</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT · daily</div>
+              </div>
+              <div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Rolling Memory Compaction</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Conservative pass — today and yesterday stay raw. Content older than 2 days gets merged and deduplicated into MEMORY.md. Keeps memory lean without destroying recent context.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border-light);">
+              <div style="min-width:52px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#7b5ea7;font-family:'Inter',monospace;">5am</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT · Sunday</div>
+              </div>
+              <div>
+                <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">30-Day Deep Prune</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Weekly deep clean targeting content older than 30 days. Removes stale or superseded entries. Enduring decisions, preferences, and lessons are always kept regardless of age.</div>
               </div>
             </div>
 
             <div style="display:flex;gap:20px;align-items:flex-start;padding-top:20px;">
               <div style="min-width:52px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:#1e8a5e;font-family:'Inter',monospace;">8am</div>
-                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT</div>
+                <div style="font-size:10px;color:var(--faint);margin-top:2px;">SGT · daily</div>
               </div>
               <div>
                 <div style="font-size:13.5px;font-weight:600;margin-bottom:4px;">Morning Briefing</div>
-                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Atlas recalls yesterday's memory and sends a concise morning update to the WhatsApp group — open tasks, decisions made, what's next. The team starts the day already in context. No "what did we do yesterday?" catch-up needed.</div>
+                <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">Atlas recalls yesterday's memory and sends a concise morning update to WhatsApp — open tasks, decisions made, what's next. The team starts the day already in context. No catch-up needed.</div>
               </div>
             </div>
 
