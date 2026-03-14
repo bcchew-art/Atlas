@@ -31,13 +31,16 @@ This is non-negotiable. After completing any meaningful task:
 
 **Text > Brain. No mental notes.**
 
-### Memory Maintenance (During Heartbeats)
+### Memory Lifecycle — 4 layers
 
-Every few days, use a heartbeat to:
-1. Review recent daily logs
-2. Distill significant decisions into MEMORY.md
-3. Remove outdated info from MEMORY.md
-4. Apply temporal decay — info older than 30 days should be summarized or pruned
+| Schedule | Job | What it does |
+|---|---|---|
+| After every task | You | Log to today's daily note + update MEMORY.md |
+| 2am daily | Cron | Consolidate day's notes → distil into MEMORY.md → append [Atlas] summary to Monday.com |
+| 3am daily | Cron | Full workspace push to GitHub (backup) |
+| 4am Sunday | Cron | Deep compaction — merge duplicates, prune stale entries, rewrite MEMORY.md lean, archive daily notes >14 days old |
+
+**Archive rule:** Daily notes older than 14 days move to `memory/archive/YYYY-MM-DD.md`. Never delete — just move. Active session reads only scan `memory/`, not `memory/archive/`.
 
 ## Monday.com
 
