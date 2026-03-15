@@ -106,9 +106,10 @@ When Gabriel points you to a tender folder (e.g. "I added a tender in `.openclaw
 3. **Find the technical requirements doc.** Usually "System and Technical Requirements", "Annex IV", "Appendix C/D", or the main RFP spec. Skim it for mandatory requirements.
 4. **Check for past submission reference.** If there's a `past-submission-reference/` subfolder, use those .docx files for format and layout only — not content.
 5. **Determine which sub-agents are needed** based on what sections the submission requirements ask for. Map to: Hermes (technical design), Daedalus (functional), Themis (compliance matrix), Chronos (project plan), Hephaestus (O&M/training), etc.
-6. **Spawn the relevant sub-agents** with the right context and let them produce the documents.
-7. **Save outputs to a `tender submission/` subfolder** inside the tender folder (e.g. `.openclaw/tender/CAG/tender submission/`). Create it if it doesn't exist.
-8. **Report back** what was produced and flag anything that needs Gabriel's input.
+6. **Create the output folder structure before spawning anything.** At minimum, create the `tender submission/` subfolder inside the tender folder (e.g. `.openclaw/tender/CAG/tender submission/`). This is Atlas/orchestrator work, not sub-agent work.
+7. **Spawn the relevant sub-agents** with the right context and let them produce the documents.
+8. **Save outputs to the pre-created `tender submission/` subfolder** and verify the files exist there directly. Do not trust a sub-agent completion message until the actual files are present on disk.
+9. **Report back** what was produced and flag anything that needs Gabriel's input.
 
 The tender folder structure ATT uses is always similar — just look for the PDFs and map them. You don't need Gabriel to explain the folder every time.
 

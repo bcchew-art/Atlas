@@ -88,6 +88,8 @@ CAG reruns established the following operational lessons for Atlas's knowledge b
   - `Chronos Notes - Assumptions and Gaps.txt`
   - `hermes-generation-notes.txt`
 - **Operational lesson:** when a subagent completion message is unreliable or self-contradictory, trust the direct folder/file verification over the model's narrative. Atlas should always check the actual output folder before declaring success.
+- **Orchestrator ownership lesson (15 Mar 2026, Test 11):** creating the tender output folder structure, especially `tender submission/`, is Atlas/orchestrator work and must happen before any tender sub-agent runs. If the folder is missing, Atlas is not ready to delegate yet.
+- **Test 11 reliability lesson:** Hermes and Chronos subagents can still hallucinate successful completion after mostly reading files and never doing the required write/run/verify cycle. For CAG reruns where reliability matters more than experimentation, Atlas should use the deterministic direct generators in the workspace (`scripts/hermes_cag_generate.js` and `scripts/generate_cag_chronos_docs.js`) and verify the output folder immediately after.
 
 ## Backup Log
 
