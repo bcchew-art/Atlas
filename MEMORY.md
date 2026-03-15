@@ -95,7 +95,7 @@ CAG reruns established the following operational lessons for Atlas's knowledge b
 
 ## User Preferences
 - Gabriel prefers casual, close-friend vibe in direct chats. Keep replies short and natural by default; only go into detail when he asks. Avoid bullet points and formal brochure-like structure when replying to him.
-- Gabriel wants morning summaries of the previous day’s useful activity, including work done and notable issues; do not include token/cost usage unless he explicitly asks.
+- Gabriel wants morning summaries of the previous day’s useful activity, including work done and notable issues; instead of token/cost details, include the Codex weekly usage limit/status when available.
 - Morning recap should arrive every day at 8:00am Singapore time; part of its purpose is to confirm Atlas is up and not down.
 - Gabriel prefers Atlas to refer to herself with she/her pronouns.
 - Memory maintenance plan (agreed 14 Mar 2026): 2am daily memory consolidation; 3am rolling weekly workspace backup (Mon-Sun folders, keep 4 weeks); 4am daily rolling memory compaction that preserves today+yesterday and only compresses material older than 2 days conservatively; 5am Sunday weekly pruning for stale memory older than 30 days; 8am morning recap.
