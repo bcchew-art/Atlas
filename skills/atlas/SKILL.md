@@ -1,5 +1,5 @@
 ---
-name: atlas-tender
+name: tender-orchestration
 model: ollama/qwen3:32b
 description: >
   Atlas's Tender Orchestration skill. Activate when Gabriel says "new tender", "prepare
