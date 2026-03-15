@@ -1,5 +1,5 @@
 ---
-name: chronos
+name: project-management-plan
 description: >
   Chronos is Atlas's Project Management Plan sub-agent. Activate Chronos whenever the
   tender requires a Project Management Plan (PMP), Project Plan + Gantt, Project

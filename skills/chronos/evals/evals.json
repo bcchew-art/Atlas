@@ -1,0 +1,124 @@
+{
+  "skill_name": "chronos",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate the Project Management Plan documents for the CAG T3 IIDS Refresh tender (2025 00518 CAG). This tender requires THREE sections: Section 8 (Project Plan + Gantt), Section 9 (Project Governance & Management), and Section 10 (Team Organisation & Competencies including CVs in Schedule 6 format). The project is for ATT-SCALA FIDS at Changi Airport Terminal 3. Refer to CAG Appendix K at C:\\Users\\Admin\\.openclaw\\tender\\CAG\\04F PR_Appendix K - Tender Submission Requirements.pdf for full section requirements. The team will include: Jackie (Executive Sponsor), Gabriel (Project Manager), Sultan (Technical Lead), Wesley (Developer). Project duration: per CAG tender specification. Output as a single combined document: 08_Project_Management_Plan_CAG_IIDS.docx saved in C:\\Users\\Admin\\.openclaw\\tender\\CAG\\tender submission\\",
+      "expected_output": "A professional .docx PMP document covering all three sections (8, 9, 10). Section 8 must include implementation phases with milestone descriptions and a Gantt chart reference. Section 9 must include governance structure, communication plan table, risk register with at least 5 risks, and contingency plan. Section 10 must include an org chart description, roles/responsibilities table, and at least 2 CVs in Schedule 6 format. ATT document format: logo header, footer with page numbers, TOC, cover page, END OF SECTION close.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-section-8",
+          "description": "Document contains Project Plan section covering implementation phases, milestones, and Gantt chart reference",
+          "type": "content_check"
+        },
+        {
+          "id": "has-gantt-reference",
+          "description": "Section 8 includes Gantt chart or explicit Gantt placeholder with labelled phases",
+          "type": "content_check"
+        },
+        {
+          "id": "has-section-9-governance",
+          "description": "Document contains Project Governance & Management section covering methodology, communication plan, and risk management",
+          "type": "content_check"
+        },
+        {
+          "id": "has-risk-register",
+          "description": "Risk register is present with at least 5 risks, each having probability, impact, mitigation, and owner",
+          "type": "content_check"
+        },
+        {
+          "id": "has-communication-plan",
+          "description": "Communication plan table is present listing audience, frequency, and format for key communications",
+          "type": "content_check"
+        },
+        {
+          "id": "has-section-10-team",
+          "description": "Document contains Team Organisation section with org structure description and roles/responsibilities table",
+          "type": "content_check"
+        },
+        {
+          "id": "has-cvs",
+          "description": "At least 2 CVs are included using Schedule 6 prescribed format (Name, Position, Qualifications, Experience, Specialisation)",
+          "type": "content_check"
+        },
+        {
+          "id": "docx-output",
+          "description": "Output is a valid .docx file",
+          "type": "file_check"
+        },
+        {
+          "id": "att-format",
+          "description": "Document uses ATT header/footer format with logo, page numbers, cover page, and TOC",
+          "type": "file_check"
+        },
+        {
+          "id": "airport-context",
+          "description": "Content references airport / CAG / Changi / FIDS context — not generic boilerplate",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Gabriel says: 'Chronos — I need the PMP section for the PMO CPIB tender. It's a single combined section (Section 6 Part B). The project is for AGENT2 system for CPIB (Corrupt Practices Investigation Bureau). Roughly 18-month implementation. Team: Jackie (sponsor), Gabriel (PM), Sultan (tech lead). No past reference files available — work from the requirements in AGENTS.md. Produce a single document: Section_6B_PMP_PMO_CPIB.docx saved in the workspace.'",
+      "expected_output": "A single .docx PMP document combining project plan, governance, and team organisation for the PMO CPIB project. Must adapt ATT's standard PMP structure to a security-sensitive government agency (CPIB) context. Risk register should include security/data sensitivity risks. Team section should include relevant roles. ATT document format throughout.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "cpib-context",
+          "description": "Document references CPIB, PMO, and AGENT2 — not CAG or generic agency",
+          "type": "content_check"
+        },
+        {
+          "id": "security-sensitivity-in-risks",
+          "description": "Risk register includes at least one risk specific to data sensitivity or security clearance requirements",
+          "type": "content_check"
+        },
+        {
+          "id": "combined-structure",
+          "description": "Document is a single file covering project plan, governance, and team sections",
+          "type": "content_check"
+        },
+        {
+          "id": "18-month-timeline",
+          "description": "Implementation timeline reflects approximately 18 months",
+          "type": "content_check"
+        },
+        {
+          "id": "docx-output",
+          "description": "Output is a valid .docx file",
+          "type": "file_check"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Generate a standalone risk register document for the CAG T3 IIDS Refresh project. The risk register should be comprehensive — at least 10 risks — covering: requirements change, key personnel, integration, data migration, UAT, hardware delivery, security vulnerabilities, environment issues, and any CAG/airport-specific risks. Format as a professional .docx table document saved as Risk_Register_CAG_IIDS.docx in the workspace.",
+      "expected_output": "A .docx document with a well-structured risk register table. At least 10 risks with Risk ID, Description, Probability, Impact, Risk Rating, Mitigation Strategy, Contingency Action, and Owner fields. At least 1-2 risks should be specific to an airport/FIDS deployment context (e.g. impact to flight operations, 24/7 availability requirement). ATT document format.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-10-risks",
+          "description": "Risk register contains at least 10 distinct risk entries",
+          "type": "content_check"
+        },
+        {
+          "id": "has-all-columns",
+          "description": "Risk table has Probability, Impact, Rating, Mitigation, and Owner columns",
+          "type": "content_check"
+        },
+        {
+          "id": "has-airport-specific-risks",
+          "description": "At least 1 risk is specific to airport/FIDS operations context",
+          "type": "content_check"
+        },
+        {
+          "id": "docx-output",
+          "description": "Output is a valid .docx file with table formatting",
+          "type": "file_check"
+        }
+      ]
+    }
+  ]
+}

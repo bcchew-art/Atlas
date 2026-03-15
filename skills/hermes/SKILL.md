@@ -1,5 +1,5 @@
 ---
-name: hermes
+name: technical-design
 model: ollama/qwen3:32b
 description: >
   Hermes is Atlas's Technical Design sub-agent. Activate Hermes whenever the tender

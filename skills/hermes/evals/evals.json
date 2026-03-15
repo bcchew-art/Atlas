@@ -1,0 +1,129 @@
+{
+  "skill_name": "hermes",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate the Technical Design document for the PA TACS tender (PAS000ETT25000074). The tender is for a Ticketing and Access Control System (TACS) for Our Tampines Hub (OTH) for People's Association. The RFP Annex IV Section 1 requires: development approach and methodology, system architecture, hosting environment (cloud-based), technology standards, and system security design (covering authentication, access control, audit trail, application security, network security, database security, server security). Evaluation is 60% quality / 40% price. Past submission for format reference is at: C:\\Users\\Admin\\OneDrive - ATT Systems (S'pore)\\Atlas\\86. PAS000ETT25000074 People's Association\\Submision\\Section 6  Information on Services\\Section 6 - Information on services (technical design).docx. Output the new document as Section_6_Technical_Design_PA_TACS_NEW.docx in the workspace.",
+      "expected_output": "A well-structured .docx Technical Design document for the PA TACS tender. Should include: Objectives, System Architecture (AWS hosting), Development Strategy (Agile/RAD, Hybrid SDLC), Technology Standards list, Hosting Environment (Production + UAT), and a thorough System Security Design section with all 8 sub-areas. Document must use ATT header/footer format: logo in header, Page X of Y in footer, Table of Contents, cover page. Must NOT be a copy of the reference.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-all-sections",
+          "description": "Document contains all required sections: Objectives, System Architecture, Development Strategy, Technology Standards, Hosting Environment, System Security Design",
+          "type": "content_check"
+        },
+        {
+          "id": "security-subsections",
+          "description": "Security Design section has at least 6 sub-sections covering authentication, audit trail, application security, network security, database security, server security",
+          "type": "content_check"
+        },
+        {
+          "id": "aws-hosting-mentioned",
+          "description": "Document mentions AWS as the hosting platform",
+          "type": "content_check"
+        },
+        {
+          "id": "rbac-mentioned",
+          "description": "Authentication section mentions RBAC (Role-Based Access Control)",
+          "type": "content_check"
+        },
+        {
+          "id": "docx-output",
+          "description": "Output is a valid .docx file (not just markdown or text)",
+          "type": "file_check"
+        },
+        {
+          "id": "not-copy",
+          "description": "The document is NOT a verbatim copy of the reference submission — content is rewritten/improved",
+          "type": "qualitative"
+        },
+        {
+          "id": "has-att-logo",
+          "description": "Document contains ATT logo image in the header and on the cover page",
+          "type": "file_check"
+        },
+        {
+          "id": "has-toc",
+          "description": "Document contains a Table of Contents covering headings 1-3",
+          "type": "content_check"
+        },
+        {
+          "id": "has-header-footer",
+          "description": "Document has a professional header with document title and a footer with Page X of Y numbering",
+          "type": "file_check"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Generate the Technical Design sections for the CAG T3 IIDS Refresh tender (2025 00518 CAG). This tender requires TWO separate documents: (1) Section 06 – Technical Proposal (covering executive summary, functional overview, system solutioning, implementation schedule, system configuration) and (2) Section 07 – System Design and Technical Architecture (covering system architecture, interfaces, capacity, drawings/diagrams, maintainability, hardware inventory). The system is ATT-SCALA FIDS (Flight Information Display System) for Changi Airport Terminal 3. Reference the tender documents at C:\\Users\\Admin\\OneDrive - ATT Systems (S'pore)\\Atlas\\111. 2025 00518 CAG\\Tender Documents\\04F PR_Appendix K - Tender Submission Requirements.pdf for the schedule requirements. Produce two output files: 06_Technical_Proposal_CAG_IIDS.docx and 07_System_Design_CAG_IIDS.docx in the workspace.",
+      "expected_output": "Two separate .docx files. Document 06 covers: executive summary, functional overview of FIDS/IIDS capabilities, implementation schedule, and system configuration. Document 07 covers: system architecture design with component descriptions, interface design approach, system capacity, maintainability approach, and hardware/software inventory list. Both documents reference CAG/airport context (T3, Changi, FIDS). Both use ATT header/footer format.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "two-documents-produced",
+          "description": "Two separate .docx files are produced: one for Technical Proposal (06) and one for System Design (07)",
+          "type": "file_check"
+        },
+        {
+          "id": "doc06-has-exec-summary",
+          "description": "Document 06 contains an Executive Summary section",
+          "type": "content_check"
+        },
+        {
+          "id": "doc07-has-architecture",
+          "description": "Document 07 contains a System Architecture section",
+          "type": "content_check"
+        },
+        {
+          "id": "airport-context",
+          "description": "Both documents reference airport / FIDS / Changi / T3 context — not generic",
+          "type": "content_check"
+        },
+        {
+          "id": "interfaces-addressed",
+          "description": "Document 07 addresses interfaces with other systems",
+          "type": "content_check"
+        },
+        {
+          "id": "att-format",
+          "description": "Both documents use ATT header/footer format with logo, page numbers, and cover page",
+          "type": "file_check"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Sultan has shared the technical requirements section of a new tender. He says: 'Atlas, for the new tender — it's a web portal for a government agency, hosted on GCC (Government Commercial Cloud). They want technical design covering: cloud architecture on GCC AWS, development approach, security controls aligned to IM8 (Singapore government security framework), and integration with SingPass MyInfo. Write up the technical design section for this.' Generate the Technical Design document as Technical_Design_GCC_Portal.docx in the workspace.",
+      "expected_output": "A technical design document tailored to Singapore government IT context. Should cover: GCC AWS hosting (Government Commercial Cloud variant, not generic AWS), development approach, security section that references IM8/government security standards, SingPass/MyInfo integration approach. Uses ATT header/footer format. Demonstrates Hermes can adapt ATT's standard positions to a different hosting context (GCC instead of generic AWS).",
+      "files": [],
+      "assertions": [
+        {
+          "id": "gcc-mentioned",
+          "description": "Document references GCC (Government Commercial Cloud) rather than just generic AWS",
+          "type": "content_check"
+        },
+        {
+          "id": "im8-or-security-framework",
+          "description": "Security section references IM8 or Singapore government security framework",
+          "type": "content_check"
+        },
+        {
+          "id": "singpass-integration",
+          "description": "Document addresses SingPass MyInfo integration",
+          "type": "content_check"
+        },
+        {
+          "id": "docx-output",
+          "description": "Output is a valid .docx file",
+          "type": "file_check"
+        },
+        {
+          "id": "adapts-standard-positions",
+          "description": "Hermes adapts ATT's standard technical positions (not just copy-pastes them) to fit the GCC/government context",
+          "type": "qualitative"
+        }
+      ]
+    }
+  ]
+}

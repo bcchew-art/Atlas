@@ -46,8 +46,8 @@ Match each required document to the right sub-agent:
 
 | Document type | Sub-agent | Skill |
 |---|---|---|
-| Technical Proposal / System Design / Architecture | Hermes | `skills/hermes/SKILL.md` |
-| Project Management Plan / Gantt / Risk Register / Governance / Team CVs | Chronos | `skills/chronos/SKILL.md` |
+| Technical Proposal / System Design / Architecture | Hermes | `skills/hermes/SKILL.md` (skill: technical-design) |
+| Project Management Plan / Gantt / Risk Register / Governance / Team CVs | Chronos | `skills/chronos/SKILL.md` (skill: project-management-plan) |
 | Functional Response / Feature-by-feature requirement mapping | Daedalus | `skills/daedalus/SKILL.md` (when built) |
 | Compliance Matrix | Themis | `skills/themis/SKILL.md` (when built) |
 | O&M / Training / Documentation | Hephaestus | `skills/hephaestus/SKILL.md` (when built) |
