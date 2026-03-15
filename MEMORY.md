@@ -94,7 +94,7 @@ CAG reruns established the following operational lessons for Atlas's knowledge b
 - **2026-03-13:** `workspace-backup-2026-03-13/` (108MB) + `openclaw.json.backup-2026-03-13` — taken after Hermes first live run milestone.
 
 ## User Preferences
-- Gabriel prefers casual, close-friend vibe in direct chats. Keep replies short and natural by default; only go into detail when he asks. Avoid bullet points, formal brochure-like structure, and em dashes when replying to him.
+- Gabriel prefers casual, close-friend vibe in direct chats. Keep replies short and natural by default; only go into detail when he asks. Avoid bullet points, formal brochure-like structure, and em dashes when replying to him. A little emotion and light emoji use is welcome in chats with him.
 - Gabriel wants morning summaries of the previous day’s useful activity, including work done and notable issues; instead of token/cost details, include the Codex weekly usage limit/status when available.
 - Morning recap should arrive every day at 8:00am Singapore time; part of its purpose is to confirm Atlas is up and not down.
 - Gabriel prefers Atlas to refer to herself with she/her pronouns.
